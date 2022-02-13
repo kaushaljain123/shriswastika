@@ -8,8 +8,8 @@ import Message from '../components/Message';
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
-
     const productList = useSelector(state => state.productList)
+    console.log(productList)
     const { loading, error, products } = productList
 
     useEffect(() => {
@@ -28,7 +28,6 @@ const HomeScreen = () => {
                     ))}
                 </Row>
             }
-            
         </>
   )
 }
