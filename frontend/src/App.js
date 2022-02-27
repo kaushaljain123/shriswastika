@@ -19,7 +19,7 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import SearchBox from './components/SearchBox';
-import ThankYou from './screens/ThankYou';
+import ThankYou from './screens/ThankYou'
 
 const App =() => {
   return (
