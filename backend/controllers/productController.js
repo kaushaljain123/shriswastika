@@ -8,6 +8,7 @@ const getProducts = asyncHandler(async(req, res) => {
   const pageSize = 12
   const page = Number(req.query.pageNumber) || 1
   const keyword = req.query.keyword
+  console.log(keyword)
   ? {
       name: {
         $regex: req.query.keyword,
@@ -57,8 +58,8 @@ const createProduct = asyncHandler(async (req, res) => {
       price: 0,
       user: req.user._id,
       image: '/images/sample.jpg',
+      videoLink: 'www.youtube.com',
       brand: 'Sample brand',
-      category: 'Sample category',
       countInStock: 0,
       numReviews: 0,
       description: 'Sample description',
@@ -77,8 +78,10 @@ const updateProduct = asyncHandler(async (req, res) => {
       price,
       description,
       image,
+      videoLink,
       brand,
       category,
+      subCategory,
       countInStock,
     } = req.body
   
@@ -88,9 +91,11 @@ const updateProduct = asyncHandler(async (req, res) => {
       product.name = name
       product.price = price
       product.description = description
-      product.image = image
       product.brand = brand
+      product.image = image
+      product.videoLink = videoLink
       product.category = category
+      product.subCategory = subCategory
       product.countInStock = countInStock
   
       const updatedProduct = await product.save()

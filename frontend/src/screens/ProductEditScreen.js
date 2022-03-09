@@ -7,19 +7,24 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
+import { getAllCategory } from '../actions/categoryAction';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import _ from 'lodash'
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState([])
+  const [videoLink, setVideoLink] = useState('');
   const [brand, setBrand] = useState('')
   const [category, setCategory] = useState('')
+  const [subCategory, setSubCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
+  const [subCat, setSubCat] = useState([])
 
   const dispatch = useDispatch()
 
@@ -27,6 +32,11 @@ const ProductEditScreen = ({ match, history }) => {
   const { loading, error, product } = productDetail
 
   const productUpdate = useSelector((state) => state.productUpdate)
+
+  const getCategorys = useSelector(state => state.getCategorys)
+  const { categorys } = getCategorys
+
+  let subCategorys = []
   const {
     loading: loadingUpdate,
     error: errorUpdate,
@@ -34,6 +44,7 @@ const ProductEditScreen = ({ match, history }) => {
   } = productUpdate
 
   useEffect(() => {
+    dispatch(getAllCategory())
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET })
       history.push('/admin/productlist')
@@ -44,6 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
         setName(product.name)
         setPrice(product.price)
         setImage(product.image)
+        setVideoLink(product.videoLink)
         setBrand(product.brand)
         setCategory(product.category)
         setCountInStock(product.countInStock)
@@ -52,28 +64,32 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate])
 
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
 
+  const uploadFileHandler = async (e) => {
+    const formData = new FormData()
+    setImage([])
+
+    _.forEach(e.target.files, file => {
+      formData.append('image', file)
+    })
+    setUploading(true)
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       }
-
       const { data } = await axios.post('/api/upload', formData, config)
 
       setImage(data)
+
       setUploading(false)
     } catch (error) {
       console.error(error)
       setUploading(false)
     }
   }
+
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -83,13 +99,42 @@ const ProductEditScreen = ({ match, history }) => {
         name,
         price,
         image,
+        videoLink,
         brand,
         category,
+        subCategory,
         description,
         countInStock,
       })
     )
   }
+
+  const getSubCategory = (e) => {
+    console.log(e)
+    console.log(categorys)
+    setCategory()
+    categorys.map(c => {
+      if(e == c._id) {
+        setCategory(c.name)
+      }
+      c.children.map(sc => {
+        if(e == sc.parentId) {
+          subCategorys.push(sc)
+          setSubCat(subCategorys)
+        }
+      })
+    })
+  }
+
+  const getSubCategoryValue = (e) => {
+    subCat.map(g => {
+      if(e == g._id) {
+        setSubCategory(g.name)
+      }
+    })
+  }
+
+  console.log(subCat)
 
   return (
     <>
@@ -139,8 +184,19 @@ const ProductEditScreen = ({ match, history }) => {
                 label='Choose File'
                 custom
                 onChange={uploadFileHandler}
+                multiple
               ></Form.File>
               {uploading && <Loader />}
+            </Form.Group>
+
+            <Form.Group controlId='videoLink'>
+              <Form.Label>video Link</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter video Link'
+                value={videoLink}
+                onChange={(e) => setVideoLink(e.target.value)}
+              ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId='brand'>
@@ -163,20 +219,44 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId='category'>
-              <Form.Label>Category</Form.Label>
+            {/* <Form.Group controlId='category'>
+
               <Form.Control
                 type='text'
                 placeholder='Enter category'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
+            </Form.Group> */}
+
+            <Form.Group controlId='category'>
+            <Form.Label>Category</Form.Label>
+                <Form.Control as='select' value={categorys._id}
+                onChange={(e) => getSubCategory(e.target.value)}>
+                    <option>Select Category</option>
+                    {categorys.map(x => (
+                      <option key={x._id} value={x._id}>{x.name}</option>
+                    ))}
+                </Form.Control>
+            </Form.Group>
+            <Form.Group controlId='subcategory'>
+            <Form.Label>Select Sub Category</Form.Label>
+                <Form.Control as='select' value={subCategory._id}  disabled={subCat.length == 0}
+                onChange={(e) => getSubCategoryValue(e.target.value)}
+                >
+                    <option>Select Sub Category</option>
+                    {subCat.map(y => (
+                      <option key={y._id} value={y._id}>{y.name}</option>
+                    ))}
+                </Form.Control>
             </Form.Group>
 
             <Form.Group controlId='description'>
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type='text'
+                as='textarea'
+                row='5'
+                col='5'
                 placeholder='Enter description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

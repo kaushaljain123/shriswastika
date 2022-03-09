@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Button, Form } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Button, Form, Carousel } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import Loader from '../components/Loader'
@@ -13,6 +13,7 @@ const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
+    const [images, setImages] = useState([])
 
     const dispatch = useDispatch()
 
@@ -34,7 +35,11 @@ const ProductScreen = ({ history, match }) => {
           setRating(0)
           setComment('')
         }
+
         if (!product._id || product._id !== match.params.id) {
+          if(product.image) {
+
+          }
           dispatch(listProductDetails(match.params.id))
           dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
@@ -54,16 +59,28 @@ const ProductScreen = ({ history, match }) => {
         )
       }
 
+      // if(product) {
+      //   var result = product.image.split(',')
+      //   setImages(result)
+      //   console.log(images)
+      // }
+
+
   return (
     <>
         <Link className='btn btn-light my-3' to='/'>Go Back</Link>
         {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
             <>
-
             <Meta title={product.name}/>
               <Row>
                 <Col md={6}>
-                    <Image src={product.image} alt={product.name} fluid />
+                    <Carousel pause='hover' className='bg-dark'>
+                    {product.image ? product.image.split(",").map(item => (
+                        <Carousel.Item key={item}>
+                            <Image src={'http://localhost:5000/' + item} alt={item}/>
+                        </Carousel.Item>
+                    )) : product.image}
+                    </Carousel> 
                 </Col>
     
                 <Col md={6}>
@@ -95,6 +112,9 @@ const ProductScreen = ({ history, match }) => {
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Price: Rs {product.price}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Video : <a href={product.videoLink} target='_blank'>{product.videoLink}</a>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Description: {product.description}

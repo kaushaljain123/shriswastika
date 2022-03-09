@@ -9,6 +9,8 @@ import Message from '../components/Message';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
+import Category from '../components/Category'
+
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword
@@ -20,12 +22,17 @@ const HomeScreen = ({ match }) => {
 
     useEffect(() => {
         dispatch(listProducts(keyword, pageNumber))
+        
     }, [dispatch, keyword, pageNumber])
+
+    console.log(products)
 
   return (
         <>
             <Meta />
-            {!keyword ? <ProductCarousel /> : <Link to='/' className='btn btn-light'>Go Back</Link>}
+            <Category />
+            
+            {!keyword ? <ProductCarousel />  : <Link to='/' className='btn btn-light'>Go Back</Link>}
             {!keyword ? <h1 className='py-3'>Latest Products</h1> : ''}
             {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : 
                 (
