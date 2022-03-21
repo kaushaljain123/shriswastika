@@ -57,7 +57,7 @@ h2 {
 }
 .carousel-caption {
   position: absolute;
-  top: 0;
+  top: -20px;
 }
 
 .carousel-caption h2 {

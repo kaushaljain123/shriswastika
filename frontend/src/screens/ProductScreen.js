@@ -59,13 +59,6 @@ const ProductScreen = ({ history, match }) => {
         )
       }
 
-      // if(product) {
-      //   var result = product.image.split(',')
-      //   setImages(result)
-      //   console.log(images)
-      // }
-
-
   return (
     <>
         <Link className='btn btn-light my-3' to='/'>Go Back</Link>
