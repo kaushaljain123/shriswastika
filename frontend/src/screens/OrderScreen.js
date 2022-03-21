@@ -106,9 +106,6 @@ const OrderScreen = ({ history, match }) => {
                                         {order.orderItems.map((item, index) => (
                                             <ListGroup.Item key={index}>
                                                 <Row>
-                                                    <Col md={1}>
-                                                        <Image src={item.image} alt={item.name} fluid rounded />
-                                                    </Col>
                                                     <Col>
                                                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                     </Col>
