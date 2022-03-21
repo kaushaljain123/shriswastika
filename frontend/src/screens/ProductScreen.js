@@ -77,7 +77,7 @@ const ProductScreen = ({ history, match }) => {
                     <Carousel pause='hover' className='bg-dark'>
                     {product.image ? product.image.split(",").map(item => (
                         <Carousel.Item key={item}>
-                            <Image src={`http://localhost:5000/${item}`} alt={item}/>
+                            <Image src={`https://jaincomputerapp.herokuapp.com/${item}`} alt={item}/>
                         </Carousel.Item>
                     )) : product.image}
                     </Carousel> 
