@@ -6,6 +6,7 @@ import Rating from './Rating';
 const Product = ({ product }) => {
   return (
     <Card className='my-3 p-3 rounded shadow' >
+        <h1>{product.image ? 'https://jaincomputerapp.herokuapp.com/' + product.image.split(',')[0] : ''}</h1>
         <Link to={`/product/${product._id}`}>
 
             <Card.Img src={product.image ? 'https://jaincomputerapp.herokuapp.com/' + product.image.split(',')[0] : ''} variant='top'/>
