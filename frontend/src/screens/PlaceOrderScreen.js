@@ -39,7 +39,6 @@ const PlaceOrderScreen = ({ history }) => {
       }, [history, success])
 
     const PlaceOrderHandler = () => {
-        alert(cart.taxPrice)
         dispatch(createOrder({
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
