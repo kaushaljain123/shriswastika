@@ -25,7 +25,6 @@ export const userRegisterReducers = (state = { }, action) => {
             return { loading: false, userInfo: action.payload }  
         case USER_REGISTER_FAIL:
             return { loading: false, error: action.payload }          
-        default:
         case USER_UPDATE_PROFILE_RESET:
             return {}    
             default:

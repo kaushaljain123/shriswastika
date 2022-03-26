@@ -4,11 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap'
 const SubCategory = ({ item }) => {
 
   return (
-        <LinkContainer to={`/search/${item.slug}`}>
+        // <LinkContainer to={`/search/${item.slug}`}>
             <NavDropdown.Item>
                 {item.name}
             </NavDropdown.Item>
-        </LinkContainer>
+        // </LinkContainer>
   )
 }
  

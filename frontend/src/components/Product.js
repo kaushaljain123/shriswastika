@@ -6,8 +6,10 @@ import Rating from './Rating';
 const Product = ({ product }) => {
   return (
     <Card className='my-3 p-3 rounded shadow' >
+        <h1>{'http://localhost:5000/' + product.image.split(',')[0]}</h1>
         <Link to={`/product/${product._id}`}>
-            <Card.Img src={product.image ? product.image.split(',')[0] : ''} variant='top'/>
+        
+            <Card.Img src={product.image ? product.image.split(',')[0] : product.image.split(',')[0]} variant='top'/>
         </Link>    
 
         <Card.Body>
