@@ -20,6 +20,7 @@ import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import CategoryAdd from './screens/CategoryAdd';
 import ThankYou from './screens/ThankYou'
+import AboutUs from './screens/AboutUs';
 
 const App =() => {
   return (
@@ -49,9 +50,18 @@ const App =() => {
           <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact/>
           <Route path='/add-category' component={CategoryAdd}/>
           <Route path='/thankyou' component={ThankYou} />
+          <Route path='/about-us' component={AboutUs} />
         </Container>
       </main>
       <Footer />
+      <a
+        href="https://wa.me/message/MERDGJLEUS3AN1"
+        class="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+      </a>
     </Router>
   );
 }
