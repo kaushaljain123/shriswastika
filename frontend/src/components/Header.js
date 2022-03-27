@@ -18,8 +18,7 @@ const Header = () => {
   
   return (
     <header>
-       <Navbar bg="dark" variant='dark' expand="sm" collapseOnSelect>
-         <Container>
+       <Navbar bg="dark" variant='dark' expand="sm" className='backgroundHeader' collapseOnSelect>
             <LinkContainer to='/'>
               <Navbar.Brand>Shriswastika</Navbar.Brand>
             </LinkContainer>
@@ -57,7 +56,6 @@ const Header = () => {
               )}
               </Nav>
             </Navbar.Collapse>
-         </Container>
         </Navbar>
     </header>
   )
