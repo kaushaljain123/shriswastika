@@ -55,6 +55,10 @@ const ProductListScreen = ({ history, match }) => {
         dispatch(createProduct())
     }
 
+    const createCategory = () => {
+        history.push('/add-category')
+    }
+
   return (
     <>
         
@@ -63,6 +67,7 @@ const ProductListScreen = ({ history, match }) => {
                 <h1>Products</h1>
             </Col>
             <Col className='text-right'>
+                <Button className='my-3' onClick={createCategory}>Add Category <i className='fas fa-plus'></i></Button>
                 <Button className='my-3' onClick={createProductHandler}>Create Product <i className='fas fa-plus'></i></Button>
             </Col>
         </Row>

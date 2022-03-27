@@ -6,7 +6,6 @@ import Loader from './Loader'
 import Message from './Message'
 import { listTopProducts } from '../actions/productActions'
 import image from '../images/banner.jpg'
-import image2 from '../images/camera.jpg'
 
 const ProductCarousel = () => {
   return (

@@ -76,6 +76,36 @@ h2 {
   padding: 20px;
 }
 
+.site-footer {
+  background-color: black;
+  color: #fff !important;
+}
+
+.footer-heading, .list-unstyled, .smoothscroll, .icon-twitter {
+  color: #fff !important;
+}
+
+
+.iconss {
+  display: flex;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px!important;
+}
+
+.app {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.image-wrapper {
+  margin: 0px 30px;
+}
+
+.image-wrapper img {
+  width: 80%;
+}
+
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;

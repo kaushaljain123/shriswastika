@@ -67,7 +67,7 @@ const ProductScreen = ({ history, match }) => {
             <Meta title={product.name}/>
               <Row>
                 <Col md={6}>
-                    <Carousel pause='hover' className='bg-dark'>
+                    <Carousel pause='hover' className='container'>
                     {product.image ? product.image.split(",").map(item => (
                         <Carousel.Item key={item}>
                             <Image src={`/${item}`} alt={item}/>

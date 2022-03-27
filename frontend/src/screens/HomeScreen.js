@@ -10,6 +10,7 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import Category from '../components/Category'
+import PartnerSlider from '../components/PartnerSlider';
 
 
 const HomeScreen = ({ match }) => {
@@ -48,7 +49,9 @@ const HomeScreen = ({ match }) => {
                         <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''}/>
                     </>
                 )
+
             }
+            <PartnerSlider />
         </>
   )
 }

@@ -62,4 +62,29 @@ const getCategorys = asyncHandler(async(req, res) => {
     }
 })
 
-export { addCategorys, getCategorys }
+// @dec      Get Category
+// @routes   POST /api/category
+// @access   Public
+const getAllCategorys = asyncHandler(async(req, res) => {
+    const categoryAllList = await Category.find({})
+
+    if(categoryAllList) {
+        res.json(categoryAllList)
+    }
+}) 
+
+// @dec      Remove Category
+// @routes   POST /api/category
+// @access   Private
+const removeCategory = asyncHandler(async(req, res) => {
+    const category = await Category.findById(req.params.id)
+
+    if(category) {
+        await category.remove()
+        res.json({ message: 'category Removed' })
+    } else {
+        res.status(404).json({ message: 'category Not Found', status: 404 })
+    }
+})
+
+export { addCategorys, getCategorys, getAllCategorys, removeCategory }

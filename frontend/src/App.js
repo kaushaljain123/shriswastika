@@ -18,7 +18,7 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-import SearchBox from './components/SearchBox';
+import CategoryAdd from './screens/CategoryAdd';
 import ThankYou from './screens/ThankYou'
 
 const App =() => {
@@ -47,7 +47,7 @@ const App =() => {
           <Route path='/category/:categoryData' component={HomeScreen} exact/>
           <Route path='/search/:keyword/:page/:pageNumber' component={HomeScreen} />
           <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact/>
-
+          <Route path='/add-category' component={CategoryAdd}/>
           <Route path='/thankyou' component={ThankYou} />
         </Container>
       </main>
