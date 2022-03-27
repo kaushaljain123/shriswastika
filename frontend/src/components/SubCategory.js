@@ -1,14 +1,21 @@
 import React from 'react'
-import { NavDropdown  } from 'react-bootstrap';
+import { Form, NavDropdown  } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
-const SubCategory = ({ item }) => {
+const SubCategory = ({ item, history }) => {
+  const changeData = () => {
+    if(item.slug) {
+      document.location.href = `/category/${item.slug}`
+    } else {
+      document.location.href = '/'
+    }
+  }
 
   return (
-        // <LinkContainer to={`/search/${item.slug}`}>
+        <Form onClick={changeData}>
             <NavDropdown.Item>
                 {item.name}
             </NavDropdown.Item>
-        // </LinkContainer>
+         </Form>
   )
 }
  

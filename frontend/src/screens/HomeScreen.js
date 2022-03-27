@@ -14,14 +14,14 @@ import Category from '../components/Category'
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword
-
+    const categoryData = match.params.categoryData
     const pageNumber = match.params.pageNumber || 1
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList
 
     useEffect(() => {
-        dispatch(listProducts(keyword, pageNumber))
+        dispatch(listProducts(keyword, pageNumber, categoryData))
         
     }, [dispatch, keyword, pageNumber])
 
@@ -32,8 +32,9 @@ const HomeScreen = ({ match }) => {
             <Meta />
             <Category />
             
-            {!keyword ? <ProductCarousel />  : <Link to='/' className='btn btn-light'>Go Back</Link>}
-            {!keyword ? <h1 className='py-3'>Latest Products</h1> : ''}
+            {!keyword && !categoryData ? <ProductCarousel />  : keyword || !categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> 
+            : !keyword || categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> : ''}
+            {!keyword ? <h1 className='py-9 text-center'>Our Latest Products</h1> : ''}
             {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : 
                 (
                     <>
