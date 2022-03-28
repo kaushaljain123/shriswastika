@@ -46,6 +46,7 @@ const App =() => {
           <Route path='/search/:keyword' component={HomeScreen} exact/>
           <Route path='/page/:pageNumber' component={HomeScreen} exact/>
           <Route path='/category/:categoryData' component={HomeScreen} exact/>
+          <Route path='/category/:categoryData/:page/:pageNumber' component={HomeScreen} exact/>
           <Route path='/search/:keyword/:page/:pageNumber' component={HomeScreen} />
           <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact/>
           <Route path='/add-category' component={CategoryAdd}/>
