@@ -1,5 +1,5 @@
 import path from 'path'
-import express from 'express'
+const  express = require('express')
 import multer from 'multer'
 const router = express.Router()
 
