@@ -1,4 +1,4 @@
-import express from 'express'
+const  express = require('express')
 import dotenv from 'dotenv'
 import path from 'path'
 import morgan from 'morgan'
