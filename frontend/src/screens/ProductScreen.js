@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Button, Form, Carousel } from 'react-bootstrap'
+import { Container, Row, Col, Image, ListGroup, Button, Form, Carousel, Card } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import Loader from '../components/Loader'
@@ -10,10 +10,12 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Meta from '../components/Meta';
 
 const ProductScreen = ({ history, match }) => {
+
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState()
+    const [index, setIndex] = useState(0)
 
     const dispatch = useDispatch()
 
@@ -43,6 +45,9 @@ const ProductScreen = ({ history, match }) => {
           dispatch(listProductDetails(match.params.id))
           dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
+
+
+        
       }, [dispatch, match, successProductReview])
 
     const addToCartHandler = () => {
@@ -59,21 +64,33 @@ const ProductScreen = ({ history, match }) => {
         )
       }
 
+      const imageHoverHandler = (index) => {
+        setIndex(index)
+      }
+
+      const stringImages = product ? product.image : ''
+      const imagesArray = stringImages ? stringImages.split(',') : []
+      const finalImageArray = imagesArray.filter(function (el) {
+        return el != ""
+      })
+
+
   return (
-    <>
+    <Container>
         <Link className='btn btn-light my-3' to='/'>Go Back</Link>
         {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
             <>
             <Meta title={product.name}/>
               <Row>
                 <Col md={6}>
-                    <Carousel pause='hover' className='container'>
-                    {product.image ? product.image.split(",").map(item => (
-                        <Carousel.Item key={item}>
-                            <Image src={`/${item}`} alt={item}/>
-                        </Carousel.Item>
-                    )) : product.image}
-                    </Carousel> 
+                    <div className='big-image'>
+                      {product.image ? <img id='featured' src={ '/'+finalImageArray[index]} /> : product.image}
+                    </div>
+                    <div className='thumb'>
+                    {product.image ? finalImageArray.map((item, index) => (
+                      <img className='thumbnail' src={ '/'+item} onClick={() => imageHoverHandler(index)}/>
+                    )) : ''}
+                    </div>
                 </Col>
     
                 <Col md={6}>
@@ -190,7 +207,7 @@ const ProductScreen = ({ history, match }) => {
             </>
               
         )}               
-    </>
+    </Container>
   )
 }
 

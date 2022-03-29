@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,7 +15,10 @@ const Footer = () => {
               <div className="col-md-3 ml-auto">
                 <h2 className="footer-heading mb-4">Quick Links</h2>
                 <ul className="list-unstyled">
-                  <li><a href="/about-us" className="smoothscroll">About Us</a></li>
+                  <li><Link to="/about-us" className="smoothscroll">About Us</Link></li>
+                  <li><Link to="/term-and-condition" className="smoothscroll">Terms and Condition</Link></li>
+                  <li><Link to="/our-policies" className="smoothscroll">Our Policy</Link></li>
+                  <li><Link to="/contact-us" className="smoothscroll">Contact Us</Link></li>
                 </ul>
               </div>
               <div className="col-md-3">

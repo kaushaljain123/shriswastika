@@ -21,6 +21,9 @@ import OrderListScreen from './screens/OrderListScreen'
 import CategoryAdd from './screens/CategoryAdd';
 import ThankYou from './screens/ThankYou'
 import AboutUs from './screens/AboutUs';
+import TermAndCondition from './screens/TermAndCondition';
+import OurPolicies from './screens/OurPolicies';
+import ContactUs from './screens/ContactUs';
 
 const App =() => {
   return (
@@ -52,6 +55,9 @@ const App =() => {
           <Route path='/add-category' component={CategoryAdd}/>
           <Route path='/thankyou' component={ThankYou} />
           <Route path='/about-us' component={AboutUs} />
+          <Route path='/term-and-condition' component={TermAndCondition} />
+          <Route path='/our-policies' component={OurPolicies} />
+          <Route path='/contact-us' component={ContactUs} />
         </Container>
       </main>
       <Footer />
