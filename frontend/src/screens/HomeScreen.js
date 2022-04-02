@@ -9,24 +9,33 @@ import Message from '../components/Message';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
+import Category from '../components/Category'
+import PartnerSlider from '../components/PartnerSlider';
+
 
 const HomeScreen = ({ match }) => {
     const keyword = match.params.keyword
-
+    const categoryData = match.params.categoryData
     const pageNumber = match.params.pageNumber || 1
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const { loading, error, products, page, pages } = productList
 
     useEffect(() => {
-        dispatch(listProducts(keyword, pageNumber))
+        dispatch(listProducts(keyword, pageNumber, categoryData))
+        
     }, [dispatch, keyword, pageNumber])
+
+    console.log(products)
 
   return (
         <>
             <Meta />
-            {!keyword ? <ProductCarousel /> : <Link to='/' className='btn btn-light'>Go Back</Link>}
-            {!keyword ? <h1 className='py-3'>Latest Products</h1> : ''}
+            <Category />
+            
+            {!keyword && !categoryData ? <ProductCarousel />  : keyword || !categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> 
+            : !keyword || categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> : ''}
+            {!keyword ? <h1 className='py-9 text-center'>Our Latest Products</h1> : ''}
             {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : 
                 (
                     <>
@@ -37,10 +46,12 @@ const HomeScreen = ({ match }) => {
                                 </Col>
                             ))}
                         </Row>
-                        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''}/>
+                        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} categoryData={categoryData ? categoryData : ''}/>
                     </>
                 )
+
             }
+            <PartnerSlider />
         </>
   )
 }

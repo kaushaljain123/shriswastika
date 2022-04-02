@@ -12,11 +12,11 @@ import { PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL, } from "../constants/productConstants";
 
-export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '', categoryData = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+        const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}&categoryData=${categoryData}`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,

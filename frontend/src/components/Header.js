@@ -18,10 +18,9 @@ const Header = () => {
   
   return (
     <header>
-       <Navbar bg="dark" variant='dark' expand="sm" collapseOnSelect>
-         <Container>
+       <Navbar bg="dark" variant='dark' expand="sm" className='backgroundHeader' collapseOnSelect>
             <LinkContainer to='/'>
-              <Navbar.Brand>Proshop</Navbar.Brand>
+              <Navbar.Brand>Shriswastika</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -57,7 +56,6 @@ const Header = () => {
               )}
               </Nav>
             </Navbar.Collapse>
-         </Container>
         </Navbar>
     </header>
   )

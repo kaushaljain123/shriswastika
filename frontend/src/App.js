@@ -18,15 +18,19 @@ import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-import SearchBox from './components/SearchBox';
+import CategoryAdd from './screens/CategoryAdd';
 import ThankYou from './screens/ThankYou'
+import AboutUs from './screens/AboutUs';
+import TermAndCondition from './screens/TermAndCondition';
+import OurPolicies from './screens/OurPolicies';
+import ContactUs from './screens/ContactUs';
 
 const App =() => {
   return (
     <Router>
       <Header />
-      <main className='py-3'>
-        <Container>
+      <main className=''>
+        <Container fluid>
           <Route path='/' component={HomeScreen} exact/>
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
@@ -44,13 +48,27 @@ const App =() => {
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/search/:keyword' component={HomeScreen} exact/>
           <Route path='/page/:pageNumber' component={HomeScreen} exact/>
+          <Route path='/category/:categoryData' component={HomeScreen} exact/>
+          <Route path='/category/:categoryData/:page/:pageNumber' component={HomeScreen} exact/>
           <Route path='/search/:keyword/:page/:pageNumber' component={HomeScreen} />
           <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact/>
-
+          <Route path='/add-category' component={CategoryAdd}/>
           <Route path='/thankyou' component={ThankYou} />
+          <Route path='/about-us' component={AboutUs} />
+          <Route path='/term-and-condition' component={TermAndCondition} />
+          <Route path='/our-policies' component={OurPolicies} />
+          <Route path='/contact-us' component={ContactUs} />
         </Container>
       </main>
       <Footer />
+      <a
+        href="https://wa.me/message/MERDGJLEUS3AN1"
+        class="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+      </a>
     </Router>
   );
 }

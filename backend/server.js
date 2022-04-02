@@ -8,6 +8,7 @@ import productRoutes from './routes/productRouter.js'
 import userRouters from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+import categoryRoutes from './routes/categoryRoutes.js'
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRouters)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
+app.use('/api/category', categoryRoutes)
 
 
 app.get('/api/config/paypal', (req, res) => {

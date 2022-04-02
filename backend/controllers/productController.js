@@ -4,21 +4,41 @@ import Product from '../models/productModal.js'
 // @dec      Fetch all products
 // @routes   GET /api/products
 // @access   PUBLIC
-const getProducts = asyncHandler(async(req, res) => {
+const getProducts = asyncHandler(async (req, res) => {
   const pageSize = 12
   const page = Number(req.query.pageNumber) || 1
-  const keyword = req.query.keyword
-  ? {
-      name: {
-        $regex: req.query.keyword,
-        $options: 'i',
-      },
-    }
-  : {}
 
-    const count = await Product.countDocuments({ ...keyword })
-    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
-    res.json({products, page, pages: Math.ceil(count / pageSize)})
+  const keyword = req.query.keyword || req.query.categoryData
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      } 
+    : {}
+
+    const categoryData = req.query.categoryData
+    ? {
+      subCategory: {
+        $regex: req.query.categoryData,
+        $options: 'i'
+      }
+    }
+    : {}
+
+    if(req.query.keyword){
+      const count = await Product.countDocuments({ ...keyword })
+      const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1))
+      res.json({ products, page, pages: Math.ceil(count / pageSize) })
+    }else if(req.query.categoryData) {
+      const count = await Product.countDocuments({ ...categoryData })
+      const products = await Product.find({ ...categoryData }).limit(pageSize).skip(pageSize * (page - 1))
+      res.json({ products, page, pages: Math.ceil(count / pageSize) })
+    } else {
+      const count = await Product.countDocuments({ })
+      const products = await Product.find({ }).limit(pageSize).skip(pageSize * (page - 1))
+      res.json({ products, page, pages: Math.ceil(count / pageSize) })
+    }
 })
 
 // @dec      Fetch single products
@@ -57,8 +77,8 @@ const createProduct = asyncHandler(async (req, res) => {
       price: 0,
       user: req.user._id,
       image: '/images/sample.jpg',
+      videoLink: 'www.youtube.com',
       brand: 'Sample brand',
-      category: 'Sample category',
       countInStock: 0,
       numReviews: 0,
       description: 'Sample description',
@@ -77,8 +97,10 @@ const updateProduct = asyncHandler(async (req, res) => {
       price,
       description,
       image,
+      videoLink,
       brand,
       category,
+      subCategory,
       countInStock,
     } = req.body
   
@@ -88,9 +110,11 @@ const updateProduct = asyncHandler(async (req, res) => {
       product.name = name
       product.price = price
       product.description = description
-      product.image = image
       product.brand = brand
+      product.image = image
+      product.videoLink = videoLink
       product.category = category
+      product.subCategory = subCategory
       product.countInStock = countInStock
   
       const updatedProduct = await product.save()

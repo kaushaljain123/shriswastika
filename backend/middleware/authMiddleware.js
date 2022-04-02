@@ -20,13 +20,14 @@ const protect = expressAsyncHandler(async (req, res, next) => {
         req.user = await User.findById(decoder.id)
         next()
     } catch(err) {
-        console.error(error)
+        console.error(err)
         throw new Error('No Authorized to access')
     }
 })
 
 
 const admin = (req, res, next) => {
+    console.log(req.user)
     if(req.user && req.user.isAdmin) {
         next()
     } else {
