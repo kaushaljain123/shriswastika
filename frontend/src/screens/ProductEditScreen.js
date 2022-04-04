@@ -16,6 +16,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
+  const [mrp, setMrp] = useState(0)
   const [image, setImage] = useState([])
   const [videoLink, setVideoLink] = useState('');
   const [brand, setBrand] = useState('')
@@ -54,6 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
       } else {
         setName(product.name)
         setPrice(product.price)
+        setMrp(product.mrp)
         setImage(product.image)
         setVideoLink(product.videoLink)
         setBrand(product.brand)
@@ -64,11 +66,9 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate])
 
-
   const uploadFileHandler = async (e) => {
     const formData = new FormData()
     setImage([])
-
     _.forEach(e.target.files, file => {
       formData.append('image', file)
     })
@@ -90,7 +90,6 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }
 
-
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
@@ -98,6 +97,7 @@ const ProductEditScreen = ({ match, history }) => {
         _id: productId,
         name,
         price,
+        mrp,
         image,
         videoLink,
         brand,
@@ -110,8 +110,6 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   const getSubCategory = (e) => {
-    console.log(e)
-    console.log(categorys)
     setCategory()
     categorys.map(c => {
       if(e == c._id) {
@@ -129,12 +127,12 @@ const ProductEditScreen = ({ match, history }) => {
   const getSubCategoryValue = (e) => {
     subCat.map(g => {
       if(e == g._id) {
-        setSubCategory(g.name)
+        setSubCategory(g.slug)
       }
     })
   }
 
-  console.log(subCat)
+  console.log(product)
 
   return (
     <>
@@ -168,6 +166,16 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder='Enter price'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='mrp'>
+              <Form.Label>MRP</Form.Label>
+              <Form.Control
+                type='number'
+                placeholder='Enter Mrp'
+                value={mrp}
+                onChange={(e) => setMrp(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -219,16 +227,7 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            {/* <Form.Group controlId='category'>
-
-              <Form.Control
-                type='text'
-                placeholder='Enter category'
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
-            </Form.Group> */}
-
+            old Category {product.category}
             <Form.Group controlId='category'>
             <Form.Label>Category</Form.Label>
                 <Form.Control as='select' value={categorys._id}
@@ -239,6 +238,8 @@ const ProductEditScreen = ({ match, history }) => {
                     ))}
                 </Form.Control>
             </Form.Group>
+
+            old subCategory {product.subCategory}
             <Form.Group controlId='subcategory'>
             <Form.Label>Select Sub Category</Form.Label>
                 <Form.Control as='select' value={subCategory._id}  disabled={subCat.length == 0}
