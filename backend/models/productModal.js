@@ -26,6 +26,12 @@ const productSchema = mongoose.Schema({
         type : String,
         required : true,
     },
+    imageTwo: {
+        type : String,
+    },
+    imageThree: {
+        type: String,
+    },
     videoLink : {
         type: String,
     },

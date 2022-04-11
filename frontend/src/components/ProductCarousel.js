@@ -11,7 +11,7 @@ const ProductCarousel = () => {
   return (
     <Carousel pause='hover' fade>
         <Carousel.Item>
-          <Image src={image} className="d-block w-100" />
+          <Image src={image} className="heroImage" />
         </Carousel.Item>
     </Carousel>
   )

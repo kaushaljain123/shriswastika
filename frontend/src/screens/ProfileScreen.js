@@ -54,6 +54,8 @@ const ProfileScreen = ({ history }) => {
         }
     }
 
+    console.log(orders)
+
   return (
         <Row>
             <Col md={3}>
@@ -90,10 +92,10 @@ const ProfileScreen = ({ history }) => {
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Product Name</th>
                                 <th>Date</th>
                                 <th>Total</th>
                                 <th>Paid</th>
-                                <th>Delivered</th>
                                 <th></th>
 
                             </tr>
@@ -102,12 +104,10 @@ const ProfileScreen = ({ history }) => {
                             {orders.map(order => (
                                 <tr key={order._id}>
                                     <td>{order._id}</td>
+                                    <td>{order.orderItems[0].name}</td>
                                     <td>{order.createdAt.substring(0, 10)}</td>
                                     <td>Rs {order.totalPrice}</td>
                                     <td>{order.isPaid ? order.paidAt.substring(0, 10) : (
-                                        <i className='fas fa-times' style={{ color: 'red' }}></i>
-                                    )}</td>
-                                     <td>{order.deliveredAt ? order.paidAt.substring(0, 10) : (
                                         <i className='fas fa-times' style={{ color: 'red' }}></i>
                                     )}</td>
                                     <td>

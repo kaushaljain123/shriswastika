@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import {Magnifier} from 'react-image-magnifiers'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image, ListGroup, Button, Form, Carousel, Card } from 'react-bootstrap'
@@ -10,12 +11,15 @@ import Message from '../components/Message'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Meta from '../components/Meta';
 
+
+
 const ProductScreen = ({ history, match }) => {
 
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
     const [images, setImages] = useState()
+    const [finalImage, setFinalImage] = useState('')
     const [index, setIndex] = useState(0)
 
     const dispatch = useDispatch()
@@ -65,8 +69,9 @@ const ProductScreen = ({ history, match }) => {
         )
       }
 
-      const imageHoverHandler = (index) => {
+      const imageHoverHandler = (index, imageSrc) => {
         setIndex(index)
+        setFinalImage(imageSrc)
       }
 
       const stringImages = product ? product.image : ''
@@ -96,14 +101,21 @@ const ProductScreen = ({ history, match }) => {
               <Row>
               <Col md={2}>
                       <div className='thumb'>
-                      {product.image ? finalImageArray.map((item, index) => (
-                        <img className='thumbnail' src={ 'https://www.shriswastika.com/'+item} onClick={() => imageHoverHandler(index)}/>
-                      )) : ''}
+                      {product.image ? <img className='thumbnail' src={product.image} onClick={() => imageHoverHandler(1, product.image)}/> : ''}
+                      {product.imageTwo ? <img className='thumbnail' src={product.imageTwo} onClick={() => imageHoverHandler(2, product.imageTwo)}/> : ''}
+                      {product.imageThree ? <img className='thumbnail' src={product.imageThree} onClick={() => imageHoverHandler(3, product.imageThree)}/> : ''}
                       </div>
                     </Col>
                 <Col md={4}>
                     <div className='big-image'>
-                      {product.image ? <img class="MagicZoom" id='featured' src={ 'https://www.shriswastika.com/'+finalImageArray[index]} /> : product.image}
+                      <Magnifier
+                        
+                          imageSrc= {finalImage ? finalImage : product.image}
+                          imageAlt='fefes'
+                        
+                      />
+                      
+                      {/* {product.image ? <img class="MagicZoom" id='featured' src={finalImage ? finalImage : product.image} /> : product.image} */}
                     </div>
                 </Col>
     

@@ -34,19 +34,19 @@ const upload = multer({
   },
 })
 
-router.post('/', upload.array('image', 4), (req, res) => {
-  // res.send(`/${req.file.path}`)
-      console.log(req.files)
-       var path = ''
-       if(req.files) {
-
-        req.files.forEach(function(files, index, arr) {
-          path = path + files.path + ',' 
-        })
-      }
-      console.log(path)
-      res.send(`${path}`);
+router.post('/', upload.single('image'), (req, res) => {
+  res.send(`/${req.file.path}`)
 })
+
+router.post('/imageTwo', upload.single('imageTwo'), (req, res) => {
+  res.send(`/${req.file.path}`)
+})
+
+router.post('/imageThree', upload.single('imageThree'), (req, res) => {
+  res.send(`/${req.file.path}`)
+})
+
+
 
 
 export default router

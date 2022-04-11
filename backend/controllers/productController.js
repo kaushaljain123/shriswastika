@@ -92,6 +92,8 @@ const updateProduct = asyncHandler(async (req, res) => {
       mrp,
       description,
       image,
+      imageTwo,
+      imageThree,
       videoLink,
       brand,
       category,
@@ -108,10 +110,15 @@ const updateProduct = asyncHandler(async (req, res) => {
       product.description = description
       product.brand = brand
       product.image = image
+      product.imageTwo = imageTwo
+      product.imageThree = imageThree
       product.videoLink = videoLink
       product.category = category
       product.subCategory = subCategory
       product.countInStock = countInStock
+
+      console.log(product)
+      
   
       const updatedProduct = await product.save()
       res.json(updatedProduct)

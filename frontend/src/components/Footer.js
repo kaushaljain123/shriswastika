@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="col-md-3 ml-auto">
                 <h2 className="footer-heading mb-4">Shriswastika Infotech</h2>
                 <ul className="list-unstyled">
-                  <li><i className='fa fa-home'></i> T-1523, Anupam Plaza Bombay Market-Punagam Rd, Ranujadham Society, Varachha, Surat, Gujarat 395006</li><br />
+                  <li><i className='fa fa-home'></i> 137 JAIN NAGAR ,GUFA MANDIR ROAD LALGHATI BHOPAL 462001</li><br />
                   <li><i className='fa fa-phone'></i> Order Related:- 9589330716</li><br />
                   <li><i className='fa fa-phone'></i> Admin:- 9179330716</li><br />
                   <li><i className='fa fa-envelope'></i> <a href="mailto:contactswastika2021@gmail.com" style={{ color: 'white' }}>contactswastika2021@gmail.com</a></li><br />
@@ -29,6 +29,8 @@ const Footer = () => {
               <div className="col-md-3 ml-auto">
                 <h2 className="footer-heading mb-4">Quick Links</h2>
                 <ul className="list-unstyled">
+
+                  <li><Link to="/privacy-policy" className="smoothscroll">Privacy Policy</Link></li><br />
                   <li><Link to="/about-us" className="smoothscroll">About Us</Link></li><br />
                   <li><Link to="/term-and-condition" className="smoothscroll">Terms and Condition</Link></li><br />
                   <li><Link to="/our-policies" className="smoothscroll">Cancel & Return Policy</Link></li><br />

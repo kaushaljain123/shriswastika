@@ -24,6 +24,7 @@ import AboutUs from './screens/AboutUs';
 import TermAndCondition from './screens/TermAndCondition';
 import OurPolicies from './screens/OurPolicies';
 import ContactUs from './screens/ContactUs';
+import PrivaciyPolicy from './screens/PrivaciyPolicy';
 
 const App =() => {
   return (
@@ -58,6 +59,7 @@ const App =() => {
           <Route path='/term-and-condition' component={TermAndCondition} />
           <Route path='/our-policies' component={OurPolicies} />
           <Route path='/contact-us' component={ContactUs} />
+          <Route path='/privacy-policy' component={PrivaciyPolicy} />
         </Container>
       </main>
       <Footer />
