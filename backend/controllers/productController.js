@@ -117,9 +117,6 @@ const updateProduct = asyncHandler(async (req, res) => {
       product.subCategory = subCategory
       product.countInStock = countInStock
 
-      console.log(product)
-      
-  
       const updatedProduct = await product.save()
       res.json(updatedProduct)
     } else {

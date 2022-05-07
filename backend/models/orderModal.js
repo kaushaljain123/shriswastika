@@ -17,6 +17,8 @@ const orderSchema = mongoose.Schema({
     shippingAddress : {
         address: { type : String, required: true },
         city: { type : String, required: true },
+        state: {type: String, required: true},
+        phone: {type: String, required: true},
         postalCode: { type : String, required: true },
         country: { type : String, required: true },
     },
@@ -50,6 +52,14 @@ const orderSchema = mongoose.Schema({
         required : true,
         default : false
     },
+    isShipped: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    shippedAt: {
+        type : Date,
+    },
     paidAt : {
         type : Date,
     },
@@ -57,6 +67,24 @@ const orderSchema = mongoose.Schema({
         type : Boolean,
         required : true,
         default : false
+    },
+    awb_number: {
+        type: String
+    },
+    courier_name: {
+        type: String
+    },
+    label: {
+        type: String
+    },
+    order_id: {
+        type: String
+    },
+    shipment_id: {
+        type: String
+    },
+    status: {
+        type: String
     },
     deliveredAt : {
         type : Date,
