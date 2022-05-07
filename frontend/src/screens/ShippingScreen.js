@@ -11,6 +11,8 @@ const ShippingScreen = ({ history }) => {
 
     const [address, SetAddress] = useState(shippingAddress.address)
     const [city, SetCity] = useState(shippingAddress.city)
+    const [state, SetState] = useState(shippingAddress.state)
+    const [phone, SetPhone] = useState(shippingAddress.phonr)
     const [postalCode, SetPostalCode] = useState(shippingAddress.postalCode)
     const [country, SetCountry] = useState(shippingAddress.country ? shippingAddress.country : 'India')
 
@@ -18,7 +20,7 @@ const ShippingScreen = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingAddress({ address, city, postalCode, country }))
+        dispatch(saveShippingAddress({ address, city, state, phone, postalCode, country }))
         history.push('/payment')
     }
     
@@ -34,6 +36,14 @@ const ShippingScreen = ({ history }) => {
             <Form.Group controlId='City'>
                     <Form.Label>Enter City</Form.Label>
                     <Form.Control type='text' placeholder='Enter City' value={city} onChange={(e) => SetCity(e.target.value)}></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='State'>
+                    <Form.Label>Enter State</Form.Label>
+                    <Form.Control type='text' placeholder='Enter State' value={state} onChange={(e) => SetState(e.target.value)}></Form.Control>
+            </Form.Group>
+            <Form.Group controlId='Phone'>
+                    <Form.Label>Enter Mobile Number</Form.Label>
+                    <Form.Control type='text' placeholder='Enter Mobile Number' value={phone} onChange={(e) => SetPhone(e.target.value)}></Form.Control>
             </Form.Group>
             <Form.Group controlId='PostalCode'>
                     <Form.Label>Enter Pincode</Form.Label>
