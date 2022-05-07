@@ -26,6 +26,12 @@ const productSchema = mongoose.Schema({
         type : String,
         required : true,
     },
+    imageTwo: {
+        type : String,
+    },
+    imageThree: {
+        type: String,
+    },
     videoLink : {
         type: String,
     },
@@ -53,6 +59,11 @@ const productSchema = mongoose.Schema({
         type : Number,
         required : true,
         default : 0
+    },
+    mrp: {
+        type: Number,
+        required: true,
+        default: 0
     },
     price : {
         type : Number,

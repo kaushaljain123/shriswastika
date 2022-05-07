@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Order from '../models/orderModal.js'
+import Product from "../models/productModal.js";
 
 // @dec      Create New Order
 // @routes   POst /api/orders
@@ -104,5 +105,57 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc    Update Shipping 
+// @route   GET /api/orders/:id/shipped
+// @access  Private/Admin
 
-export { addOrderItems, getOrderById, updateOrdertoPaid, getMyOrders, getOrders, updateOrderToDelivered }
+const updateOrderToShipped = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+
+    if(order) {
+        order.isShipped = true
+        order.shippedAt = Date.now()
+
+        const updateShippedOrder = await order.save()
+
+        res.json(updateShippedOrder)
+    } else {
+        res.status(404)
+        throw new Error('Order Not found!')
+    }
+})
+
+// @desc    Update Shipping Courier Details
+// @route   GET /api/orders/:id/updateCourier
+// @access  Private/Admin
+
+const updateCourierDetails = asyncHandler(async(req, res) => {
+    const {
+        awb_number,
+        courier_name,
+        label,
+        order_id,
+        shipment_id,
+        status
+      } = req.body
+
+      const order = await Order.findById(req.params.id)
+
+    if(order) {
+        order.awb_number = awb_number,
+        order.courier_name = courier_name,
+        order.label = label,
+        order.order_id = order_id,
+        order.shipment_id = shipment_id,
+        order.status = status
+
+        const updateCourier = await order.save()
+        res.json(updateCourier)
+    } else {
+        res.status(404)
+        throw new Error('Order Not found!')
+    }
+})
+
+
+export { addOrderItems, getOrderById, updateOrdertoPaid, getMyOrders, getOrders, updateOrderToDelivered, updateOrderToShipped, updateCourierDetails }

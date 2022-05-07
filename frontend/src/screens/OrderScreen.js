@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card, Button, Modal, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -10,6 +10,20 @@ import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions
 import { ORDER_PAY_RESET,ORDER_DELIVER_RESET, } from '../constants/orderConstants'
 
 const OrderScreen = ({ history, match }) => {
+
+    const [show, setShow] = useState(false);
+    const [productWeight, setProductWeight] = useState(0)
+    const [productHeight, setProductHeight] = useState(0)
+    const [productLength, setProductLength] = useState(0)
+    const [productBreadth, setProductBreadth] = useState(0)
+    const [warehouse, setWarehouse] = useState('')
+    const [name, setName] = useState('')
+    const [addressOne, setAddressOne] = useState('')
+    const [addressTwo, setAddressTwo] = useState('')
+    const [city, setCity] = useState('Morena')
+    const [state, setState] = useState('Madhya Pradesh')
+    const [pincode, setPincode] = useState('476001')
+    const [phone, setPhone] = useState('')
 
     const orderId = match.params.id
 
@@ -74,16 +88,243 @@ const OrderScreen = ({ history, match }) => {
 
     const deliverHandler = () => {
         dispatch(deliverOrder(order))
-      }
+    }
 
-  return loading ? ( <Loader /> ) : error ? ( <Message varient='danger'>{error}</Message> ) : (
+    const shipMentLoginHandler = () => {
+        var loginData = JSON.stringify({
+            "email": "shriswastikainfotechpvtltd@gmail.com",
+            "password": "Admin@123"
+        });
+
+        var config = {
+            method: 'post',
+            url: 'https://api.nimbuspost.com/v1/users/login',
+            headers: {
+                'content-type': 'application/json'
+            },
+            data: loginData
+        }
+
+        axios(config)
+        .then(function(res) {
+            localStorage.setItem('shipmentToken', res.data.data)
+            setShow(true)
+        })
+        .catch(function(error) {
+            console.error(error)
+        })
+    }
+
+    const handleClose = () => {
+        setShow(false);
+    }
+
+    const updateShipment = () => {
+        const updateShippingHeader = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userInfo.token}`
+            }
+        }
+
+        axios.put(`/api/orders/${orderId}/shipped`, updateShippingHeader)
+    }
+
+    const updateCourior = (data) => {
+
+        const couriorData = {
+            "awb_number": data.awb_number,
+            "courier_name": data.courier_name,
+            "label": data.label,
+            "order_id": data.order_id,
+            "shipment_id": data.shipment_id,
+            "status": data.status
+        }
+        const updateCouriorDetails = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userInfo.token}`
+            }
+        }
+
+        axios.put(`/api/orders/${orderId}/updateCourier`, couriorData, updateCouriorDetails)
+    }
+
+
+
+    const createShipmentHandler = () => {
+        console.log(order.shippingAddress)
+        let orderDetails = order.orderItems.map((item, index) => {
+            return {
+                "name": item.name,
+                "qty": item.qty,
+                "price": item.price,
+                "sku": item.name
+            }
+        })
+
+        const shipmentData = JSON.stringify({
+            "order_number": order._id,
+            "shipping_charges": order.shippingPrice,
+            "discount": 0,
+            "cod_charges": 0,
+            "payment_type": order.paymentMethod == 'CoD' ?  'cod' :  'prepaid',
+            "order_amount": order.totalPrice,
+            "package_weight": productWeight,
+            "package_length": productLength,
+            "package_breadth": productBreadth,
+            "package_height": productLength,
+            "consignee": {
+                "name": userInfo.name,
+                "address": order.shippingAddress.address,
+                "address_2": order.shippingAddress.address,
+                "city": order.shippingAddress.city,
+                "state": order.shippingAddress.state,
+                "pincode": order.shippingAddress.postalCode,
+                "phone": order.shippingAddress.phone
+            },
+            "pickup": {
+                "warehouse_name": warehouse,
+                "name": name,
+                "address": addressOne,
+                "address_2": addressTwo,
+                "city": city,
+                "state": state,
+                "pincode": pincode,
+                "phone": phone
+            },
+            "order_items": orderDetails
+        })
+
+            let shippingToken = localStorage.getItem('shipmentToken')
+            var config = {
+            method: 'post',
+            url: 'https://api.nimbuspost.com/v1/shipments',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${shippingToken}`
+            },
+            data : shipmentData
+            };
+
+            axios(config)
+            .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            if(response.data.status) {
+                updateShipment()
+                updateCourior(response.data.data)
+            }
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+    }
+
+            return loading ? ( <Loader /> ) : error ? ( <Message varient='danger'>{error}</Message> ) : (
             <>
                 <h1>Order {order._id}</h1>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Create Shipment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                        <Form.Group className="mb-3" controlId="packageWeight">
+                            <Form.Label>Package Weight</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Package Weight"                       
+                            value={productWeight}
+                            onChange={(e) => setProductWeight(e.target.value)}/>
+                            <Form.Text className="text-muted">
+                                Package weight must be in Number.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="packagelength">
+                        <Form.Label>Package Length</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Package Length" 
+                            value={productLength}
+                            onChange={(e) => setProductLength(e.target.value)}/>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="packageBreath">
+                        <Form.Label>Package Breath</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Package Breadth"
+                            value={productBreadth}                            
+                            onChange={(e) => setProductBreadth(e.target.value)}/>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Package Height</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Package Height"                             
+                            value={productHeight}                            
+                            onChange={(e) => setProductHeight(e.target.value)}/>
+                        </Form.Group>
+                        <h4>Pickup Address</h4>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Enter Warehouse</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Package Height"                             
+                            value={warehouse}                            
+                            onChange={(e) => setWarehouse(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Enter Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Name"                             
+                            value={name}                            
+                            onChange={(e) => setName(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Enter Address 1</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Address 1"                             
+                            value={addressOne}                            
+                            onChange={(e) => setAddressOne(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Enter Address 2</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Address 2"                             
+                            value={addressTwo}                            
+                            onChange={(e) => setAddressTwo(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>City</Form.Label>
+                            <Form.Control type="text" placeholder="Enter City"                             
+                            value={city}                            
+                            onChange={(e) => setCity(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>State</Form.Label>
+                            <Form.Control type="text" placeholder="Enter State"                             
+                            value={state}                            
+                            onChange={(e) => setState(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Pincode</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Pincode"                             
+                            value={pincode}                            
+                            onChange={(e) => setPincode(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="packageheight">
+                        <Form.Label>Phone</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Phone"                             
+                            value={phone}                            
+                            onChange={(e) => setPhone(e.target.value)}/>
+                        </Form.Group>
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={createShipmentHandler}>
+                        Create Shipment
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
                 <Row>
                     <Col md={8}>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
-                                <h2>Shipping</h2>
+                                {order.isShipped ? <h2>Order Shipped</h2> : <h2>Order Is Not Shipped Yet</h2>}
                                 <p><strong>Name: </strong> {order.user.name}</p>
                                 <p><strong>Email: </strong> <a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
                                 <p>
@@ -94,7 +335,7 @@ const OrderScreen = ({ history, match }) => {
                             <ListGroup.Item>
                                 <h2>Payment Mathod</h2>
                                 <p>
-                                    <strong>Mathod: </strong> {order.paymentMethod === 'CoD' ? 'Pay on Delivery' : order.paymentMethod}
+                                    <strong>Mathod: </strong> {order.paymentMethod == 'CoD' ? 'Pay on Delivery' : order.paymentMethod}
                                     {order.isPaid ? <Message varient='success'>Paid On {order.paidAt}</Message> : <Message varient='danger'>Not Paid</Message>}
                                 </p>
                             </ListGroup.Item>
@@ -141,12 +382,6 @@ const OrderScreen = ({ history, match }) => {
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Tax</Col>
-                                    <Col>Rs {order.taxPrice}</Col>
-                                </Row>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <Row>
                                     <Col>Total</Col>
                                     <Col>Rs {order.totalPrice}</Col>
                                 </Row>
@@ -163,22 +398,52 @@ const OrderScreen = ({ history, match }) => {
                                 
 
                         </Card>
-                        {userInfo &&
-                userInfo.isAdmin &&
-                order.isPaid &&
-                !order.isDelivered && (
-                  <ListGroup.Item>
-                    <Button
-                      type='button'
-                      className='btn btn-block'
-                      onClick={deliverHandler}
-                    >
-                      Mark As Delivered
-                    </Button>
-                  </ListGroup.Item>
-                )}
-                    </ListGroup>    
-                    </Col>
+
+                        {order.isShipped ? (
+                        <Card>
+                                <ListGroup.Item>
+                                    <h2>Courior Details</h2>
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <Row>
+                                        <Col>AWB Number</Col>
+                                        <Col>{order.awb_number}</Col>
+                                    </Row>
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <Row>
+                                        <Col>Courier Name</Col>
+                                        <Col>{order.courier_name}</Col>
+                                    </Row>
+                                </ListGroup.Item>
+                        </Card>
+                        ) : ''}
+                        {userInfo && userInfo.isAdmin && !order.isDelivered && (
+                        <ListGroup.Item>
+                            <Button
+                            type='button'
+                            className='btn btn-block'
+                            onClick={deliverHandler}
+                            >
+                            Mark As Delivered
+                            </Button>
+                        </ListGroup.Item>
+                        )}
+
+                        {userInfo && userInfo.isAdmin && !order.isShipped && (
+                            <ListGroup.Item>
+                                <Button
+                                    type='button'
+                                    className='btn btn-block'
+                                    onClick={shipMentLoginHandler}
+                                >
+                                    Ready To Ship   
+
+                                </Button>
+                            </ListGroup.Item>
+                        )}
+                        </ListGroup>   
+                        </Col>
                 </Row>
             </>
         )

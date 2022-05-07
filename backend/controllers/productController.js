@@ -17,14 +17,7 @@ const getProducts = asyncHandler(async (req, res) => {
       } 
     : {}
 
-    const categoryData = req.query.categoryData
-    ? {
-      subCategory: {
-        $regex: req.query.categoryData,
-        $options: 'i'
-      }
-    }
-    : {}
+    const categoryData = { subCategory :req.query.categoryData}
 
     if(req.query.keyword){
       const count = await Product.countDocuments({ ...keyword })
@@ -75,6 +68,7 @@ const createProduct = asyncHandler(async (req, res) => {
     const product = new Product({
       name: 'Sample name',
       price: 0,
+      mrp: 0,
       user: req.user._id,
       image: '/images/sample.jpg',
       videoLink: 'www.youtube.com',
@@ -95,8 +89,11 @@ const updateProduct = asyncHandler(async (req, res) => {
     const {
       name,
       price,
+      mrp,
       description,
       image,
+      imageTwo,
+      imageThree,
       videoLink,
       brand,
       category,
@@ -109,14 +106,17 @@ const updateProduct = asyncHandler(async (req, res) => {
     if (product) {
       product.name = name
       product.price = price
+      product.mrp = mrp
       product.description = description
       product.brand = brand
       product.image = image
+      product.imageTwo = imageTwo
+      product.imageThree = imageThree
       product.videoLink = videoLink
       product.category = category
       product.subCategory = subCategory
       product.countInStock = countInStock
-  
+
       const updatedProduct = await product.save()
       res.json(updatedProduct)
     } else {

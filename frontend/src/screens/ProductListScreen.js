@@ -59,6 +59,8 @@ const ProductListScreen = ({ history, match }) => {
         history.push('/add-category')
     }
 
+    const val = Math.floor(1000 + Math.random() * 9000);
+
   return (
     <>
         
@@ -82,6 +84,7 @@ const ProductListScreen = ({ history, match }) => {
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead>
                         <tr>
+                            <th>S.No</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Price</th>
@@ -91,8 +94,9 @@ const ProductListScreen = ({ history, match }) => {
                     </thead>
 
                     <tbody>
-                        {products.map(product => (
+                        {products.map((product, index) => (
                             <tr key={product._id}>
+                                <td>{index + 1}</td>
                                 <td>{product._id}</td>
                                 <td>{product.name}</td>
                                 <td>Rs {product.price}</td>

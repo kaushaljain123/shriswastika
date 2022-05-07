@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import {Magnifier} from 'react-image-magnifiers'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image, ListGroup, Button, Form, Carousel, Card } from 'react-bootstrap'
@@ -9,12 +11,15 @@ import Message from '../components/Message'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import Meta from '../components/Meta';
 
+
+
 const ProductScreen = ({ history, match }) => {
 
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
     const [images, setImages] = useState()
+    const [finalImage, setFinalImage] = useState('')
     const [index, setIndex] = useState(0)
 
     const dispatch = useDispatch()
@@ -64,8 +69,9 @@ const ProductScreen = ({ history, match }) => {
         )
       }
 
-      const imageHoverHandler = (index) => {
+      const imageHoverHandler = (index, imageSrc) => {
         setIndex(index)
+        setFinalImage(imageSrc)
       }
 
       const stringImages = product ? product.image : ''
@@ -78,18 +84,38 @@ const ProductScreen = ({ history, match }) => {
   return (
     <Container>
         <Link className='btn btn-light my-3' to='/'>Go Back</Link>
+        <div className='text-right'>
+
+        {userInfo && userInfo.isAdmin && (
+          <LinkContainer to={`/admin/product/${product._id}/edit`}>
+              <Button varient='light' className='btn-sm'>
+                  Edit <i className='fas fa-edit'></i>
+              </Button>
+          </LinkContainer>
+        )}
+
+        </div>
         {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
             <>
             <Meta title={product.name}/>
               <Row>
-                <Col md={6}>
+              <Col md={2}>
+                      <div className='thumb'>
+                      {product.image ? <img className='thumbnail' src={product.image} onClick={() => imageHoverHandler(1, product.image)}/> : ''}
+                      {product.imageTwo ? <img className='thumbnail' src={product.imageTwo} onClick={() => imageHoverHandler(2, product.imageTwo)}/> : ''}
+                      {product.imageThree ? <img className='thumbnail' src={product.imageThree} onClick={() => imageHoverHandler(3, product.imageThree)}/> : ''}
+                      </div>
+                    </Col>
+                <Col md={4}>
                     <div className='big-image'>
-                      {product.image ? <img id='featured' src={ '/'+finalImageArray[index]} /> : product.image}
-                    </div>
-                    <div className='thumb'>
-                    {product.image ? finalImageArray.map((item, index) => (
-                      <img className='thumbnail' src={ '/'+item} onClick={() => imageHoverHandler(index)}/>
-                    )) : ''}
+                      <Magnifier
+                        
+                          imageSrc= {finalImage ? finalImage : product.image}
+                          imageAlt='fefes'
+                        
+                      />
+                      
+                      {/* {product.image ? <img class="MagicZoom" id='featured' src={finalImage ? finalImage : product.image} /> : product.image} */}
                     </div>
                 </Col>
     
@@ -121,7 +147,7 @@ const ProductScreen = ({ history, match }) => {
                             <Rating value={product.rating} text={`${product.numReviews} reviews`}/>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            Price: Rs {product.price}
+                            Price: ₹ {product.price}
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Video : <a href={product.videoLink} target='_blank'>{product.videoLink}</a>
