@@ -1,10 +1,10 @@
-import asyncHandler from "express-async-handler";
-import Product from '../models/productModal.js'
+const asyncHandler = require("express-async-handler")
+const Product = require('../models/productModal')
 
 // @dec      Fetch all products
 // @routes   GET /api/products
 // @access   PUBLIC
-const getProducts = asyncHandler(async (req, res) => {
+exports.getProducts = asyncHandler(async (req, res) => {
   const pageSize = 12
   const page = Number(req.query.pageNumber) || 1
 
@@ -37,7 +37,7 @@ const getProducts = asyncHandler(async (req, res) => {
 // @dec      Fetch single products
 // @routes   GET /api/products/:id
 // @access   PUBLIC
-const getProductById = asyncHandler(async(req, res) => {
+exports.getProductById = asyncHandler(async(req, res) => {
     const product = await Product.findById(req.params.id)
 
     if(product) {
@@ -50,7 +50,7 @@ const getProductById = asyncHandler(async(req, res) => {
 // @dec      Delete a product
 // @routes   GET /api/products/:id
 // @access   PRIVATE/Admin
-const deleteProduct = asyncHandler(async(req, res) => {
+exports. deleteProduct = asyncHandler(async(req, res) => {
     const product = await Product.findById(req.params.id)
 
     if(product) {
@@ -64,7 +64,7 @@ const deleteProduct = asyncHandler(async(req, res) => {
 // @dec      Create a product
 // @routes   POST /api/products
 // @access   PRIVATE/Admin
-const createProduct = asyncHandler(async (req, res) => {
+exports.createProduct = asyncHandler(async (req, res) => {
     const product = new Product({
       name: 'Sample name',
       price: 0,
@@ -85,7 +85,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
-const updateProduct = asyncHandler(async (req, res) => {
+exports.updateProduct = asyncHandler(async (req, res) => {
     const {
       name,
       price,
@@ -128,7 +128,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
 // @access  Private
-const createProductReview = asyncHandler(async (req, res) => {
+exports.createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body
 
   const product = await Product.findById(req.params.id)
@@ -169,10 +169,8 @@ const createProductReview = asyncHandler(async (req, res) => {
 // @desc    Get top rated products
 // @route   GET /api/products/top
 // @access  Public
-const getTopProducts = asyncHandler(async (req, res) => {
+exports.getTopProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ rating: -1 }).limit(3)
 
   res.json(products)
 })
-
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createProductReview, getTopProducts }

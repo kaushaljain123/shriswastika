@@ -1,11 +1,11 @@
-import asyncHandler from "express-async-handler";
-import User from '../models/userModel.js'
-import generateToken from "../utils/generateToken.js";
+const asyncHandler = require("express-async-handler")
+const User = require('../models/userModel')
+const {generateToken} = require("../utils/generateToken")
 
 // @dec      Auth user & get token
 // @routes   POST /api/users/login
 // @access   PUBLIC
-const authUser = asyncHandler(async(req, res) => {
+exports.authUser = asyncHandler(async(req, res) => {
     const { email, password } = req.body
 
     const user = await User.findOne({ email: email })
@@ -21,7 +21,7 @@ const authUser = asyncHandler(async(req, res) => {
 // @dec      Create User
 // @routes   POST /api/users
 // @access   PUBLIC
-const registerUser = asyncHandler(async(req, res) => {
+exports.registerUser = asyncHandler(async(req, res) => {
     const { name, email, password } = req.body
     
     const userExists = await User.findOne({ email: email })
@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async(req, res) => {
 // @dec      Get user profile
 // @routes   Get /api/users/profile
 // @access   PRIVATE
-const getUserProfile = asyncHandler(async(req, res) => {
+exports.getUserProfile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id)
 
     if(user) {
@@ -60,7 +60,7 @@ const getUserProfile = asyncHandler(async(req, res) => {
 // @dec      Update user profile
 // @routes   PUT /api/users/profile
 // @access   PRIVATE
-const updateUserProfile = asyncHandler(async(req, res) => {
+exports.updateUserProfile = asyncHandler(async(req, res) => {
     const user = await User.findById(req.user._id)
 
     if(user) {
@@ -83,7 +83,7 @@ const updateUserProfile = asyncHandler(async(req, res) => {
 // @dec      Get all users
 // @routes   Get /api/users
 // @access   PRIVATE/Admin
-const getUsers = asyncHandler(async(req, res) => {
+exports.getUsers = asyncHandler(async(req, res) => {
     const users = await User.find({})
 
     res.json(users)
@@ -92,7 +92,7 @@ const getUsers = asyncHandler(async(req, res) => {
 // @dec      Delete User
 // @routes   Delete /api/users/:id
 // @access   PRIVATE/Admin
-const deleteUser = asyncHandler(async(req, res) => {
+exports.deleteUser = asyncHandler(async(req, res) => {
     const user = await User.findById(req.params.id)
 
     if(user) {
@@ -107,7 +107,7 @@ const deleteUser = asyncHandler(async(req, res) => {
 // @dec      Get user by id 
 // @routes   Get /api/users/:id
 // @access   PRIVATE/Admin
-const getUserById = asyncHandler(async(req, res) => {
+exports.getUserById = asyncHandler(async(req, res) => {
 
     const user = await User.findById(req.params.id).select('-password')
     
@@ -122,7 +122,7 @@ const getUserById = asyncHandler(async(req, res) => {
 // @dec      Update user
 // @routes   PUT /api/users/:id/edit
 // @access   PRIVATE/Admin
-const updateUser = asyncHandler(async(req, res) => {
+exports.updateUser = asyncHandler(async(req, res) => {
     const user = await User.findById(req.params.id)
 
     if(user) {
@@ -138,5 +138,3 @@ const updateUser = asyncHandler(async(req, res) => {
         throw new Error('User Not Found')
     }
 })
-
-export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers, deleteUser, updateUser, getUserById }

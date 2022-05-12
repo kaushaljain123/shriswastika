@@ -1,98 +1,142 @@
-import  mongoose  from "mongoose";
+const mongoose = require('mongoose')
 
-const orderSchema = mongoose.Schema({
-    user : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+const orderSchema = mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
-    orderItems : [
-        {
-            name : { type : String, required: true },
-            qty : { type : Number, required: true },
-            image : { type : String, required: true },
-            price : { type : Number, required: true },
-            product : { type : mongoose.Schema.Types.ObjectId, required : true, ref : 'User' },
-        }
+    orderItems: [
+      {
+        name: { type: String, required: true },
+        qty: { type: Number, required: true },
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: 'User',
+        },
+      },
     ],
-    shippingAddress : {
-        address: { type : String, required: true },
-        city: { type : String, required: true },
-        state: {type: String, required: true},
-        phone: {type: String, required: true},
-        postalCode: { type : String, required: true },
-        country: { type : String, required: true },
+    shippingAddress: {
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      state: { type: String, required: true },
+      phone: { type: String, required: true },
+      email: { type: String, require: true },
+      postalCode: { type: String, required: true },
+      country: { type: String, required: true },
     },
-    paymentMethod : {
-        type : String,
-        required : true,
+    paymentMethod: {
+      type: String,
+      required: true,
     },
-    paymentResult : {
-        id : {  type : String },
-        status : {  type : String },
-        update_time : {  type : String },
-        email_address : {  type : String },
+    paymentResult: {
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      email_address: { type: String },
     },
-    taxPrice : {
-        type : Number,
-        required : true,
-        default : 0.0
+    taxPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
-    shippingPrice : {
-        type : Number,
-        required : true,
-        default : 0.0
+    shippingPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
-    totalPrice : {
-        type : Number,
-        required : true,
-        default : 0.0
+    totalPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
     },
-    isPaid : {
-        type : Boolean,
-        required : true,
-        default : false
+    isPaid: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
     isShipped: {
-        type: Boolean,
-        required: true,
-        default: false
+      type: Boolean,
+      required: true,
+      default: false,
     },
     shippedAt: {
-        type : Date,
+      type: Date,
     },
-    paidAt : {
-        type : Date,
-    },
-    isDelivered : {
-        type : Boolean,
-        required : true,
-        default : false
+    isDelivered: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
     awb_number: {
-        type: String
+      type: String,
     },
     courier_name: {
-        type: String
+      type: String,
     },
     label: {
-        type: String
+      type: String,
     },
     order_id: {
-        type: String
+      type: String,
     },
     shipment_id: {
-        type: String
+      type: String,
     },
     status: {
-        type: String
+      type: String,
     },
-    deliveredAt : {
-        type : Date,
+    deliveredAt: {
+      type: Date,
     },
-}, {
-    timestamps : true
-})
+    ORDERID: {
+      type: String,
+    },
+    TXNID: {
+      type: String,
+    },
+    TXNAMOUNT: {
+      type: String,
+    },
+    PAYMENTMODE: {
+      type: String,
+    },
+    CURRENCY: {
+      type: String,
+    },
+    TXNDATE: {
+      type: String,
+    },
+    STATUS: {
+      type: String,
+    },
+    RESPCODE: {
+      type: String,
+    },
+    RESPMSG: {
+      type: String,
+    },
+    MERC_UNQ_REF: {
+      type: String,
+    },
+    GATEWAYNAME: {
+      type: String,
+    },
+    BANKTXNID: {
+      type: String,
+    },
+    BANKNAME: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+)
 
 const Order = mongoose.model('Order', orderSchema)
 
-export default Order 
+module.exports = Order

@@ -1,14 +1,14 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import path from 'path'
-import morgan from 'morgan'
-import connectDB from './config/db.js'
-import { notFound, errorHandler } from './middleware/errorMiddleware.js'
-import productRoutes from './routes/productRouter.js'
-import userRouters from './routes/userRoutes.js'
-import orderRoutes from './routes/orderRoutes.js'
-import uploadRoutes from './routes/uploadRoutes.js'
-import categoryRoutes from './routes/categoryRoutes.js'
+const express = require('express')
+const dotenv = require('dotenv')
+const path = require('path')
+const morgan = require('morgan')
+const connectDB = require('./config/db')
+const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const productRoutes = require('./routes/productRouter')
+const userRouters = require('./routes/userRoutes')
+const orderRoutes = require('./routes/orderRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
+const categoryRoutes = require('./routes/categoryRoutes')
 
 dotenv.config()
 
@@ -35,7 +35,7 @@ app.get('/api/config/paypal', (req, res) => {
     res.send(process.env.PAYPAL_CLIENT_ID)
 })
 
-const __dirname = path.resolve()
+var __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {

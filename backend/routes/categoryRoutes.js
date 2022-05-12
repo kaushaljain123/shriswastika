@@ -1,11 +1,11 @@
-import express, { Router } from "express";
+const express = require("express")
 const router = express.Router()
-import { addCategorys, getCategorys, getAllCategorys, removeCategory } from "../controllers/categoryController.js";
-import { protect, admin } from '../middleware/authMiddleware.js'
+const { addCategorys, getCategorys, getAllCategorys, removeCategory } = require("../controllers/categoryController")
+const { protect, admin } = require('../middleware/authMiddleware')
 
 router.post('/create', protect, admin, addCategorys)
 router.get('/', getCategorys)
 router.get('/all', getAllCategorys)
 router.route('/:id').delete(protect, admin, removeCategory)
 
-export default router
+module.exports = router
