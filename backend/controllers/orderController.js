@@ -105,11 +105,9 @@ exports.updateOrdertoPaid = asyncHandler(async (req, res) => {
   params['ORDER_ID'] = orderId
   params['CUST_ID'] = customerName
   params['TXN_AMOUNT'] = totalAmount
-  params['CALLBACK_URL'] = 'https://www.shriswastika.com//api/orders/callback'
+  params['CALLBACK_URL'] = 'https://www.shriswastika.com/api/orders/callback'
   params['EMAIL'] = email
   params['MOBILE_NO'] = phoneNumber
-
-  console.log(params)
 
   setOrderIds(orderIds)
 

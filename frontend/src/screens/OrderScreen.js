@@ -536,7 +536,9 @@ const OrderScreen = ({ history, match }) => {
               {!order.isPaid && (
                 <ListGroup.Item>
                   {order.paymentMethod == 'paytm' ? (
-                    <button onClick={makePayment}>PAY</button>
+                    <Button className="btn btn-block" onClick={makePayment}>
+                      PAY
+                    </Button>
                   ) : (
                     <p className="text-center">Pay To Our Delivery Partner</p>
                   )}
