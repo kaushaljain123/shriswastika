@@ -22,79 +22,79 @@ import image19 from '../images/20.png'
 import image20 from '../images/21.png'
 
 const PartnerSlider = () => {
-  return (
-    <div className='app'>
-        <div className='title'>
-            <h3>Our Associate Partner</h3>
-        </div>
+    return (
+        <div className='app'>
+            <div className='title'>
+                <h3 className='text-center'>Our Associate Partner</h3>
+            </div>
 
-        <div>
-            <Marquee speed={100}>
-                {/* <div className='image-wrapper'>
+            <div>
+                <Marquee speed={100}>
+                    {/* <div className='image-wrapper'>
                     <img src={image1} alt='' />
                 </div> */}
-                {/* <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                     <img src={image2} alt='' />
                 </div> */}
-                {/* <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                     <img src={image3} alt='' />
                 </div> */}
-                <div className='image-wrapper'>
-                    <img src={image4} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image5} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image6} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image7} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image8} alt='' />
-                </div>
-                {/* <div className='image-wrapper'>
+                    <div className='image-wrapper'>
+                        <img src={image4} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image5} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image6} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image7} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image8} alt='' />
+                    </div>
+                    {/* <div className='image-wrapper'>
                     <img src={image9} alt='' />
                 </div> */}
-                {/* <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                     <img src={image10} alt='' />
                 </div> */}
-                {/* <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                     <img src={image11} alt='' />
                 </div> */}
-                <div className='image-wrapper'>
-                    <img src={image12} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image13} alt='' />
-                </div>
-                {/* <div className='image-wrapper'>
+                    <div className='image-wrapper'>
+                        <img src={image12} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image13} alt='' />
+                    </div>
+                    {/* <div className='image-wrapper'>
                     <img src={image14} alt='' />
                 </div> */}
-                <div className='image-wrapper'>
-                    <img src={image15} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image16} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image17} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image18} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image19} alt='' />
-                </div>
-                <div className='image-wrapper'>
-                    <img src={image20} alt='' />
-                </div>
-            </Marquee>
-        </div>
+                    <div className='image-wrapper'>
+                        <img src={image15} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image16} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image17} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image18} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image19} alt='' />
+                    </div>
+                    <div className='image-wrapper'>
+                        <img src={image20} alt='' />
+                    </div>
+                </Marquee>
+            </div>
 
-    </div>
-  )
+        </div>
+    )
 }
 
 export default PartnerSlider

@@ -55,6 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
       } else {
+        alert(1)
         setName(product.name)
         setPrice(product.price)
         setMrp(product.mrp)
@@ -72,8 +73,8 @@ const ProductEditScreen = ({ match, history }) => {
   }, [dispatch, history, productId, product, successUpdate])
 
   const uploadFileHandler = async (e) => {
-    if(product.category) {
-      if(product.subCategory) {
+    if (product.category) {
+      if (product.subCategory) {
         setCategory(product.category)
         setSubCategory(product.subCategory)
       }
@@ -102,9 +103,8 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   const uploadFileTwoHandler = async (e) => {
-    alert(subCategory)
-    if(product.category) {
-      if(product.subCategory) {
+    if (product.category) {
+      if (product.subCategory) {
         setCategory(product.category)
         setSubCategory(product.subCategory)
       }
@@ -133,14 +133,13 @@ const ProductEditScreen = ({ match, history }) => {
   }
 
   const uploadFileThreeHandler = async (e) => {
-    if(product.category) {
-      if(product.subCategory) {
+    if (product.category) {
+      if (product.subCategory) {
         setCategory(product.category)
         setSubCategory(product.subCategory)
       }
     }
 
-    alert(subCategory)
     const formData = new FormData()
     setImageThree()
     _.forEach(e.target.files, file => {
@@ -169,15 +168,12 @@ const ProductEditScreen = ({ match, history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    if(product.category) {
-      if(product.subCategory) {
+    if (product.category) {
+      if (product.subCategory) {
         setCategory(product.category)
         setSubCategory(product.subCategory)
       }
     }
-
-    console.log(category)
-    console.log(subCategory)
 
     dispatch(
       updateProduct({
@@ -201,11 +197,11 @@ const ProductEditScreen = ({ match, history }) => {
   const getSubCategory = (e) => {
     setCategory()
     categorys.map(c => {
-      if(e == c._id) {
+      if (e == c._id) {
         setCategory(c.name)
       }
       c.children.map(sc => {
-        if(e == sc.parentId) {
+        if (e == sc.parentId) {
           subCategorys.push(sc)
           setSubCat(subCategorys)
         }
@@ -215,7 +211,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   const getSubCategoryValue = (e) => {
     subCat.map(g => {
-      if(e == g._id) {
+      if (e == g._id) {
         setSubCategory(g.slug)
       }
     })
@@ -228,188 +224,188 @@ const ProductEditScreen = ({ match, history }) => {
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
-        <h1 className='text-center mb-5'>Edit Product</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant='danger'>{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Row>
+      <h1 className='text-center mb-5'>Edit Product</h1>
+      {loadingUpdate && <Loader />}
+      {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <Form onSubmit={submitHandler}>
+          <Row>
             <Col>
-            <h2 className='text-center'>Images Section</h2>
-            <Form.Group controlId='image'>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image url'
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
-              <Form.File
-                id='image-file'
-                label='Choose File'
-                custom
-                onChange={uploadFileHandler}
-                multiple
-              ></Form.File>
-              {uploading && <Loader />}
-            </Form.Group>
+              <h2 className='text-center'>Images Section</h2>
+              <Form.Group controlId='image'>
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter image url'
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                ></Form.Control>
+                <Form.File
+                  id='image-file'
+                  label='Choose File'
+                  custom
+                  onChange={uploadFileHandler}
+                  multiple
+                ></Form.File>
+                {uploading && <Loader />}
+              </Form.Group>
 
-            <Form.Group controlId='imageTwo'>
-              <Form.Label>Image Two</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image two url'
-                value={imageTwo}
-                onChange={(e) => setImageTwo(e.target.value)}
-              ></Form.Control>
-              <Form.File
-                id='image-file'
-                label='Choose File'
-                custom
-                onChange={uploadFileTwoHandler}
-                multiple
-              ></Form.File>
-              {uploading && <Loader />}
-            </Form.Group>
+              <Form.Group controlId='imageTwo'>
+                <Form.Label>Image Two</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter image two url'
+                  value={imageTwo}
+                  onChange={(e) => setImageTwo(e.target.value)}
+                ></Form.Control>
+                <Form.File
+                  id='image-file'
+                  label='Choose File'
+                  custom
+                  onChange={uploadFileTwoHandler}
+                  multiple
+                ></Form.File>
+                {uploading && <Loader />}
+              </Form.Group>
 
-            <Form.Group controlId='imageThree'>
-              <Form.Label>Image Three</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Enter image three url'
-                value={imageThree}
-                onChange={(e) => setImageThree(e.target.value)}
-              ></Form.Control>
-              <Form.File
-                id='image-file'
-                label='Choose File'
-                custom
-                onChange={uploadFileThreeHandler}
-                multiple
-              ></Form.File>
-              {uploading && <Loader />}
-            </Form.Group>
+              <Form.Group controlId='imageThree'>
+                <Form.Label>Image Three</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter image three url'
+                  value={imageThree}
+                  onChange={(e) => setImageThree(e.target.value)}
+                ></Form.Control>
+                <Form.File
+                  id='image-file'
+                  label='Choose File'
+                  custom
+                  onChange={uploadFileThreeHandler}
+                  multiple
+                ></Form.File>
+                {uploading && <Loader />}
+              </Form.Group>
             </Col>
 
             <Col>
-            <h2 className='text-center'>Product Details</h2>
-                  <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                      type='name'
-                      placeholder='Enter name'
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <h2 className='text-center'>Product Details</h2>
+              <Form.Group controlId='name'>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type='name'
+                  placeholder='Enter name'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                  <Form.Group controlId='price'>
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control
-                      type='number'
-                      placeholder='Enter price'
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <Form.Group controlId='price'>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type='number'
+                  placeholder='Enter price'
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                  <Form.Group controlId='mrp'>
-                    <Form.Label>MRP</Form.Label>
-                    <Form.Control
-                      type='number'
-                      placeholder='Enter Mrp'
-                      value={mrp}
-                      onChange={(e) => setMrp(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <Form.Group controlId='mrp'>
+                <Form.Label>MRP</Form.Label>
+                <Form.Control
+                  type='number'
+                  placeholder='Enter Mrp'
+                  value={mrp}
+                  onChange={(e) => setMrp(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                  <Form.Group controlId='videoLink'>
-                    <Form.Label>video Link</Form.Label>
-                    <Form.Control
-                      type='text'
-                      placeholder='Enter video Link'
-                      value={videoLink}
-                      onChange={(e) => setVideoLink(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <Form.Group controlId='videoLink'>
+                <Form.Label>video Link</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter video Link'
+                  value={videoLink}
+                  onChange={(e) => setVideoLink(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                  <Form.Group controlId='brand'>
-                    <Form.Label>Brand</Form.Label>
-                    <Form.Control
-                      type='text'
-                      placeholder='Enter brand'
-                      value={brand}
-                      onChange={(e) => setBrand(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <Form.Group controlId='brand'>
+                <Form.Label>Brand</Form.Label>
+                <Form.Control
+                  type='text'
+                  placeholder='Enter brand'
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                  <Form.Group controlId='countInStock'>
-                    <Form.Label>Count In Stock</Form.Label>
-                    <Form.Control
-                      type='number'
-                      placeholder='Enter countInStock'
-                      value={countInStock}
-                      onChange={(e) => setCountInStock(e.target.value)}
-                    ></Form.Control>
-                  </Form.Group>
+              <Form.Group controlId='countInStock'>
+                <Form.Label>Count In Stock</Form.Label>
+                <Form.Control
+                  type='number'
+                  placeholder='Enter countInStock'
+                  value={countInStock}
+                  onChange={(e) => setCountInStock(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-                {!product.subCategory ? (
-                    <Form.Group controlId='category'>
-                      <Form.Label>Category</Form.Label>
-                        <Form.Control as='select' value={categorys._id}
-                        onChange={(e) => getSubCategory(e.target.value)}>
-                            <option>Select Category</option>
-                            {categorys.map(x => (
-                              <option key={x._id} value={x._id}>{x.name}</option>
-                            ))}
-                      </Form.Control>
-                    </Form.Group>
-                  ) : (
-                    <h3>Category :- {product.category}</h3>
-                )}
+              {!product.subCategory ? (
+                <Form.Group controlId='category'>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control as='select' value={categorys._id}
+                    onChange={(e) => getSubCategory(e.target.value)}>
+                    <option>Select Category</option>
+                    {categorys.map(x => (
+                      <option key={x._id} value={x._id}>{x.name}</option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              ) : (
+                <h3>Category :- {product.category}</h3>
+              )}
 
-                {!product.subCategory ? (
+              {!product.subCategory ? (
                 <Form.Group controlId='subcategory'>
                   <Form.Label>Select Sub Category</Form.Label>
-                    <Form.Control as='select' value={subCategory}  disabled={subCat.length == 0}
+                  <Form.Control as='select' value={subCategory} disabled={subCat.length == 0}
                     onChange={(e) => getSubCategoryValue(e.target.value)}
-                    >
-                        <option>Select Sub Category</option>
-                        {subCat.map(y => (
-                          <option key={y._id} value={y._id}>{y.name}</option>
-                        ))}
-                    </Form.Control>
+                  >
+                    <option>Select Sub Category</option>
+                    {subCat.map(y => (
+                      <option key={y._id} value={y._id}>{y.name}</option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
-                ) : (
-                  <h3>Sub Category :- {product.subCategory}</h3>
-                )}
+              ) : (
+                <h3>Sub Category :- {product.subCategory}</h3>
+              )}
 
-                <Form.Group controlId='description'>
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    as='textarea'
-                    row='5'
-                    col='5'
-                    placeholder='Enter description'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+              <Form.Group controlId='description'>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  row='5'
+                  col='5'
+                  placeholder='Enter description'
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
             </Col>
-            </Row>
+          </Row>
 
-            <div className='d-flex justify-content-center mb-5'>
-              <Button type='submit' variant='primary' className='btn btn-primary btn-block text-center'>
-                Update
-              </Button>
-            </div>
+          <div className='d-flex justify-content-center mb-5'>
+            <Button type='submit' variant='primary' className='btn btn-primary btn-block text-center'>
+              Update
+            </Button>
+          </div>
 
-          </Form>
-        )}
+        </Form>
+      )}
     </>
   )
 }

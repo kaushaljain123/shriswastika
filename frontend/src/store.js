@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { productListReducers, productDetailsReducers, productDeleteReducers, productCreateReducer, productUpdateReducer,productReviewCreateReducer,productTopRatedReducer } from './reducers/productReducers'
+import { productListReducers, productDetailsReducers, productDeleteReducers, productCreateReducer, productUpdateReducer, bannerUpdateReducers, bannerListReducers, productReviewCreateReducer, productTopRatedReducer } from './reducers/productReducers'
 import { cartReducers } from './reducers/cartReducers'
 import { categorysReducers } from './reducers/categoryReducers'
 import { userLoginReducers, userRegisterReducers, userDetailsReducers, userUpdateProfileReducers, userListReducers, userDeleteReducers, userUpdateReducers } from './reducers/userReducers'
@@ -12,14 +12,14 @@ const cartItemfromStorage = localStorage.getItem('cartItems') ? JSON.parse(local
 const userInfofromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 const shippingAddressfromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
 
-const reducer = combineReducers({ 
-    productList: productListReducers, 
-    productDetail:productDetailsReducers,
+const reducer = combineReducers({
+    productList: productListReducers,
+    productDetail: productDetailsReducers,
     productReviewCreate: productReviewCreateReducer,
-    productTopRated: productTopRatedReducer, 
-    cart:cartReducers, 
+    productTopRated: productTopRatedReducer,
+    cart: cartReducers,
     userLogin: userLoginReducers,
-    userRegister: userRegisterReducers, 
+    userRegister: userRegisterReducers,
     userDetails: userDetailsReducers,
     userUpdateProfile: userUpdateProfileReducers,
     orderCreate: orderCreateReducer,
@@ -33,9 +33,11 @@ const reducer = combineReducers({
     productDelete: productDeleteReducers,
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,
+    bannerUpdate: bannerUpdateReducers,
+    bannerList: bannerListReducers,
     orderLists: orderListReducer,
     getCategorys: categorysReducers
-    })
+})
 
 const initialState = {
     cart: { cartItems: cartItemfromStorage, shippingAddress: shippingAddressfromStorage }, userLogin: { userInfo: userInfofromStorage }
@@ -43,6 +45,6 @@ const initialState = {
 
 const middleware = [thunk]
 
-const store = createStore(reducer, initialState, composeWithDevTools (applyMiddleware(...middleware)))
+const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
 
 export default store

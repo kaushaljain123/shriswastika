@@ -25,14 +25,15 @@ import TermAndCondition from './screens/TermAndCondition';
 import OurPolicies from './screens/OurPolicies';
 import ContactUs from './screens/ContactUs';
 import PrivaciyPolicy from './screens/PrivaciyPolicy';
+import Banner from './screens/Banner';
 
-const App =() => {
+const App = () => {
   return (
     <Router>
       <Header />
       <main className=''>
         <Container fluid>
-          <Route path='/' component={HomeScreen} exact/>
+          <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/login' component={LoginScreen} />
@@ -43,23 +44,24 @@ const App =() => {
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/order/:id' component={OrderScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/productlist' component={ProductListScreen} exact/>
+          <Route path='/admin/productlist' component={ProductListScreen} exact />
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
-          <Route path='/search/:keyword' component={HomeScreen} exact/>
-          <Route path='/page/:pageNumber' component={HomeScreen} exact/>
-          <Route path='/category/:categoryData' component={HomeScreen} exact/>
-          <Route path='/category/:categoryData/:page/:pageNumber' component={HomeScreen} exact/>
+          <Route path='/search/:keyword' component={HomeScreen} exact />
+          <Route path='/page/:pageNumber' component={HomeScreen} exact />
+          <Route path='/category/:categoryData' component={HomeScreen} exact />
+          <Route path='/category/:categoryData/:page/:pageNumber' component={HomeScreen} exact />
           <Route path='/search/:keyword/:page/:pageNumber' component={HomeScreen} />
-          <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact/>
-          <Route path='/add-category' component={CategoryAdd}/>
+          <Route path='/admin/productlist/:pageNumber' component={ProductListScreen} exact />
+          <Route path='/add-category' component={CategoryAdd} />
           <Route path='/thankyou' component={ThankYou} />
           <Route path='/about-us' component={AboutUs} />
           <Route path='/term-and-condition' component={TermAndCondition} />
           <Route path='/our-policies' component={OurPolicies} />
           <Route path='/contact-us' component={ContactUs} />
           <Route path='/privacy-policy' component={PrivaciyPolicy} />
+          <Route path='/admin/manageImage' component={Banner} />
         </Container>
       </main>
       <Footer />
