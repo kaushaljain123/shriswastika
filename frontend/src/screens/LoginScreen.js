@@ -19,7 +19,7 @@ const LoginScreen = ({ location, history }) => {
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
     useEffect(() => {
-        if(userInfo) {
+        if (userInfo) {
             history.push(redirect)
         }
     }, [history, userInfo, redirect])
@@ -29,31 +29,36 @@ const LoginScreen = ({ location, history }) => {
         dispatch(login(email, password))
     }
 
-  return (
-    <FormContainer>
-        <h1>Login</h1>
-        {error && <Message varient='danger'>{error}</Message>}
-        {loading && <Loader />}
-        <Form onSubmit={submitHandler}>
-            <Form.Group controlId='email'>
-                <Form.Label>Enter Email Address</Form.Label>
-                <Form.Control type='email' placeholder='Enter Email' value={email} onChange={(e) => SetEmail(e.target.value)}></Form.Control>
-            </Form.Group>
-            <Form.Group controlId='password'>
-                <Form.Label>Enter Password</Form.Label>
-                <Form.Control type='password' placeholder='Enter Password' value={password} onChange={(e) => SetPassword(e.target.value)}></Form.Control>
-            </Form.Group>
+    return (
+        <FormContainer>
+            <h1>Login</h1>
+            {error && <Message varient='danger'>{error}</Message>}
+            {loading && <Loader />}
+            <Form onSubmit={submitHandler}>
+                <Form.Group controlId='email'>
+                    <Form.Label>Enter Email Address</Form.Label>
+                    <Form.Control type='email' placeholder='Enter Email' value={email} onChange={(e) => SetEmail(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Form.Group controlId='password'>
+                    <Form.Label>Enter Password</Form.Label>
+                    <Form.Control type='password' placeholder='Enter Password' value={password} onChange={(e) => SetPassword(e.target.value)}></Form.Control>
+                    <Row className='py-3'>
+                        <Col>
+                            <Link to={'/send-email'}>Forgot Password </Link>
+                        </Col>
+                    </Row>
+                </Form.Group>
 
-            <Button type='submit' variant='primary'>Login</Button>
+                <Button type='submit' variant='primary'>Login</Button>
 
-            <Row className='py-3'>
-                <Col>
-                    New User? {' '} <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
-                </Col>
-            </Row>
-        </Form>
-    </FormContainer>
-  )
+                <Row className='py-3'>
+                    <Col>
+                        New User? {' '} <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>Register</Link>
+                    </Col>
+                </Row>
+            </Form>
+        </FormContainer>
+    )
 }
 
 export default LoginScreen

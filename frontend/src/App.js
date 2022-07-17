@@ -26,6 +26,8 @@ import OurPolicies from './screens/OurPolicies';
 import ContactUs from './screens/ContactUs';
 import PrivaciyPolicy from './screens/PrivaciyPolicy';
 import Banner from './screens/Banner';
+import SendEmailScreen from './screens/SendEmailScreen';
+import ChangePassword from './screens/ChangePassword';
 
 const App = () => {
   return (
@@ -62,6 +64,8 @@ const App = () => {
           <Route path='/contact-us' component={ContactUs} />
           <Route path='/privacy-policy' component={PrivaciyPolicy} />
           <Route path='/admin/manageImage' component={Banner} />
+          <Route path='/send-email' component={SendEmailScreen} />
+          <Route path='/change-password' component={ChangePassword} />
         </Container>
       </main>
       <Footer />
