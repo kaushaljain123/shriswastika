@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler")
 const User = require('../models/userModel')
+const Order = require('../models/orderModal')
 const Otp = require('../models/otpModel')
 const { generateToken } = require("../utils/generateToken")
 const nodemailer = require('nodemailer')
@@ -190,6 +191,20 @@ exports.changePassword = asyncHandler(async (req, res) => {
     }
 })
 
+// @dec      Delete Pending Order
+// @routes   Delete /api/users/orders/:id
+// @access   PRIVATE/Admin
+exports.deletePendingOrder = asyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+
+    if (order) {
+        await order.remove()
+        res.json({ status: true, message: 'Order Remove Successfully!' })
+    } else {
+        res.status(404)
+        throw new Error('Order Not Found!')
+    }
+})
 const sendEmail = async (options) => {
     const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,

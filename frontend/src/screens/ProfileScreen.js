@@ -102,7 +102,7 @@ const ProfileScreen = ({ history }) => {
               }></Form.Control>
           </Form.Group>
 
-          <Button type="submit" variant="primary">
+          <Button type="submit" variant="primary" className='profileUpdateButton'>
             Update
           </Button>
         </Form>

@@ -106,7 +106,7 @@ const ShippingScreen = ({ history }) => {
             required></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className='profileUpdateButton'>
           Continue
         </Button>
       </Form>
