@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken'
-import expressAsyncHandler from 'express-async-handler'
-import User from '../models/userModel.js'
+const jwt = require('jsonwebtoken')
+const expressAsyncHandler = require('express-async-handler')
+const User = require('../models/userModel')
 
-const protect = expressAsyncHandler(async (req, res, next) => {
+exports.protect = expressAsyncHandler(async (req, res, next) => {
     let token;
 
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -26,7 +26,7 @@ const protect = expressAsyncHandler(async (req, res, next) => {
 })
 
 
-const admin = (req, res, next) => {
+exports.admin = (req, res, next) => {
     console.log(req.user)
     if(req.user && req.user.isAdmin) {
         next()
@@ -35,5 +35,3 @@ const admin = (req, res, next) => {
         throw new Error('Not authorized as an admin')
     }
 }
-
-export { protect, admin }

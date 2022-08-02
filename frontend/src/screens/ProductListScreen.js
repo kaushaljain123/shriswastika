@@ -1,14 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button, Row, Col, Modal, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import Paginate from '../components/Paginate';
+import axios from 'axios'
+import _ from 'lodash'
 
 const ProductListScreen = ({ history, match }) => {
+
+    const [show, setShow] = useState(false)
+    const [file, setFile] = useState('')
+    const [newFormData, setNewFormData] = useState({})
+
     const pageNumber = match.params.pageNumber || 1
     const dispatch = useDispatch()
 
@@ -20,10 +27,10 @@ const ProductListScreen = ({ history, match }) => {
 
     const productCreate = useSelector((state) => state.productCreate)
     const {
-      loading: loadingCreate,
-      error: errorCreate,
-      success: successCreate,
-      product: createdProduct,
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        product: createdProduct,
     } = productCreate
 
     const productDelete = useSelector(state => state.productDelete)
@@ -32,22 +39,23 @@ const ProductListScreen = ({ history, match }) => {
 
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
-        if(!userInfo.isAdmin) {
+        if (!userInfo.isAdmin) {
             history.push('/login')
-        } 
+        }
 
         if (successCreate) {
             history.push(`/admin/product/${createdProduct._id}/edit`)
-          } else {
+        } else {
             dispatch(listProducts('', pageNumber))
-          }
+        }
 
     }, [dispatch, history, userInfo, successDelete, successCreate, createProduct, pageNumber])
 
     const deleteHandler = (id) => {
-        if(window.confirm('Are you sure')) {
+        if (window.confirm('Are you sure')) {
             // Delete Products
             dispatch(deleteProduct(id))
+            window.location.reload()
         }
     }
 
@@ -61,68 +69,133 @@ const ProductListScreen = ({ history, match }) => {
 
     const val = Math.floor(1000 + Math.random() * 9000);
 
-  return (
-    <>
-        
-        <Row className='align-items-center'>
-            <Col>
-                <h1>Products</h1>
-            </Col>
-            <Col className='text-right'>
-                <Button className='my-3' onClick={createCategory}>Add Category <i className='fas fa-plus'></i></Button>
-                <Button className='my-3' onClick={createProductHandler}>Create Product <i className='fas fa-plus'></i></Button>
-            </Col>
-        </Row>
+    const uploadXlsxHandler = async () => {
+        await axios.post('/api/xlxs/uploadXlxs', newFormData).then(function (response) {
+            alert('Product Update SuccessFully')
+            window.location.reload()
+        })
+            .catch(function (error) {
+                console.error(error)
+            })
+    }
 
-        {loadingDelete && <Loader />}
-        {errorDelete && <Message varient='danger'>{error}</Message>}
-        {successDelete && <Message varient='info'>Product Delete Successfully</Message>}
-        {loadingCreate && <Loader />}
-        {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-        {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
-            <>
-                <Table striped bordered hover responsive className='table-sm'>
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                        </tr>
-                    </thead>
+    const handleClose = () => {
+        setShow(false)
+    }
 
-                    <tbody>
-                        {products.map((product, index) => (
-                            <tr key={product._id}>
-                                <td>{index + 1}</td>
-                                <td>{product._id}</td>
-                                <td>{product.name}</td>
-                                <td>Rs {product.price}</td>
-                                <td>{product.category}</td>
-                                <td>{product.brand}</td>
+    const importProductHandler = () => {
+        setShow(true)
+    }
 
-                                <td>
-                                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                                        <Button varient='light' className='btn-sm'>
-                                            <i className='fas fa-edit'></i>
-                                        </Button>
-                                    </LinkContainer>
-                                    <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
-                                        <i className='fas fa-trash'></i>
-                                    </Button>
-                                </td>
+    const uploadFileHandler = (e) => {
+        const formData = new FormData()
+
+        _.forEach(e.target.files, file => {
+            formData.append('file', file)
+        })
+
+        setNewFormData(formData)
+        setFile(e.target.files[0].name)
+    }
+
+    return (
+        <>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Import Products</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="filename">
+                            <Form.Label>Add File</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Enter image url'
+                                value={file}
+                                onChange={(e) => setFile(e.target.value)}
+                                readOnly
+                            ></Form.Control>
+                            <Form.File
+                                id='image-file'
+                                label='Choose File'
+                                custom
+                                onChange={uploadFileHandler}
+                                multiple
+                            ></Form.File>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={uploadXlsxHandler}>
+                        SAVE
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <Row className='align-items-center'>
+                <Col>
+                    <h1>Products</h1>
+                </Col>
+                <Col className='text-right adminButtons'>
+                    <Button className='ml-3' onClick={createCategory}>Add Category <i className='fas fa-plus'></i></Button>
+                    <Button className='ml-3' onClick={createProductHandler}>Create Product <i className='fas fa-plus'></i></Button>
+                    <Button className='ml-3' href="/api/products/downloadCSVForAllCatlogs">Export Products <i className='fas fa-file-export'></i></Button>
+                    <Button className='ml-3' onClick={importProductHandler}>Import Products <i className='fas fa-file-import'></i></Button>
+                </Col>
+            </Row>
+
+            {loadingDelete && <Loader />}
+            {errorDelete && <Message varient='danger'>{error}</Message>}
+            {successDelete && <Message varient='info'>Product Delete Successfully</Message>}
+            {loadingCreate && <Loader />}
+            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+            {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
+                <>
+                    <Table striped bordered hover responsive className='table-sm'>
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <td>Update/Delete</td>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
 
-                <Paginate pages={pages} page={page} isAdmin={true}/>
-            </>
-        )}
-    </>
-  )
+                        <tbody>
+                            {products.map((product, index) => (
+                                <tr key={product._id}>
+                                    <td>{index + 1}</td>
+                                    <td>{product._id}</td>
+                                    <td>{product.name}</td>
+                                    <td>Rs {product.price}</td>
+                                    <td>{product.category}</td>
+                                    <td>{product.brand}</td>
+
+                                    <td>
+                                        <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                                            <Button varient='light' className='btn-sm ml-3'>
+                                                <i className='fas fa-edit'></i>
+                                            </Button>
+                                        </LinkContainer>
+                                        <Button variant='danger' className='btn-sm ml-3' onClick={() => deleteHandler(product._id)}>
+                                            <i className='fas fa-trash'></i>
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+
+                    <Paginate pages={pages} page={page} isAdmin={true} />
+                </>
+            )}
+        </>
+    )
 }
 
 export default ProductListScreen

@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-import colors from 'colors'
+const mongoose = require('mongoose')
+const colors = require('colors')
 
 const connectDB = async () => {
     try{
@@ -15,4 +15,4 @@ const connectDB = async () => {
     }
 }
 
-export default connectDB
+module.exports = connectDB

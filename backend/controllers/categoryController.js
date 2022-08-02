@@ -1,5 +1,5 @@
-import asyncHandler from "express-async-handler";
-import Category from '../models/categoryModal.js'
+const asyncHandler = require('express-async-handler')
+const Category = require('../models/categoryModal')
 
 function createCaterories(categories, parentId=null) {
     const cateroryList = []
@@ -27,7 +27,7 @@ function createCaterories(categories, parentId=null) {
 // @dec      Create Category
 // @routes   POST /api/category/create
 // @access   Private/ admin
-const addCategorys = asyncHandler(async(req, res) => {
+exports.addCategorys = asyncHandler(async(req, res) => {
     const categoryObj = {
         name: req.body.name
     }
@@ -51,7 +51,7 @@ const addCategorys = asyncHandler(async(req, res) => {
 // @dec      Get Category
 // @routes   POST /api/category
 // @access   Public
-const getCategorys = asyncHandler(async(req, res) => {
+exports.getCategorys = asyncHandler(async(req, res) => {
     const categorys = await Category.find({})
 
     if(categorys) {
@@ -65,7 +65,7 @@ const getCategorys = asyncHandler(async(req, res) => {
 // @dec      Get Category
 // @routes   POST /api/category
 // @access   Public
-const getAllCategorys = asyncHandler(async(req, res) => {
+exports.getAllCategorys = asyncHandler(async(req, res) => {
     const categoryAllList = await Category.find({})
 
     if(categoryAllList) {
@@ -76,7 +76,7 @@ const getAllCategorys = asyncHandler(async(req, res) => {
 // @dec      Remove Category
 // @routes   POST /api/category
 // @access   Private
-const removeCategory = asyncHandler(async(req, res) => {
+exports.removeCategory = asyncHandler(async(req, res) => {
     const category = await Category.findById(req.params.id)
 
     if(category) {
@@ -86,5 +86,3 @@ const removeCategory = asyncHandler(async(req, res) => {
         res.status(404).json({ message: 'category Not Found', status: 404 })
     }
 })
-
-export { addCategorys, getCategorys, getAllCategorys, removeCategory }

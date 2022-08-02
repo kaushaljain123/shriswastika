@@ -23,37 +23,36 @@ const HomeScreen = ({ match }) => {
 
     useEffect(() => {
         dispatch(listProducts(keyword, pageNumber, categoryData))
-        
+
     }, [dispatch, keyword, pageNumber])
 
-    console.log(products)
 
-  return (
+    return (
         <>
             <Meta />
             <Category />
-            
-            {!keyword && !categoryData ? <ProductCarousel />  : keyword || !categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> 
-            : !keyword || categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> : ''}
+
+            {!keyword && !categoryData ? <ProductCarousel /> : keyword || !categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link>
+                : !keyword || categoryData ? <Link to='/' className='btn btn-light'>Go Back</Link> : ''}
             {!keyword ? <h1 className='py-9 text-center'>Our Latest Products</h1> : ''}
-            {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : 
+            {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> :
                 (
                     <>
                         <Row>
                             {products.map((product, index) => (
                                 <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                    <Product product={product} index={index}/>
+                                    <Product product={product} index={index} />
                                 </Col>
                             ))}
                         </Row>
-                        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} categoryData={categoryData ? categoryData : ''}/>
+                        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} categoryData={categoryData ? categoryData : ''} />
                     </>
                 )
 
             }
             <PartnerSlider />
         </>
-  )
+    )
 }
 
 export default HomeScreen;
