@@ -69,14 +69,6 @@ const App = () => {
         </Container>
       </main>
       <Footer />
-      <a
-        href="https://wa.me/message/MERDGJLEUS3AN1"
-        class="whatsapp_float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
-      </a>
     </Router>
   );
 }

@@ -55,7 +55,6 @@ const ProductEditScreen = ({ match, history }) => {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
       } else {
-        alert(1)
         setName(product.name)
         setPrice(product.price)
         setMrp(product.mrp)

@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const path = require('path')
+const cors = require('cors')
 const morgan = require('morgan')
 const connectDB = require('./config/db')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
@@ -10,6 +11,9 @@ const orderRoutes = require('./routes/orderRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
 const bannerRoutes = require('./routes/bannerRoutes')
 const categoryRoutes = require('./routes/categoryRoutes')
+const uploadXlxs = require('./routes/uploadXlxsRoutes')
+
+global.__basedir = __dirname + "/..";
 
 dotenv.config()
 
@@ -22,6 +26,7 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 app.use(express.json())
+app.use(cors())
 
 
 
@@ -31,6 +36,7 @@ app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/bannerUpload', bannerRoutes)
 app.use('/api/category', categoryRoutes)
+app.use('/api/xlxs', uploadXlxs)
 
 
 app.get('/api/config/paypal', (req, res) => {
