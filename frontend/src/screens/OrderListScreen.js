@@ -1,43 +1,51 @@
-import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { listOrders } from '../actions/orderActions'
-import { deletePendingOrderAction } from '../actions/userActions'
+import React, { useEffect } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { listOrders } from "../actions/orderActions";
+import { deletePendingOrderAction } from "../actions/userActions";
 
 const OrderListScreen = ({ history }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const orderLists = useSelector((state) => state.orderLists)
-  const { loading, error, orders } = orderLists
+  const orderLists = useSelector((state) => state.orderLists);
+  const { loading, error, orders } = orderLists;
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  const deletePendingOrder = useSelector((state) => state.deletePendingOrder)
-  const { orderLoading, orderError, orderInfo } = deletePendingOrder
+  const deletePendingOrder = useSelector((state) => state.deletePendingOrder);
+  const { orderLoading, orderError, orderInfo } = deletePendingOrder;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-      dispatch(listOrders())
+      dispatch(listOrders());
     } else {
-      history.push('/login')
+      history.push("/login");
     }
-  }, [dispatch, history, userInfo, orderInfo])
+  }, [dispatch, history, userInfo, orderInfo]);
 
   const pendingOrderHandler = (orderId) => {
-    if (window.confirm('Are You Sure To Delete This Order'))
-      dispatch(deletePendingOrderAction(orderId))
-    alert('Your Order is SuccessFully Delete')
-    window.location.reload()
-  }
+    if (window.confirm("Are You Sure To Delete This Order"))
+      dispatch(deletePendingOrderAction(orderId));
+    alert("Your Order is SuccessFully Delete");
+    window.location.reload();
+  };
 
   return (
     <>
       <h1>Orders</h1>
-      {orderInfo ? orderInfo.status ? <Message variant="danger">{orderInfo.message}</Message> : <Message variant="danger">{orderInfo.message}</Message> : ''}
+      {orderInfo ? (
+        orderInfo.status ? (
+          <Message variant="danger">{orderInfo.message}</Message>
+        ) : (
+          <Message variant="danger">{orderInfo.message}</Message>
+        )
+      ) : (
+        ""
+      )}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -66,16 +74,16 @@ const OrderListScreen = ({ history }) => {
                 <td>{order.paymentMethod}</td>
                 <td>
                   {order.isPaid ? (
-                    'Paid'
+                    "Paid"
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
@@ -84,11 +92,20 @@ const OrderListScreen = ({ history }) => {
                       Details
                     </Button>
                   </LinkContainer>
-                  {order.paymentMethod == 'paytm' && !order.isPaid && <div className='deleteButton'>
+                  {/* {order.paymentMethod == 'paytm' && !order.isPaid && <div className='deleteButton'>
                     <Button variant="danger" className="btn-sm" onClick={() => pendingOrderHandler(order._id)}>
                       Delete
                     </Button>
-                  </div>}
+                  </div>} */}
+                  <div className="deleteButton">
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => pendingOrderHandler(order._id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -96,7 +113,7 @@ const OrderListScreen = ({ history }) => {
         </Table>
       )}
     </>
-  )
-}
+  );
+};
 
-export default OrderListScreen
+export default OrderListScreen;
