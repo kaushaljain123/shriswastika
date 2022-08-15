@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { PayPalButton } from 'react-paypal-button-v2'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
+import { Link } from "react-router-dom";
 import {
   Row,
   Col,
@@ -11,166 +11,166 @@ import {
   Button,
   Modal,
   Form,
-} from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
+} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 import {
   getOrderDetails,
   payOrder,
   deliverOrder,
-} from '../actions/orderActions'
+} from "../actions/orderActions";
 import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
-} from '../constants/orderConstants'
-import { PaytmButton } from '../components/PaytmButton'
+} from "../constants/orderConstants";
+import { PaytmButton } from "../components/PaytmButton";
 
 const OrderScreen = ({ history, match }) => {
   function isDate(val) {
     // Cross realm comptatible
-    return Object.prototype.toString.call(val) === '[object Date]'
+    return Object.prototype.toString.call(val) === "[object Date]";
   }
 
   function isObj(val) {
-    return typeof val === 'object'
+    return typeof val === "object";
   }
 
   function stringifyValue(val) {
     if (isObj(val) && !isDate(val)) {
-      return JSON.stringify(val)
+      return JSON.stringify(val);
     } else {
-      return val
+      return val;
     }
   }
 
   function buildForm({ action, params }) {
-    const form = document.createElement('form')
-    form.setAttribute('method', 'post')
-    form.setAttribute('action', action)
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", action);
 
     Object.keys(params).forEach((key) => {
-      const input = document.createElement('input')
-      input.setAttribute('type', 'hidden')
-      input.setAttribute('name', key)
-      input.setAttribute('value', stringifyValue(params[key]))
-      form.appendChild(input)
-    })
+      const input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", key);
+      input.setAttribute("value", stringifyValue(params[key]));
+      form.appendChild(input);
+    });
 
-    return form
+    return form;
   }
 
   function post(details) {
-    const form = buildForm(details)
-    document.body.appendChild(form)
-    form.submit()
-    form.remove()
+    const form = buildForm(details);
+    document.body.appendChild(form);
+    form.submit();
+    form.remove();
   }
 
-  const [show, setShow] = useState(false)
-  const [productWeight, setProductWeight] = useState(0)
-  const [productHeight, setProductHeight] = useState(0)
-  const [productLength, setProductLength] = useState(0)
-  const [productBreadth, setProductBreadth] = useState(0)
-  const [warehouse, setWarehouse] = useState('')
-  const [name, setName] = useState('')
-  const [addressOne, setAddressOne] = useState('')
-  const [addressTwo, setAddressTwo] = useState('')
-  const [city, setCity] = useState('Morena')
-  const [state, setState] = useState('Madhya Pradesh')
-  const [pincode, setPincode] = useState('476001')
-  const [phone, setPhone] = useState('')
+  const [show, setShow] = useState(false);
+  const [productWeight, setProductWeight] = useState(0);
+  const [productHeight, setProductHeight] = useState(0);
+  const [productLength, setProductLength] = useState(0);
+  const [productBreadth, setProductBreadth] = useState(0);
+  const [warehouse, setWarehouse] = useState("");
+  const [name, setName] = useState("");
+  const [addressOne, setAddressOne] = useState("");
+  const [addressTwo, setAddressTwo] = useState("");
+  const [city, setCity] = useState("Morena");
+  const [state, setState] = useState("Madhya Pradesh");
+  const [pincode, setPincode] = useState("476001");
+  const [phone, setPhone] = useState("");
 
-  const orderId = match.params.id
+  const orderId = match.params.id;
 
-  const [sdkReady, SetSdkReady] = useState(false)
+  const [sdkReady, SetSdkReady] = useState(false);
 
-  const dispatch = useDispatch()
-  const orderDetails = useSelector((state) => state.orderDetails)
-  const { order, loading, error } = orderDetails
+  const dispatch = useDispatch();
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order, loading, error } = orderDetails;
 
   // const orderPay = useSelector((state) => state.orderPay)
   // const { loading: loadingPay, success: successPay } = orderPay
 
-  const orderDeliver = useSelector((state) => state.orderDeliver)
-  const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  const GenerateOrderId = 8522 + Math.floor(1000 + Math.random() * 9000)
+  const GenerateOrderId = 8522 + Math.floor(1000 + Math.random() * 9000);
 
   if (!loading) {
     // calculate prices
     const addDecimals = (num) => {
-      return (Math.round(num * 100) / 100).toFixed(2)
-    }
+      return (Math.round(num * 100) / 100).toFixed(2);
+    };
 
     order.itemsPrice = addDecimals(
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    )
+    );
   }
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push("/login");
     }
 
     if (!order || successDeliver || order._id !== orderId) {
-      dispatch({ type: ORDER_PAY_RESET })
-      dispatch({ type: ORDER_DELIVER_RESET })
-      dispatch(getOrderDetails(orderId))
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
+      dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
       } else {
-        SetSdkReady(true)
+        SetSdkReady(true);
       }
     }
-  }, [order, orderId, successDeliver])
+  }, [order, orderId, successDeliver]);
 
   const deliverHandler = () => {
-    dispatch(deliverOrder(order))
-  }
+    dispatch(deliverOrder(order));
+  };
 
   const shipMentLoginHandler = () => {
     var loginData = JSON.stringify({
-      email: 'shriswastikainfotechpvtltd@gmail.com',
-      password: 'Admin@123',
-    })
+      email: "shriswastikainfotechpvtltd@gmail.com",
+      password: "Admin@123",
+    });
 
     var config = {
-      method: 'post',
-      url: 'https://api.nimbuspost.com/v1/users/login',
+      method: "post",
+      url: "https://api.nimbuspost.com/v1/users/login",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       data: loginData,
-    }
+    };
 
     axios(config)
       .then(function (res) {
-        localStorage.setItem('shipmentToken', res.data.data)
-        setShow(true)
+        localStorage.setItem("shipmentToken", res.data.data);
+        setShow(true);
       })
       .catch(function (error) {
-        console.error(error)
-      })
-  }
+        console.error(error);
+      });
+  };
 
   const handleClose = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   const updateShipment = () => {
     const updateShippingHeader = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
-    }
+    };
 
-    axios.put(`/api/orders/${orderId}/shipped`, updateShippingHeader)
-  }
+    axios.put(`/api/orders/${orderId}/shipped`, updateShippingHeader);
+  };
 
   const updateCourior = (data) => {
     const couriorData = {
@@ -180,38 +180,38 @@ const OrderScreen = ({ history, match }) => {
       order_id: data.order_id,
       shipment_id: data.shipment_id,
       status: data.status,
-    }
+    };
     const updateCouriorDetails = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
-    }
+    };
 
     axios.put(
       `/api/orders/${orderId}/updateCourier`,
       couriorData,
       updateCouriorDetails
-    )
-  }
+    );
+  };
 
   const createShipmentHandler = () => {
-    console.log(order.shippingAddress)
+    console.log(order.shippingAddress);
     let orderDetails = order.orderItems.map((item, index) => {
       return {
         name: item.name,
         qty: item.qty,
         price: item.price,
         sku: item.name,
-      }
-    })
+      };
+    });
 
     const shipmentData = JSON.stringify({
       order_number: GenerateOrderId,
       shipping_charges: order.shippingPrice,
       discount: 0,
       cod_charges: 0,
-      payment_type: order.paymentMethod == 'CoD' ? 'cod' : 'prepaid',
+      payment_type: order.paymentMethod == "CoD" ? "cod" : "prepaid",
       order_amount: order.totalPrice,
       package_weight: productWeight,
       package_length: productLength,
@@ -237,49 +237,49 @@ const OrderScreen = ({ history, match }) => {
         phone: phone,
       },
       order_items: orderDetails,
-    })
+    });
 
-    let shippingToken = localStorage.getItem('shipmentToken')
+    let shippingToken = localStorage.getItem("shipmentToken");
     var config = {
-      method: 'post',
-      url: 'https://api.nimbuspost.com/v1/shipments',
+      method: "post",
+      url: "https://api.nimbuspost.com/v1/shipments",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${shippingToken}`,
       },
       data: shipmentData,
-    }
+    };
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data))
+        console.log(JSON.stringify(response.data));
         if (response.data.status) {
-          updateShipment()
-          updateCourior(response.data.data)
-          setShow(false)
-          alert(response.data.message)
+          updateShipment();
+          updateCourior(response.data.data);
+          setShow(false);
+          alert(response.data.message);
         } else {
-          setShow(false)
-          alert(response.data.message)
+          setShow(false);
+          alert(response.data.message);
         }
       })
       .catch(function (error) {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   const getData = (data) => {
     return fetch(`/api/orders/${orderId}/pay`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   const makePayment = () => {
     getData({
@@ -291,12 +291,12 @@ const OrderScreen = ({ history, match }) => {
       customerName: userInfo.name,
     }).then((response) => {
       var information = {
-        action: 'https://securegw.paytm.in/order/process',
+        action: "https://securegw.paytm.in/order/process",
         params: response,
-      }
-      post(information)
-    })
-  }
+      };
+      post(information);
+    });
+  };
 
   return loading ? (
     <Loader />
@@ -450,7 +450,7 @@ const OrderScreen = ({ history, match }) => {
                 <strong>Name: </strong> {order.user.name}
               </p>
               <p>
-                <strong>Email: </strong>{' '}
+                <strong>Email: </strong>{" "}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
@@ -469,10 +469,14 @@ const OrderScreen = ({ history, match }) => {
             <ListGroup.Item>
               <h2>Payment Mathod</h2>
               <p>
-                <strong>Mathod: </strong>{' '}
-                {order.paymentMethod == 'CoD'
-                  ? 'Pay on Delivery'
+                <strong>Mathod: </strong>{" "}
+                {order.paymentMethod == "CoD"
+                  ? "Pay on Delivery"
                   : order.paymentMethod}
+                <br />
+                {order.PAYMENTMODE && (
+                  <strong>Pay Via: {order.PAYMENTMODE}</strong>
+                )}
                 {order.isPaid ? (
                   <Message varient="success">Paid On {order.TXNDATE}</Message>
                 ) : (
@@ -496,7 +500,7 @@ const OrderScreen = ({ history, match }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x Rs {item.price} = Rs{' '}
+                          {item.qty} x Rs {item.price} = Rs{" "}
                           {item.qty * item.price}
                         </Col>
                       </Row>
@@ -535,7 +539,7 @@ const OrderScreen = ({ history, match }) => {
 
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {order.paymentMethod == 'paytm' ? (
+                  {order.paymentMethod == "paytm" ? (
                     <Button className="btn btn-block" onClick={makePayment}>
                       PAY
                     </Button>
@@ -565,14 +569,15 @@ const OrderScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </Card>
             ) : (
-              ''
+              ""
             )}
             {userInfo && userInfo.isAdmin && !order.isDelivered && (
               <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn btn-block"
-                  onClick={deliverHandler}>
+                  onClick={deliverHandler}
+                >
                   Mark As Delivered
                 </Button>
               </ListGroup.Item>
@@ -583,7 +588,8 @@ const OrderScreen = ({ history, match }) => {
                 <Button
                   type="button"
                   className="btn btn-block"
-                  onClick={shipMentLoginHandler}>
+                  onClick={shipMentLoginHandler}
+                >
                   Ready To Ship
                 </Button>
               </ListGroup.Item>
@@ -592,7 +598,7 @@ const OrderScreen = ({ history, match }) => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default OrderScreen
+export default OrderScreen;

@@ -1,19 +1,20 @@
-const asyncHandler = require('express-async-handler')
-const Order = require('../models/orderModal')
-const Product = require('../models/productModal')
-const formidable = require('formidable')
-const PaytmChecksum = require('./PaytmChecksum')
+const asyncHandler = require("express-async-handler");
+const Order = require("../models/orderModal");
+const Product = require("../models/productModal");
+const formidable = require("formidable");
+const PaytmChecksum = require("./PaytmChecksum");
 
 const setOrderIds = (orderIds) => {
-  return (orderIdsss = orderIds)
-}
+  return (orderIdsss = orderIds);
+};
 
-const updatePaymentInOrder = async (req, res, fields) => {
-  console.log(orderIdsss)
-  const order = await Order.findById(orderIdsss)
-
+const updatePaymentInOrder = async (fields) => {
+  console.log(orderIdsss);
+  console.log(fields);
+  const order = await Order.findById(orderIdsss);
+  console.log("its a order", order);
   if (order) {
-    ;(order.ORDERID = fields.ORDERID),
+    (order.ORDERID = fields.ORDERID),
       (order.TXNID = fields.TXNID),
       (order.TXNAMOUNT = fields.TXNAMOUNT),
       (order.PAYMENTMODE = fields.PAYMENTMODE),
@@ -26,15 +27,13 @@ const updatePaymentInOrder = async (req, res, fields) => {
       (order.GATEWAYNAME = fields.GATEWAYNAME),
       (order.BANKTXNID = fields.BANKTXNID),
       (order.BANKNAME = fields.BANKNAME),
-      (order.isPaid = true)
+      (order.isPaid = true);
 
-    const updatePaymentInfo = await order.save()
-    res.json(updatePaymentInfo)
+    const updatePaymentInfo = await order.save();
   } else {
-    res.status(404)
-    throw new Error('Order Not found!')
+    throw new Error("Order Not found!");
   }
-}
+};
 // @dec      Create New Order
 // @routes   POst /api/orders
 // @access   Private
@@ -47,11 +46,11 @@ exports.addOrderItems = asyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
-  } = req.body
+  } = req.body;
 
   if (orderItems && orderItems.length === 0) {
-    res.status(400)
-    throw new Error('No order items')
+    res.status(400);
+    throw new Error("No order items");
   } else {
     const order = new Order({
       orderItems,
@@ -62,54 +61,54 @@ exports.addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
-    })
+    });
 
-    const createdOrder = await order.save()
+    const createdOrder = await order.save();
 
-    res.status(201).json(createdOrder)
+    res.status(201).json(createdOrder);
   }
-})
+});
 
 // @dec      Get order By Id
 // @routes   get /api/orders/:id
 // @access   Private
 exports.getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
-    'user',
-    'name email'
-  )
+    "user",
+    "name email"
+  );
 
   if (order) {
-    res.json(order)
+    res.json(order);
   } else {
-    res.status(404)
-    throw new Error('Order Not Found')
+    res.status(404);
+    throw new Error("Order Not Found");
   }
-})
+});
 
 // @dec      Update Order to paid
 // @routes   get /api/orders/:id/pay
 // @access   Private
 exports.updateOrdertoPaid = asyncHandler(async (req, res) => {
-  const { amount, email, mobile, orderId, customerName, orderIds } = req.body
+  const { amount, email, mobile, orderId, customerName, orderIds } = req.body;
 
-  const totalAmount = JSON.stringify(amount)
-  const phoneNumber = JSON.stringify(mobile)
-  var params = {}
+  const totalAmount = JSON.stringify(amount);
+  const phoneNumber = JSON.stringify(mobile);
+  var params = {};
 
   /* initialize an array */
-  params['MID'] = process.env.MER_ID
-  params['WEBSITE'] = process.env.WEBSITE
-  params['CHANNEL_ID'] = process.env.CHANNEL_ID
-  params['INDUSTRY_TYPE_ID'] = process.env.IND_TYPE
-  params['ORDER_ID'] = orderId
-  params['CUST_ID'] = customerName
-  params['TXN_AMOUNT'] = totalAmount
-  params['CALLBACK_URL'] = 'https://www.shriswastika.com/api/orders/callback'
-  params['EMAIL'] = email
-  params['MOBILE_NO'] = phoneNumber
+  params["MID"] = process.env.MER_ID;
+  params["WEBSITE"] = process.env.WEBSITE;
+  params["CHANNEL_ID"] = process.env.CHANNEL_ID;
+  params["INDUSTRY_TYPE_ID"] = process.env.IND_TYPE;
+  params["ORDER_ID"] = orderId;
+  params["CUST_ID"] = customerName;
+  params["TXN_AMOUNT"] = totalAmount;
+  params["CALLBACK_URL"] = "https://shriswastika.com/api/orders/callback";
+  params["EMAIL"] = email;
+  params["MOBILE_NO"] = phoneNumber;
 
-  setOrderIds(orderIds)
+  setOrderIds(orderIds);
 
   /**
    * Generate checksum by parameters we have
@@ -117,39 +116,39 @@ exports.updateOrdertoPaid = asyncHandler(async (req, res) => {
    */
   var paytmChecksum = PaytmChecksum.generateSignature(
     params,
-    'e4NgczkaOxpp2h#w'
-  )
+    "e4NgczkaOxpp2h#w"
+  );
 
   paytmChecksum
     .then(function (checksum) {
       let paytmParams = {
         ...params,
         CHECKSUMHASH: checksum,
-      }
-      res.json(paytmParams)
+      };
+      res.json(paytmParams);
     })
     .catch(function (error) {
-      console.log(error)
-    })
-})
+      console.log(error);
+    });
+});
 
 // @dec      CALL BACK
 // @routes   get /api/orders/callback
 // @access   Private
 exports.checkCallBack = asyncHandler(async (req, res) => {
-  const form = new formidable.IncomingForm()
+  const form = new formidable.IncomingForm();
 
   form.parse(req, (err, fields, file) => {
-    console.log('ss', fields)
-    if (fields.STATUS == 'TXN_SUCCESS') {
-      updatePaymentInOrder(fields)
-      res.redirect('https://www.shriswastika.com/thankyou')
+    console.log("ss", fields);
+    if (fields.STATUS == "TXN_SUCCESS") {
+      updatePaymentInOrder(fields);
+      res.redirect("https://www.shriswastika.com/thankyou");
     } else {
-      console.log('FAIL')
-      res.redirect('https://www.shriswastika.com/')
+      console.log("FAIL");
+      res.redirect("https://www.shriswastika.com/");
     }
-  })
-})
+  });
+});
 
 // @dec      Get logged in user order
 // @routes   get /api/orders/myorders
@@ -157,56 +156,56 @@ exports.checkCallBack = asyncHandler(async (req, res) => {
 exports.getMyOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({
     user: req.user._id,
-  })
-  res.json(orders)
-})
+  });
+  res.json(orders);
+});
 
 // @desc    Get all orders
 // @route   GET /api/orders
 // @access  Private/Admin
 exports.getOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'id name')
-  res.json(orders)
-})
+  const orders = await Order.find({}).populate("user", "id name");
+  res.json(orders);
+});
 
 // @desc    Update order to delivered
 // @route   GET /api/orders/:id/deliver
 // @access  Private/Admin
 exports.updateOrderToDelivered = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
+  const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.isDelivered = true
-    order.deliveredAt = Date.now()
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
 
-    const updatedOrder = await order.save()
+    const updatedOrder = await order.save();
 
-    res.json(updatedOrder)
+    res.json(updatedOrder);
   } else {
-    res.status(404)
-    throw new Error('Order not found')
+    res.status(404);
+    throw new Error("Order not found");
   }
-})
+});
 
 // @desc    Update Shipping
 // @route   GET /api/orders/:id/shipped
 // @access  Private/Admin
 
 exports.updateOrderToShipped = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
+  const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.isShipped = true
-    order.shippedAt = Date.now()
+    order.isShipped = true;
+    order.shippedAt = Date.now();
 
-    const updateShippedOrder = await order.save()
+    const updateShippedOrder = await order.save();
 
-    res.json(updateShippedOrder)
+    res.json(updateShippedOrder);
   } else {
-    res.status(404)
-    throw new Error('Order Not found!')
+    res.status(404);
+    throw new Error("Order Not found!");
   }
-})
+});
 
 // @desc    Update Shipping Courier Details
 // @route   GET /api/orders/:id/updateCourier
@@ -214,22 +213,22 @@ exports.updateOrderToShipped = asyncHandler(async (req, res) => {
 
 exports.updateCourierDetails = asyncHandler(async (req, res) => {
   const { awb_number, courier_name, label, order_id, shipment_id, status } =
-    req.body
+    req.body;
 
-  const order = await Order.findById(req.params.id)
+  const order = await Order.findById(req.params.id);
 
   if (order) {
-    ;(order.awb_number = awb_number),
+    (order.awb_number = awb_number),
       (order.courier_name = courier_name),
       (order.label = label),
       (order.order_id = order_id),
       (order.shipment_id = shipment_id),
-      (order.status = status)
+      (order.status = status);
 
-    const updateCourier = await order.save()
-    res.json(updateCourier)
+    const updateCourier = await order.save();
+    res.json(updateCourier);
   } else {
-    res.status(404)
-    throw new Error('Order Not found!')
+    res.status(404);
+    throw new Error("Order Not found!");
   }
-})
+});
