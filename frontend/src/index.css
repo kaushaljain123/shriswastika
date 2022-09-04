@@ -144,6 +144,11 @@ h2 {
   width: 325px;
 }
 
+.bannerImaageAdmin {
+  width: 234px;
+    height: 100px;
+}
+
 .mainCard {
   border: 0.1rem #ffffff solid;
   border-radius: 0.5rem;
