@@ -182,6 +182,7 @@ h2 {
 }
 
 .searchBoxStyle {
+  align-items: center;
   width: 700px !important;
 }
 

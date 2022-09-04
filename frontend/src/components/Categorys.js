@@ -1,20 +1,19 @@
-import React from 'react'
-import { Nav, NavDropdown } from 'react-bootstrap';
-import SubCategory from './SubCategory';
-
+import React from "react";
+import { Nav, NavDropdown } from "react-bootstrap";
+import SubCategory from "./SubCategory";
 
 const Categorys = ({ cate }) => {
-  const subCategory = cate.children
+  const subCategory = cate.children;
 
   return (
-    <Nav className='responsive'>
+    <Nav className="responsive">
       <NavDropdown title={cate.name} id={cate.name}>
-        {subCategory.map(item => (
+        {subCategory.map((item) => (
           <SubCategory item={item} />
         ))}
       </NavDropdown>
     </Nav>
-  )
-}
+  );
+};
 
-export default Categorys
+export default Categorys;
