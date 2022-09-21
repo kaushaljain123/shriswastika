@@ -304,7 +304,11 @@ const OrderScreen = ({ history, match }) => {
     <Message varient="danger">{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1>Order ID: {order._id}</h1>
+      {order.shippingAddress.gstNumber && (
+        <h4>GST Number: {order.shippingAddress.gstNumber}</h4>
+      )}
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Create Shipment</Modal.Title>

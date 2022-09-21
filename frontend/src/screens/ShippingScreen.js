@@ -1,28 +1,29 @@
-import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import FormContainer from '../components/FormContainer'
-import { saveShippingAddress } from '../actions/cartAction'
-import CheckOutSteps from '../components/CheckOutSteps'
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import FormContainer from "../components/FormContainer";
+import { saveShippingAddress } from "../actions/cartAction";
+import CheckOutSteps from "../components/CheckOutSteps";
 
 const ShippingScreen = ({ history }) => {
-  const cart = useSelector((state) => state.cart)
-  const { shippingAddress } = cart
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
 
-  const [address, SetAddress] = useState(shippingAddress.address)
-  const [city, SetCity] = useState(shippingAddress.city)
-  const [state, SetState] = useState(shippingAddress.state)
-  const [phone, SetPhone] = useState(shippingAddress.phone)
-  const [email, SetEmail] = useState(shippingAddress.email)
-  const [postalCode, SetPostalCode] = useState(shippingAddress.postalCode)
+  const [address, SetAddress] = useState(shippingAddress.address);
+  const [city, SetCity] = useState(shippingAddress.city);
+  const [state, SetState] = useState(shippingAddress.state);
+  const [phone, SetPhone] = useState(shippingAddress.phone);
+  const [email, SetEmail] = useState(shippingAddress.email);
+  const [postalCode, SetPostalCode] = useState(shippingAddress.postalCode);
   const [country, SetCountry] = useState(
-    shippingAddress.country ? shippingAddress.country : 'India'
-  )
+    shippingAddress.country ? shippingAddress.country : "India"
+  );
+  const [gstNumber, SetGstNumber] = useState(shippingAddress.gstNumber);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(
       saveShippingAddress({
         address,
@@ -32,10 +33,11 @@ const ShippingScreen = ({ history }) => {
         email,
         postalCode,
         country,
+        gstNumber,
       })
-    )
-    history.push('/payment')
-  }
+    );
+    history.push("/payment");
+  };
 
   return (
     <FormContainer>
@@ -49,7 +51,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter Address"
             value={address}
             onChange={(e) => SetAddress(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="City">
           <Form.Label>Enter City</Form.Label>
@@ -58,7 +61,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter City"
             value={city}
             onChange={(e) => SetCity(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="State">
           <Form.Label>Enter State</Form.Label>
@@ -67,7 +71,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter State"
             value={state}
             onChange={(e) => SetState(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Phone">
           <Form.Label>Enter Mobile Number</Form.Label>
@@ -76,7 +81,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter Mobile Number"
             value={phone}
             onChange={(e) => SetPhone(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Email">
           <Form.Label>Enter Email</Form.Label>
@@ -85,7 +91,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter Email"
             value={email}
             onChange={(e) => SetEmail(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="PostalCode">
           <Form.Label>Enter Pincode</Form.Label>
@@ -94,7 +101,8 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter Pincode"
             value={postalCode}
             onChange={(e) => SetPostalCode(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Country">
           <Form.Label>Enter Country</Form.Label>
@@ -103,15 +111,26 @@ const ShippingScreen = ({ history }) => {
             placeholder="Enter Country"
             value={country}
             onChange={(e) => SetCountry(e.target.value)}
-            required></Form.Control>
+            required
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group controlId="Country">
+          <Form.Label>Enter GST Number ( Optional )</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter GST Number"
+            value={gstNumber}
+            onChange={(e) => SetGstNumber(e.target.value)}
+            required
+          ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className='profileUpdateButton'>
+        <Button type="submit" variant="primary" className="profileUpdateButton">
           Continue
         </Button>
       </Form>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default ShippingScreen
+export default ShippingScreen;
