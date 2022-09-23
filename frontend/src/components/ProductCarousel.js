@@ -9,6 +9,11 @@ const ProductCarousel = () => {
   const [imageThree, setImageThree] = useState("");
   const [imageFour, setImageFour] = useState("");
   const [imageFive, setImageFive] = useState("");
+  const [imageSix, setImageSix] = useState("");
+  const [imageSeven, setImageSeven] = useState("");
+  const [imageEight, setImageEight] = useState("");
+  const [imageNine, setImageNine] = useState("");
+  const [imageTen, setImageTen] = useState("");
   const [uploading, setUploading] = useState(false);
   const [bannerData, setBannerData] = useState();
   const getBanner = () => {
@@ -35,6 +40,11 @@ const ProductCarousel = () => {
       setImageThree(bannerData.banner3);
       setImageFour(bannerData.banner4);
       setImageFive(bannerData.banner5);
+      setImageSix(bannerData.banner6);
+      setImageSeven(bannerData.banner7);
+      setImageEight(bannerData.banner8);
+      setImageNine(bannerData.banner9);
+      setImageTen(bannerData.banner10);
     }
   });
 
@@ -63,6 +73,31 @@ const ProductCarousel = () => {
       {imageFive && (
         <Carousel.Item>
           <Image src={imageFive} className="heroImage" />
+        </Carousel.Item>
+      )}
+      {imageSix && (
+        <Carousel.Item>
+          <Image src={imageSix} className="heroImage" />
+        </Carousel.Item>
+      )}
+      {imageSeven && (
+        <Carousel.Item>
+          <Image src={imageSeven} className="heroImage" />
+        </Carousel.Item>
+      )}
+      {imageEight && (
+        <Carousel.Item>
+          <Image src={imageEight} className="heroImage" />
+        </Carousel.Item>
+      )}
+      {imageNine && (
+        <Carousel.Item>
+          <Image src={imageNine} className="heroImage" />
+        </Carousel.Item>
+      )}
+      {imageTen && (
+        <Carousel.Item>
+          <Image src={imageTen} className="heroImage" />
         </Carousel.Item>
       )}
     </Carousel>

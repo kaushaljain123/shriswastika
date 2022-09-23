@@ -59,6 +59,26 @@ router.post("/banner5", upload.single("banner5"), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 
+router.post("/banner6", upload.single("banner6"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
+router.post("/banner7", upload.single("banner7"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
+router.post("/banner8", upload.single("banner8"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
+router.post("/banner9", upload.single("banner9"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
+router.post("/banner10", upload.single("banner10"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
 router.route("/createBanner").post(AddBanner);
 router.route("/updateBanner").post(updateBanner);
 router.route("/getBanner").get(getBanner);

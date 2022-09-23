@@ -17,7 +17,18 @@ exports.AddBanner = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 exports.updateBanner = asyncHandler(async (req, res) => {
-  const { banner1, banner2, banner3, banner4, banner5 } = req.body;
+  const {
+    banner1,
+    banner2,
+    banner3,
+    banner4,
+    banner5,
+    banner6,
+    banner7,
+    banner8,
+    banner9,
+    banner10,
+  } = req.body;
 
   const banner = await Banner.findById("62a224cebab1ed52f6a9cc0d");
 
@@ -27,6 +38,11 @@ exports.updateBanner = asyncHandler(async (req, res) => {
     banner.banner3 = banner3;
     banner.banner4 = banner4;
     banner.banner5 = banner5;
+    banner.banner6 = banner6;
+    banner.banner7 = banner7;
+    banner.banner8 = banner8;
+    banner.banner9 = banner9;
+    banner.banner10 = banner10;
 
     const updatedBanner = await banner.save();
     res.json(updatedBanner);
@@ -37,6 +53,11 @@ exports.updateBanner = asyncHandler(async (req, res) => {
       banner3,
       banner4,
       banner5,
+      banner6,
+      banner7,
+      banner8,
+      banner9,
+      banner10,
     });
     res.json(addNewBanner);
   }

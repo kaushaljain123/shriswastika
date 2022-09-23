@@ -1,26 +1,44 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const bannerSchema = mongoose.Schema({
+const bannerSchema = mongoose.Schema(
+  {
     banner1: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     banner2: {
-        type: String,
+      type: String,
     },
     banner3: {
-        type: String,
+      type: String,
     },
     banner4: {
-        type: String,
+      type: String,
     },
     banner5: {
-        type: String,
-    }
-}, {
-    timestamps: true
-})
+      type: String,
+    },
+    banner6: {
+      type: String,
+    },
+    banner7: {
+      type: String,
+    },
+    banner8: {
+      type: String,
+    },
+    banner9: {
+      type: String,
+    },
+    banner10: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Banner = mongoose.model('Banner', bannerSchema)
+const Banner = mongoose.model("Banner", bannerSchema);
 
-module.exports = Banner 
+module.exports = Banner;
