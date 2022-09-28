@@ -1,0 +1,929 @@
+[{
+  "_id": {
+    "$oid": "621dbdbca503d0595c68d6d7"
+  },
+  "name": "Electronics",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646116284680"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646116284680"
+    }
+  },
+  "slug": "electronics",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "621f7ade966210e166b0979d"
+  },
+  "name": "Computer",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646230238821"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646230238821"
+    }
+  },
+  "slug": "computer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "621f7aef966210e166b097a4"
+  },
+  "name": "Health",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646230255906"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646230255906"
+    }
+  },
+  "slug": "health",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "621f7af8966210e166b097a7"
+  },
+  "name": "Security Products",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646230264929"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646230264929"
+    }
+  },
+  "slug": "security-products",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a4d0e58506d1a9520f10"
+  },
+  "name": "Water Cooler",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830800665"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830800665"
+    }
+  },
+  "slug": "water-cooler",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a4efe58506d1a9520f16"
+  },
+  "name": "Dispenser",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830831093"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830831093"
+    }
+  },
+  "slug": "dispenser",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a52ae58506d1a9520f3a"
+  },
+  "name": "Laptop",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830890098"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830890098"
+    }
+  },
+  "slug": "laptop",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a52ee58506d1a9520f3d"
+  },
+  "name": "Printer",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830894798"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830894798"
+    }
+  },
+  "slug": "printer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a535e58506d1a9520f40"
+  },
+  "name": "Software",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830901208"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830901208"
+    }
+  },
+  "slug": "software",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a542e58506d1a9520f43"
+  },
+  "name": "Accessories",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830914426"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830914426"
+    }
+  },
+  "slug": "accessories",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a569e58506d1a9520f4a"
+  },
+  "name": "Glucometer",
+  "parentId": "621f7aef966210e166b097a4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830953739"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830953739"
+    }
+  },
+  "slug": "glucometer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a577e58506d1a9520f4d"
+  },
+  "name": "Thermometer",
+  "parentId": "621f7aef966210e166b097a4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830967489"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830967489"
+    }
+  },
+  "slug": "thermometer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a581e58506d1a9520f50"
+  },
+  "name": "Stethoscope",
+  "parentId": "621f7aef966210e166b097a4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830977556"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830977556"
+    }
+  },
+  "slug": "stethoscope",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a597e58506d1a9520f54"
+  },
+  "name": "CCTV",
+  "parentId": "621f7af8966210e166b097a7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646830999607"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646830999607"
+    }
+  },
+  "slug": "cctv",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a59ee58506d1a9520f57"
+  },
+  "name": "Door Lock",
+  "parentId": "621f7af8966210e166b097a7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646831006183"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646831006183"
+    }
+  },
+  "slug": "door-lock",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6228a5a8e58506d1a9520f5a"
+  },
+  "name": "Attendance",
+  "parentId": "621f7af8966210e166b097a7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1646831016598"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1646831016598"
+    }
+  },
+  "slug": "attendance",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160989a06074d7cdc903a"
+  },
+  "name": "TABLETS",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451736036"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451736036"
+    }
+  },
+  "slug": "tablets",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160a69a06074d7cdc903f"
+  },
+  "name": "WATER RO",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451750334"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451750334"
+    }
+  },
+  "slug": "water-ro",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160b59a06074d7cdc904c"
+  },
+  "name": "CEILING FAN",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451765878"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451765878"
+    }
+  },
+  "slug": "ceiling-fan",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160be9a06074d7cdc9051"
+  },
+  "name": "LIGHTS",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451774868"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451774868"
+    }
+  },
+  "slug": "lights",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160cf9a06074d7cdc9059"
+  },
+  "name": "KITCHEN APPLIANCES",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451791892"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451791892"
+    }
+  },
+  "slug": "kitchen-appliances",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624160f19a06074d7cdc9061"
+  },
+  "name": "SPEAKER",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451825476"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451825476"
+    }
+  },
+  "slug": "speaker",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624161709a06074d7cdc908c"
+  },
+  "name": "OFFICE AUTOMATIONS",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648451952584"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648451952584"
+    }
+  },
+  "slug": "office-automations",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624161c79a06074d7cdc909e"
+  },
+  "name": "PAPER SHREDDER",
+  "parentId": "624161709a06074d7cdc908c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452039480"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452039480"
+    }
+  },
+  "slug": "paper-shredder",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624163229a06074d7cdc90e1"
+  },
+  "name": "NETWORKING PRODUCTS",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452386937"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452386937"
+    }
+  },
+  "slug": "networking-products",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624163459a06074d7cdc90fb"
+  },
+  "name": "LAPTOP ADAPTOR AND BATTERIES",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452421558"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452421558"
+    }
+  },
+  "slug": "laptop-adaptor-and-batteries",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241635c9a06074d7cdc9109"
+  },
+  "name": "COMPONENTS",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452444769"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452444769"
+    }
+  },
+  "slug": "components",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241638c9a06074d7cdc9119"
+  },
+  "name": "OPEN BOX / REFURBISHED",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452492053"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452492053"
+    }
+  },
+  "slug": "open-box-refurbished",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624164489a06074d7cdc915b"
+  },
+  "name": "NOTE COUNTING MACHINES",
+  "parentId": "624161709a06074d7cdc908c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452680789"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452680789"
+    }
+  },
+  "slug": "note-counting-machines",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624165259a06074d7cdc91a3"
+  },
+  "name": "MOTHER BOARD",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452901963"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452901963"
+    }
+  },
+  "slug": "mother-board",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624165439a06074d7cdc91a8"
+  },
+  "name": "KEYBOARD MOUSE",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648452931241"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648452931241"
+    }
+  },
+  "slug": "keyboard-mouse",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62416cb29a06074d7cdc92b1"
+  },
+  "name": "BP /GLUCO MONITER DEVICES",
+  "parentId": "621f7aef966210e166b097a4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648454834222"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648454834222"
+    }
+  },
+  "slug": "bp-gluco-moniter-devices",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241acd43dff277bf7155a41"
+  },
+  "name": "DIGITAL SIGNATURE",
+  "parentId": "6241acc23dff277bf7155a3c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648471252786"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648471252786"
+    }
+  },
+  "slug": "digital-signature",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241aceb3dff277bf7155a46"
+  },
+  "name": "GEM PORTAL REGISTRATION",
+  "parentId": "6241acc23dff277bf7155a3c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648471275672"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648471275672"
+    }
+  },
+  "slug": "gem-portal-registration",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241acfe3dff277bf7155a4b"
+  },
+  "name": "MSME / UDYAM REGD.",
+  "parentId": "6241acc23dff277bf7155a3c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648471294450"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648471294450"
+    }
+  },
+  "slug": "msme-udyam-regd.",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241ad0c3dff277bf7155a50"
+  },
+  "name": "IEC REGISTRATION",
+  "parentId": "6241acc23dff277bf7155a3c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648471308050"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648471308050"
+    }
+  },
+  "slug": "iec-registration",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6241bc9c3dff277bf7155aa9"
+  },
+  "name": "SALE LIMITED STOCK",
+  "parentId": "6241638c9a06074d7cdc9119",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648475292659"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648475292659"
+    }
+  },
+  "slug": "sale-limited-stock",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624300fce5db3a3d9fa30146"
+  },
+  "name": "MONITER",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648558332923"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648558332923"
+    }
+  },
+  "slug": "moniter",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62441e27e5db3a3d9fa30861"
+  },
+  "name": "HEADPHONE",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648631335188"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648631335188"
+    }
+  },
+  "slug": "headphone",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6245861ae5db3a3d9fa30cdc"
+  },
+  "name": "BARCODE READER",
+  "parentId": "624161709a06074d7cdc908c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648723482638"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648723482638"
+    }
+  },
+  "slug": "barcode-reader",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6245862ce5db3a3d9fa30ce1"
+  },
+  "name": "THERMAL PRINTER",
+  "parentId": "624161709a06074d7cdc908c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648723500672"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648723500672"
+    }
+  },
+  "slug": "thermal-printer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624af99119f2596e555d68ef"
+  },
+  "name": "harddisk",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649080721819"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649080721819"
+    }
+  },
+  "slug": "harddisk",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624af9c819f2596e555d68f9"
+  },
+  "name": "RANDOM ACCESS MEMORY (RAM)",
+  "parentId": "621f7ade966210e166b0979d",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649080776677"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649080776677"
+    }
+  },
+  "slug": "random-access-memory-(ram)",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624c302319f2596e555d778a"
+  },
+  "name": "OTHER",
+  "parentId": "621f7aef966210e166b097a4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649160227961"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649160227961"
+    }
+  },
+  "slug": "other",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624c3ad919f2596e555d789b"
+  },
+  "name": "TELEVISION",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649162969471"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649162969471"
+    }
+  },
+  "slug": "television",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624d42c619f2596e555d79c8"
+  },
+  "name": "BIOMETRIC",
+  "parentId": "624161709a06074d7cdc908c",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649230534781"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649230534781"
+    }
+  },
+  "slug": "biometric",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624ff86919f2596e555d8ed4"
+  },
+  "name": "PERSONAL CARE",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649408105810"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649408105810"
+    }
+  },
+  "slug": "personal-care",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624ff87d19f2596e555d8ed9"
+  },
+  "name": "HAIR DRYER",
+  "parentId": "624ff86919f2596e555d8ed4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649408125889"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649408125889"
+    }
+  },
+  "slug": "hair-dryer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624ff88919f2596e555d8ede"
+  },
+  "name": "TRIMMER",
+  "parentId": "624ff86919f2596e555d8ed4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649408137675"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649408137675"
+    }
+  },
+  "slug": "trimmer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "624ffdc719f2596e555d8f49"
+  },
+  "name": "Hair Straightener",
+  "parentId": "624ff86919f2596e555d8ed4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1649409479126"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649409479126"
+    }
+  },
+  "slug": "hair-straightener",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d7f3a3c8a93447afc2a195"
+  },
+  "name": "AIR CONDITONER AC",
+  "parentId": "621dbdbca503d0595c68d6d7",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658319779618"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658319779618"
+    }
+  },
+  "slug": "air-conditoner-ac",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ef9094c8a93447afc2ade8"
+  },
+  "name": "LIGHTING DEALS",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659867284320"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659867284320"
+    }
+  },
+  "slug": "lighting-deals",
+  "__v": 0
+}]

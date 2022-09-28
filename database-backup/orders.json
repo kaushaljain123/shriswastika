@@ -1,0 +1,380 @@
+[{
+  "_id": {
+    "$oid": "62f7778bc8a93447afc2b9d0"
+  },
+  "user": {
+    "$oid": "62f77733c8a93447afc2b9cb"
+  },
+  "orderItems": [
+    {
+      "name": "TALLY PRIME SINGLE USER DIGITAL LICENCE (GST CREDIT AVAILABLE)",
+      "qty": 1,
+      "image": "/uploads/image-1649683979946.jpg",
+      "price": 17998,
+      "product": {
+        "$oid": "623c34d77ba6888f1edbb12c"
+      },
+      "_id": {
+        "$oid": "62f7778bc8a93447afc2b9d1"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "2028 The Palladium Mall Yogichowk Punagam",
+    "city": "Surat",
+    "state": "Gujarat",
+    "phone": "8141151635",
+    "email": "rudraconsultancy1@gmail.com",
+    "postalCode": "395010",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 17998,
+  "isPaid": true,
+  "isShipped": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660385163080"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660409190543"
+    }
+  },
+  "__v": 0,
+  "deliveredAt": {
+    "$date": {
+      "$numberLong": "1660397079788"
+    }
+  },
+  "shippedAt": {
+    "$date": {
+      "$numberLong": "1660409190542"
+    }
+  },
+  "awb_number": "14189990058416",
+  "courier_name": "Xpressbees",
+  "label": "https://nimubs-assets.s3.amazonaws.com/labels/20220813221629-130863037.pdf",
+  "order_id": "22327141",
+  "shipment_id": "12700415",
+  "status": "booked"
+},{
+  "_id": {
+    "$oid": "62f7abd6c8a93447afc2ba7f"
+  },
+  "user": {
+    "$oid": "62f7ab7cc8a93447afc2ba72"
+  },
+  "orderItems": [
+    {
+      "name": "TALLY PRIME SINGLE USER DIGITAL LICENCE (GST CREDIT AVAILABLE)",
+      "qty": 1,
+      "image": "/uploads/image-1649683979946.jpg",
+      "price": 17500,
+      "product": {
+        "$oid": "623c34d77ba6888f1edbb12c"
+      },
+      "_id": {
+        "$oid": "62f7abd6c8a93447afc2ba80"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "34/2 S. N. Bagchi Road",
+    "city": "Berhampore ",
+    "state": "West Bengal",
+    "phone": "9475597529",
+    "email": "Waterandfarmer@gmail.com",
+    "postalCode": "742101",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 17500,
+  "isPaid": true,
+  "isShipped": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660398550550"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1661080005356"
+    }
+  },
+  "__v": 0,
+  "awb_number": "14189990060311",
+  "courier_name": "Xpressbees",
+  "label": "https://nimubs-assets.s3.amazonaws.com/labels/20220813193146-130868008.pdf",
+  "order_id": "22321590",
+  "shipment_id": "12699538",
+  "status": "booked",
+  "shippedAt": {
+    "$date": {
+      "$numberLong": "1660399310525"
+    }
+  },
+  "deliveredAt": {
+    "$date": {
+      "$numberLong": "1661080005351"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "631865228270e80016f76335"
+  },
+  "user": {
+    "$oid": "631864f28270e80016f7632d"
+  },
+  "orderItems": [
+    {
+      "name": "TALLY PRIME GOLD",
+      "qty": 1,
+      "image": "/uploads/image-1649831967973.jpg",
+      "price": 54000,
+      "product": {
+        "$oid": "623c35717ba6888f1edbb138"
+      },
+      "_id": {
+        "$oid": "631865228270e80016f76336"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "10th Floor, CDE, Everest House, 46, Chowringee Road",
+    "city": "Kolkata",
+    "state": "West Bengal",
+    "phone": "9831155567",
+    "email": "piyush@whole9yards.in",
+    "postalCode": "700071",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 54000,
+  "isPaid": false,
+  "isShipped": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662543138015"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662543138015"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63197a378270e80016f764bc"
+  },
+  "user": {
+    "$oid": "63197a2a8270e80016f764b9"
+  },
+  "orderItems": [
+    {
+      "name": "USHA SP 150/150 PARTIAL STEEL",
+      "qty": 1,
+      "image": "/uploads/image-1659446566427.jpg",
+      "price": 49000,
+      "product": {
+        "$oid": "62e92497c8a93447afc2a8a3"
+      },
+      "_id": {
+        "$oid": "63197a378270e80016f764bd"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "104 Chick Bazaar Road Swamy",
+    "city": "bangalore",
+    "state": "Karnataka",
+    "phone": "09964238255",
+    "email": "rashimarlecha@gmail.com",
+    "postalCode": "560051",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 49000,
+  "isPaid": false,
+  "isShipped": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662614071123"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662614071123"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6319f25e8270e80016f76558"
+  },
+  "user": {
+    "$oid": "6319efff8270e80016f76550"
+  },
+  "orderItems": [
+    {
+      "name": "WINDOWS 10 PRO(32BIT/64BIT) LIFETIME VALIDITY",
+      "qty": 1,
+      "image": "/uploads/image-1660025717903.jpeg",
+      "price": 799,
+      "product": {
+        "$oid": "62f1faacc8a93447afc2b138"
+      },
+      "_id": {
+        "$oid": "6319f25e8270e80016f76559"
+      }
+    },
+    {
+      "name": "MICROSOFT OFFICE 2021 PRO PLUS",
+      "qty": 1,
+      "image": "/uploads/image-1653646474337.jpeg",
+      "price": 1050,
+      "product": {
+        "$oid": "6290a482ef0b719b22895e83"
+      },
+      "_id": {
+        "$oid": "6319f25e8270e80016f7655a"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "sathish kumar, #8, 5th main,KHB Colony, near raksha hospital, krishnananda Nagar, ",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "phone": "+91-8618798379",
+    "email": "sathish.kumar@interpreterinc.com",
+    "postalCode": "560096",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 1849,
+  "isPaid": true,
+  "isShipped": false,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662644830704"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662818068375"
+    }
+  },
+  "__v": 0,
+  "BANKNAME": "HDFC Bank",
+  "BANKTXNID": "202225122476708",
+  "CURRENCY": "INR",
+  "GATEWAYNAME": "BOBFSS",
+  "ORDERID": "6319f25e8270e80016f765580.3311547151414851",
+  "PAYMENTMODE": "DC",
+  "RESPCODE": "01",
+  "RESPMSG": "Txn Success",
+  "STATUS": "TXN_SUCCESS",
+  "TXNAMOUNT": "1849.00",
+  "TXNDATE": "2022-09-08 19:17:19.0",
+  "TXNID": "20220908111212800110168537783338069",
+  "deliveredAt": {
+    "$date": {
+      "$numberLong": "1662818068370"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "632b0b61df853d6b8a4c2441"
+  },
+  "user": {
+    "$oid": "6319efff8270e80016f76550"
+  },
+  "orderItems": [
+    {
+      "name": "WINDOWS 10 PRO(32BIT/64BIT) LIFETIME VALIDITY",
+      "qty": 1,
+      "image": "/uploads/image-1660025717903.jpeg",
+      "price": 799,
+      "product": {
+        "$oid": "62f1faacc8a93447afc2b138"
+      },
+      "_id": {
+        "$oid": "632b0b61df853d6b8a4c2442"
+      }
+    },
+    {
+      "name": "MICROSOFT OFFICE 2021 PRO PLUS",
+      "qty": 1,
+      "image": "/uploads/image-1653646474337.jpeg",
+      "price": 1050,
+      "product": {
+        "$oid": "6290a482ef0b719b22895e83"
+      },
+      "_id": {
+        "$oid": "632b0b61df853d6b8a4c2443"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "address": "sathish kumar, #8, 5th main,KHB Colony, near raksha hospital, krishnananda Nagar, ",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "phone": "+91-8618798379",
+    "email": "sathish.kumar@interpreterinc.com",
+    "gstNumber": "nnnnn",
+    "postalCode": "560096",
+    "country": "India"
+  },
+  "paymentMethod": "paytm",
+  "taxPrice": 0,
+  "shippingPrice": 0,
+  "totalPrice": 1849,
+  "isPaid": true,
+  "isShipped": false,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1663765345104"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663931170027"
+    }
+  },
+  "__v": 0,
+  "BANKNAME": "HDFC Bank",
+  "BANKTXNID": "202226432507686",
+  "CURRENCY": "INR",
+  "GATEWAYNAME": "BOBFSS",
+  "ORDERID": "632b0b61df853d6b8a4c24410.1350768395753672",
+  "PAYMENTMODE": "DC",
+  "RESPCODE": "01",
+  "RESPMSG": "Txn Success",
+  "STATUS": "TXN_SUCCESS",
+  "TXNAMOUNT": "1849.00",
+  "TXNDATE": "2022-09-21 18:32:30.0",
+  "TXNID": "20220921111212800110168789486346710",
+  "deliveredAt": {
+    "$date": {
+      "$numberLong": "1663931170021"
+    }
+  }
+}]

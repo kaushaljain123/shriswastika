@@ -3,7 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import {Magnifier} from 'react-image-magnifiers'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col, Image, ListGroup, Button, Form, Carousel, Card } from 'react-bootstrap'
+import { Container, Row, Col, ListGroup, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import Loader from '../components/Loader'
@@ -18,7 +18,6 @@ const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
-    const [images, setImages] = useState()
     const [finalImage, setFinalImage] = useState('')
     const [index, setIndex] = useState(0)
 
@@ -74,12 +73,11 @@ const ProductScreen = ({ history, match }) => {
         setFinalImage(imageSrc)
       }
 
-      const stringImages = product ? product.image : ''
-      const imagesArray = stringImages ? stringImages.split(',') : []
-      const finalImageArray = imagesArray.filter(function (el) {
-        return el != ""
-      })
-
+      // const stringImages = product ? product.image : ''
+      // const imagesArray = stringImages ? stringImages.split(',') : []
+      // const finalImageArray = imagesArray.filter(function (el) {
+      //   return el != ""
+      // })
 
   return (
     <Container>

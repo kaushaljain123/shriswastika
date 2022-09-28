@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "62a224cebab1ed52f6a9cc0d"
+  },
+  "banner1": "/uploads/banner1-1663774072991.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654793422349"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663774074758"
+    }
+  },
+  "__v": 0,
+  "banner2": "/uploads/banner2-1663333627233.jpg",
+  "banner4": "/uploads/banner4-1662622022291.jpg",
+  "banner5": "/uploads/banner5-1662622333833.jpg"
+}]

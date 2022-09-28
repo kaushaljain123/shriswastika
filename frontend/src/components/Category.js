@@ -15,13 +15,16 @@ const Category = () => {
   }, [dispatch]);
 
   return (
-    <Row>
+    <>
+        <Row>
       {categorys.map((cate) => (
-        <span key={cate._id}>
+        <span key={categorys._id}>
           <Categorys cate={cate} />
         </span>
       ))}
     </Row>
+    </>
+
   );
 };
 

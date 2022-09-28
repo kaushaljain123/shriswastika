@@ -1,0 +1,248 @@
+[{
+  "_id": {
+    "$oid": "62199b2193c7e36da23cfd62"
+  },
+  "name": "Admin",
+  "email": "admin@example.com",
+  "password": "$2a$10$.GTV7IzSNoMxXi24fckfYO7f1v4KPO1q9ry1fNtfIFfWrP2gwOzDq",
+  "isAdmin": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1645845281342"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1649339131063"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "62394ded9e6544e4850d551d"
+  },
+  "name": "SWASTIKA INFOTECH (P) LTD",
+  "email": "jainrailticket@hotmail.com",
+  "password": "$2a$10$RR2/X7Sk1ab2fmoM3MsdUOsVOVD10pIo6HxoxoeyzU0IfETiACoLS",
+  "isAdmin": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1647922669178"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660410882905"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e4c039c8a93447afc2a71a"
+  },
+  "name": "Himanshu Verma ",
+  "email": "himanshu98verma@gmail.com",
+  "password": "$2a$10$dW8cPu9a6bUGTj9G32cEg.41Mu2vFy8q2Gk4ZI4O/0/TqgpNyVm1W",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659158585576"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659158585576"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ecaf48c8a93447afc2abb5"
+  },
+  "name": "KAPIL PORWAL",
+  "email": "kapilporwal95@gmail.com",
+  "password": "$2a$10$2hkMnRq7CVH44wZ7Opttb.g/d4jJu6jbd5ZPLXLqhJ3sdDt20zfNK",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659678536053"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659678536053"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62efc65cc8a93447afc2ae20"
+  },
+  "name": "DHARMENDRA JAIN",
+  "email": "dharmendraindelhi@gmail.com",
+  "password": "$2a$10$q2DZyTpw4jD0Ygk6f3TUCO11F13hZlpIOTEkyjFIYLQmAPMX6q5vy",
+  "isAdmin": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659881052813"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660041057055"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f0ee6dc8a93447afc2af66"
+  },
+  "name": "palanishammi@gmail.com",
+  "email": "palanishammi@gmail.com",
+  "password": "$2a$10$DJr7wuFlHQTzAEOZAPp5M..bkxE2tcNrtHov43uENDyEalvT/uDRm",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659956845337"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659956845337"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f77733c8a93447afc2b9cb"
+  },
+  "name": "Rudraconsultancy",
+  "email": "rudraconsultancy1@gmail.com",
+  "password": "$2a$10$skOKOiReqveXJEpwakA6sulwJX7Q6uBKqzOUyNldsVMSTk2CyymXy",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660385075490"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660385075490"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f7ab7cc8a93447afc2ba72"
+  },
+  "name": "Shreyoshi Halder",
+  "email": "waterandfarmer@gmail.com",
+  "password": "$2a$10$iavvXCySEBWjHPsFEipAI.YlZga3vJZokQOCuafUl8lUIR4JAw4.S",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660398460897"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660398460897"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "631864f28270e80016f7632d"
+  },
+  "name": "Whole9yards Online LLP",
+  "email": "piyush@whole9yards.in",
+  "password": "$2a$10$SBWotbfjevniRT2iuNFpnOR5X2kkJGgGGaeFWF5Rs86jobFcPg.0q",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662543090147"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662543090147"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6318d0a88270e80016f76489"
+  },
+  "name": "Kaushal Jain",
+  "email": "jainkaushal123456@gmail.com",
+  "password": "$2a$10$FFpwwn3kKQnNTrLvAieAVuof.YMkpY5LIkwRZqbPrvT0MrLSLfc9S",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662570664122"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663853611934"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63197a2a8270e80016f764b9"
+  },
+  "name": "rashimarlecha@gmail.com",
+  "email": "rashimarlecha@gmail.com",
+  "password": "$2a$10$0orrOJyHvB0dGBPepnNnkeiq8LkVDsodhVi8Pmnjdl7cVsYtABOjC",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662614058131"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662614058131"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6319efff8270e80016f76550"
+  },
+  "name": "sathish kumar",
+  "email": "sathish.kumar@interpreterinc.com",
+  "password": "$2a$10$qgOtAI.CcIHUN5B.nn4eVOg9geLFBkVPw.7CfeKhxUOKYJeMP0Dj.",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1662644223128"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1662644223128"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "632ae3bcdf853d6b8a4c2409"
+  },
+  "name": "kavita jain",
+  "email": "kavijmorena@gmail.com",
+  "password": "$2a$10$RWyGlWOc8U5foW5hM1Mjyu4y/rDM0OR0vTZiWXWnvUj4AcuSM4nba",
+  "isAdmin": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1663755196861"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1663755196861"
+    }
+  },
+  "__v": 0
+}]
