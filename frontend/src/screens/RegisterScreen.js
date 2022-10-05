@@ -38,11 +38,12 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-        <h1>Create Account</h1>
+        <h1 className="text-center">Shriswastika</h1>
         {message && <Message varient='danger'>{message}</Message>}
         {error && <Message varient='danger'>{error}</Message>}
         {loading && <Loader />}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} className='card loginCard'>
+            <h3>Sign Up</h3>
             <Form.Group controlId='email'>
                 <Form.Label>Enter Name</Form.Label>
                 <Form.Control type='text' placeholder='Enter Name' value={name} onChange={(e) => SetName(e.target.value)}></Form.Control>
@@ -60,11 +61,11 @@ const RegisterScreen = ({ location, history }) => {
                 <Form.Control type='password' placeholder='Enter Confirm Password' value={confirmPassword} onChange={(e) => SetConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>Login</Button>
+            <Button type='submit' variant='primary'>Create An Account</Button>
 
             <Row className='py-3'>
                 <Col>
-                    Have an Account? {' '} <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Register</Link>
+                    Already have an Account? {' '} <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Sign in</Link>
                 </Col>
             </Row>
         </Form>

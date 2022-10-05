@@ -36,27 +36,31 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Route render={({ history }) => <SearchBox history={history} />} />
           <Nav className="ml-auto">
-            <LinkContainer to="/cart">
-              <Nav.Link href="/cart">
-                <i className="fas fa-shopping-cart"></i> Cart (
-                {cartItems.reduce((acc, item) => acc + item.qty, 0)})
-              </Nav.Link>
-            </LinkContainer>
+
             {userInfo ? (
-              <NavDropdown title={userInfo.name} id="username">
+              // When User/Admin Login
+              <NavDropdown title="Accounts & Lists" id="username">
                 <LinkContainer to="/profile">
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                  <NavDropdown.Item>Your Accounts</NavDropdown.Item>
                 </LinkContainer>
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Your Orders</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Your Wish List</NavDropdown.Item>
+                </LinkContainer>
+                <hr />
                 <NavDropdown.Item onClick={logoutHandler}>
-                  Logout
+                  Sign Out
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <LinkContainer to="/login">
-                <Nav.Link href="/login">
-                  <i className="fas fa-user"></i> login
-                </Nav.Link>
-              </LinkContainer>
+              // When User/Admin is not Login
+              <NavDropdown title="Accounts & Lists" id="username">
+                <LinkContainer to="/login">
+                  <NavDropdown.Item>Sign in</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
             )}
             {userInfo && userInfo.isAdmin && (
               <NavDropdown title="Admin" id="admin">
@@ -74,6 +78,12 @@ const Header = () => {
                 </LinkContainer>
               </NavDropdown>
             )}
+                        <LinkContainer to="/cart">
+              <Nav.Link href="/cart">
+                <i className="fas fa-shopping-cart"></i> Cart (
+                {cartItems.reduce((acc, item) => acc + item.qty, 0)})
+              </Nav.Link>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

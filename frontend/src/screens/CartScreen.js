@@ -15,6 +15,7 @@ import Message from "../components/Message";
 import { addToCart, removefromCart } from "../actions/cartAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Empty from '../images/empty.png'
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -51,16 +52,13 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   return (
-    <Row>
+    <>
+        {cartItems.length != 0 ? (
+      <Row>
       <ToastContainer />
       <Col md={8}>
         <h1>Shopping Cart</h1>
-        {cartItems.length === 0 ? (
-          <Message>
-            Your Cart is Empty <Link to="/">Go Back</Link>
-          </Message>
-        ) : (
-          <ListGroup variant="flush">
+        <ListGroup variant="flush">
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>
@@ -99,7 +97,6 @@ const CartScreen = ({ match, location, history }) => {
               </ListGroup.Item>
             ))}
           </ListGroup>
-        )}
       </Col>
       <Col md={4}>
         <Card>
@@ -128,6 +125,14 @@ const CartScreen = ({ match, location, history }) => {
         </Card>
       </Col>
     </Row>
+    ) : (
+      <div className="emptyCard">
+        <img src={Empty} />
+      </div>
+    )}
+    </>
+
+    
   );
 };
 
