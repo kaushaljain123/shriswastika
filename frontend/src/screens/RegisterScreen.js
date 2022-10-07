@@ -42,7 +42,7 @@ const RegisterScreen = ({ location, history }) => {
         {message && <Message varient='danger'>{message}</Message>}
         {error && <Message varient='danger'>{error}</Message>}
         {loading && <Loader />}
-        <Form onSubmit={submitHandler} className='card loginCard'>
+        <Form onSubmit={submitHandler} className='card loginCard shadow'>
             <h3>Sign Up</h3>
             <Form.Group controlId='email'>
                 <Form.Label>Enter Name</Form.Label>

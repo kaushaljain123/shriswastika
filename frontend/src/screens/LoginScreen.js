@@ -33,7 +33,7 @@ const LoginScreen = ({ location, history }) => {
       <h1 className="text-center">Shriswastika</h1>
       {error && <Message varient="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler} className='card loginCard'>
+      <Form onSubmit={submitHandler} className='card loginCard shadow'>
         <h3>Sign in</h3>
         <Form.Group controlId="email">
           <Form.Label>Enter Email Address</Form.Label>

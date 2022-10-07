@@ -25,6 +25,7 @@ import {
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 import { PaytmButton } from "../components/PaytmButton";
+import moment from "moment";
 
 const OrderScreen = ({ history, match }) => {
   function isDate(val) {
@@ -304,7 +305,7 @@ const OrderScreen = ({ history, match }) => {
     <Message varient="danger">{error}</Message>
   ) : (
     <>
-      <h1>Order ID: {order._id}</h1>
+      <h5 style={{ marginTop: 40 }}>Order Detail</h5>
       {order.shippingAddress.gstNumber && (
         <h4>GST Number: {order.shippingAddress.gstNumber}</h4>
       )}
@@ -442,7 +443,7 @@ const OrderScreen = ({ history, match }) => {
         </Modal.Footer>
       </Modal>
       <Row>
-        <Col md={8}>
+        <Col md={8} className="card shadow" style={{ marginBottom: 20 }}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               {order.isShipped ? (
@@ -463,7 +464,7 @@ const OrderScreen = ({ history, match }) => {
                 , {order.shippingAddress.country}
                 {order.isDelivered ? (
                   <Message varient="success">
-                    Delivered On {order.deliveredAt}
+                    Delivered On {moment(order.deliveredAt).format('Do MMMM YYYY')}
                   </Message>
                 ) : (
                   <Message varient="danger">Not Delivered</Message>
@@ -482,7 +483,7 @@ const OrderScreen = ({ history, match }) => {
                   <strong>Pay Via: {order.PAYMENTMODE}</strong>
                 )}
                 {order.isPaid ? (
-                  <Message varient="success">Paid On {order.TXNDATE}</Message>
+                  <Message varient="success">Paid On {moment(order.TXNDATE).format('Do MMMM YYYY')}</Message>
                 ) : (
                   <Message varient="danger">Not Paid</Message>
                 )}
@@ -500,6 +501,7 @@ const OrderScreen = ({ history, match }) => {
                       <Row>
                         <Col>
                           <Link to={`/product/${item.product}`}>
+                            <img src={item.image} width="50" height="50"/>
                             {item.name}
                           </Link>
                         </Col>

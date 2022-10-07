@@ -41,7 +41,7 @@ const SendEmailScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Forgot Password</h1>
+      <h1 className="text-center">Shriswastika</h1>
       {emailError && <Message varient="danger">{error}</Message>}
       {emailLoading && <Loader />}
       {/* {!emailInfo.status && <Message varient='danger'>{emailInfo.message}</Message>} */}
@@ -54,7 +54,8 @@ const SendEmailScreen = ({ location, history }) => {
       ) : (
         ""
       )}
-      <Form onSubmit={sendEmailHandler}>
+      <Form onSubmit={sendEmailHandler} className='card loginCard shadow'>
+        <h3>Forgot Password</h3>
         <Form.Group controlId="email">
           <Form.Label>Enter Email Address</Form.Label>
           <Form.Control

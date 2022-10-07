@@ -28,6 +28,7 @@ import PrivaciyPolicy from './screens/PrivaciyPolicy';
 import Banner from './screens/Banner';
 import SendEmailScreen from './screens/SendEmailScreen';
 import ChangePassword from './screens/ChangePassword';
+import MyOrderScreen from './screens/MyOrderScreen';
 
 const App = () => {
   return (
@@ -66,6 +67,7 @@ const App = () => {
           <Route path='/admin/manageImage' component={Banner} />
           <Route path='/send-email' component={SendEmailScreen} />
           <Route path='/change-password' component={ChangePassword} />
+          <Route path='/orders' component={MyOrderScreen} />
         </Container>
       </main>
       <Footer />

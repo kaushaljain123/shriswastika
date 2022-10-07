@@ -23,10 +23,10 @@ const Header = () => {
   return (
     <header>
       <Navbar
-        bg="dark"
-        variant="dark"
+        bg="light"
+        variant="info"
         expand="sm"
-        className="backgroundHeader"
+        className="backgroundHeader shadow"
         collapseOnSelect
       >
         <LinkContainer to="/">
@@ -43,13 +43,21 @@ const Header = () => {
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Your Accounts</NavDropdown.Item>
                 </LinkContainer>
-                <LinkContainer to="/profile">
+                <LinkContainer to="/orders">
                   <NavDropdown.Item>Your Orders</NavDropdown.Item>
                 </LinkContainer>
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Your Wish List</NavDropdown.Item>
                 </LinkContainer>
                 <hr />
+                {userInfo && userInfo.isAdmin && (
+                  <>
+                    <LinkContainer to="/admin/dashboard">
+                      <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
+                    </LinkContainer>
+                    <hr />
+                  </>
+                )}
                 <NavDropdown.Item onClick={logoutHandler}>
                   Sign Out
                 </NavDropdown.Item>
@@ -62,23 +70,8 @@ const Header = () => {
                 </LinkContainer>
               </NavDropdown>
             )}
-            {userInfo && userInfo.isAdmin && (
-              <NavDropdown title="Admin" id="admin">
-                <LinkContainer to="/admin/userlist">
-                  <NavDropdown.Item>Users</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/admin/productlist">
-                  <NavDropdown.Item>Products</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/admin/orderlist">
-                  <NavDropdown.Item>Orders</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/admin/manageImage">
-                  <NavDropdown.Item>Banner</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-            )}
-                        <LinkContainer to="/cart">
+
+            <LinkContainer to="/cart">
               <Nav.Link href="/cart">
                 <i className="fas fa-shopping-cart"></i> Cart (
                 {cartItems.reduce((acc, item) => acc + item.qty, 0)})

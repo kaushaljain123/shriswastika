@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer shadow">
       <div className="container-fluid footerContainer">
         <div className="row">
           <div className="col-md-12">
@@ -15,7 +15,7 @@ const Footer = () => {
                   <li><i className='fa fa-home'></i> 137 JAIN NAGAR ,GUFA MANDIR ROAD LALGHATI BHOPAL 462001</li><br />
                   <li><i className='fa fa-phone'></i> Order Related:- 9589330716</li><br />
                   <li><i className='fa fa-phone'></i> Admin:- 9179330716</li><br />
-                  <li><i className='fa fa-envelope'></i> <a href="mailto:contactswastika2021@gmail.com" style={{ color: 'white' }}>contactswastika2021@gmail.com</a></li><br />
+                  <li><i className='fa fa-envelope'></i> <a href="mailto:contactswastika2021@gmail.com" style={{ color: 'black' }}>contactswastika2021@gmail.com</a></li><br />
                   <li><i className='fa fa-clock'></i> Mon - Sat/ 9:00 AM - 7:00 PM</li><br />
                 </ul>
               </div>
