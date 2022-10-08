@@ -11,6 +11,7 @@ import {
   Button,
   Modal,
   Form,
+  Container,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -305,7 +306,7 @@ const OrderScreen = ({ history, match }) => {
     <Message varient="danger">{error}</Message>
   ) : (
     <>
-      <h5 style={{ marginTop: 40 }}>Order Detail</h5>
+      <h5 style={{ marginTop: 40 }} className="text-center">Order Detail</h5>
       {order.shippingAddress.gstNumber && (
         <h4>GST Number: {order.shippingAddress.gstNumber}</h4>
       )}
@@ -442,7 +443,8 @@ const OrderScreen = ({ history, match }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <Row>
+      <Container>
+              <Row>
         <Col md={8} className="card shadow" style={{ marginBottom: 20 }}>
           <ListGroup variant="flush">
             <ListGroup.Item>
@@ -603,6 +605,8 @@ const OrderScreen = ({ history, match }) => {
           </ListGroup>
         </Col>
       </Row>
+      </Container>
+
     </>
   );
 };
