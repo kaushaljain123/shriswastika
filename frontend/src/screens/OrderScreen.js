@@ -306,7 +306,7 @@ const OrderScreen = ({ history, match }) => {
     <Message varient="danger">{error}</Message>
   ) : (
     <>
-      <h5 style={{ marginTop: 40 }} className="text-center">Order Detail</h5>
+      <h5 style={{ marginTop: 40 }} className="text-center orderDetailsText">Order Detail</h5>
       {order.shippingAddress.gstNumber && (
         <h4>GST Number: {order.shippingAddress.gstNumber}</h4>
       )}
@@ -443,51 +443,56 @@ const OrderScreen = ({ history, match }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Container>
               <Row>
         <Col md={8} className="card shadow" style={{ marginBottom: 20 }}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               {order.isShipped ? (
-                <h2>Order Shipped</h2>
+                <h2 className="orderHo">Order Shipped</h2>
               ) : (
-                <h2>Order Is Not Shipped Yet</h2>
+                <h2 className="orderHo">Order Is Not Shipped Yet</h2>
               )}
-              <p>
+              <p className="orderMo">
                 <strong>Name: </strong> {order.user.name}
               </p>
-              <p>
+              <p className="orderMo">
                 <strong>Email: </strong>{" "}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
-              <p>
+              <p className="orderMo">
                 <strong>Address:</strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 , {order.shippingAddress.country}
                 {order.isDelivered ? (
                   <Message varient="success">
-                    Delivered On {moment(order.deliveredAt).format('Do MMMM YYYY')}
+                    <p className="orderMo">Delivered On {moment(order.deliveredAt).format('Do MMMM YYYY')}</p>
                   </Message>
                 ) : (
-                  <Message varient="danger">Not Delivered</Message>
+                  <Message varient="danger">
+                    <p className="orderMo">Not Delivered</p>
+                  </Message>
                 )}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Payment Mathod</h2>
+              <h2 className="orderHo">Payment Mathod</h2>
               <p>
-                <strong>Mathod: </strong>{" "}
-                {order.paymentMethod == "CoD"
+                <strong className="orderMo">Mathod: </strong>{" "}
+                <span className="orderMo">{order.paymentMethod == "CoD"
                   ? "Pay on Delivery"
-                  : order.paymentMethod}
+                  : order.paymentMethod}</span>
                 <br />
                 {order.PAYMENTMODE && (
-                  <strong>Pay Via: {order.PAYMENTMODE}</strong>
+                  <strong className="orderMo">Pay Via: {order.PAYMENTMODE}</strong>
                 )}
                 {order.isPaid ? (
-                  <Message varient="success">Paid On {moment(order.TXNDATE).format('Do MMMM YYYY')}</Message>
+                  <Message varient="success"><p className="orderMo">
+                    Paid On {moment(order.TXNDATE).format('Do MMMM YYYY')}</p></Message>
                 ) : (
-                  <Message varient="danger">Not Paid</Message>
+                  <Message varient="danger">
+                    <p className="orderMo">Not Paid</p></Message>
                 )}
               </p>
             </ListGroup.Item>
@@ -497,19 +502,15 @@ const OrderScreen = ({ history, match }) => {
               {order.orderItems.length === 0 ? (
                 <Message>Order is Empty</Message>
               ) : (
-                <ListGroup variant="flush">
+                <ListGroup variant="flush" className="orderSummery">
                   {order.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col>
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/${item.product}`} className='productss'>
                             <img src={item.image} width="50" height="50"/>
                             {item.name}
                           </Link>
-                        </Col>
-                        <Col md={4}>
-                          {item.qty} x Rs {item.price} = Rs{" "}
-                          {item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -521,10 +522,10 @@ const OrderScreen = ({ history, match }) => {
         </Col>
 
         <Col md={4}>
-          <ListGroup variant="flush">
+          <ListGroup variant="flush" className="orderSummery">
             <Card>
               <ListGroup.Item>
-                <h2>Order Sumery</h2>
+                <h2>Order Summery</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
@@ -548,7 +549,7 @@ const OrderScreen = ({ history, match }) => {
               {!order.isPaid && (
                 <ListGroup.Item>
                   {order.paymentMethod == "paytm" ? (
-                    <Button className="btn btn-block" onClick={makePayment}>
+                    <Button className="btn btn-block form-btn" onClick={makePayment}>
                       PAY
                     </Button>
                   ) : (
@@ -583,7 +584,7 @@ const OrderScreen = ({ history, match }) => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn btn-block"
+                  className="btn btn-block form-btn"
                   onClick={deliverHandler}
                 >
                   Mark As Delivered
@@ -595,7 +596,7 @@ const OrderScreen = ({ history, match }) => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn btn-block"
+                  className="btn btn-block form-btn"
                   onClick={shipMentLoginHandler}
                 >
                   Ready To Ship

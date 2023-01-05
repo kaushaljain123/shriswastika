@@ -16,12 +16,14 @@ const Category = () => {
 
   return (
     <>
-        <Row>
-      {categorys.map((cate) => (
-        <span key={categorys._id}>
-          <Categorys cate={cate} />
-        </span>
-      ))}
+    <Row className="category-container">
+      {/* <div className="category-container"> */}
+        {categorys.map((cate) => (
+          <span key={categorys._id}>
+            <Categorys cate={cate} />
+          </span>
+        ))}
+      {/* </div> */}
     </Row>
     </>
 

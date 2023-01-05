@@ -158,7 +158,7 @@ const CategoryAdd = () => {
                 </FormContainer>
             </Col>
         </Row>
-        <Row>
+        <Row className='card resuleClass'>
             <h4 className='my-3'>Remove Category & SubCategory</h4>
             <Table striped bordered hover responsive className='table-sm'>
             <thead>

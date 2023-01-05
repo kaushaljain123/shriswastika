@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listOrders } from "../actions/orderActions";
 import { deletePendingOrderAction } from "../actions/userActions";
+import DashboardLink from '../components/DashboardLink'
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -36,6 +37,8 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <>
+      <DashboardLink />
+          <div className="card resuleClass">
       <h1>Orders</h1>
       {orderInfo ? (
         orderInfo.status ? (
@@ -112,6 +115,7 @@ const OrderListScreen = ({ history }) => {
           </tbody>
         </Table>
       )}
+    </div>
     </>
   );
 };

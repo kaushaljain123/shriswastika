@@ -57,8 +57,7 @@ const ProfileScreen = ({ history }) => {
   console.log(orders)
 
   return (
-    <Row>
-      <Col md={3}>
+      <div className='card profileCard shadow'>
         <h2>User Profile</h2>
         {success && (
           <Message varient="success">Profile Update SuccessFully</Message>
@@ -66,7 +65,7 @@ const ProfileScreen = ({ history }) => {
         {message && <Message varient="danger">{message}</Message>}
         {error && <Message varient="danger">{error}</Message>}
         {loading && <Loader />}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={submitHandler} className="loginCard">
           <Form.Group controlId="email">
             <Form.Label>Enter Name</Form.Label>
             <Form.Control
@@ -102,12 +101,11 @@ const ProfileScreen = ({ history }) => {
               }></Form.Control>
           </Form.Group>
 
-          <Button type="submit" variant="primary" className='profileUpdateButton'>
+          <Button type="submit" variant="primary" className='form-btn profileBtn'>
             Update
           </Button>
         </Form>
-      </Col>
-      <Col md={9}>
+              {/* <Col md={9}>
         <h1>My Orders</h1>
         {loadingOrders ? (
           <Loader />
@@ -151,8 +149,9 @@ const ProfileScreen = ({ history }) => {
             </tbody>
           </Table>
         )}
-      </Col>
-    </Row>
+      </Col> */}
+      </div>
+
   )
 }
 

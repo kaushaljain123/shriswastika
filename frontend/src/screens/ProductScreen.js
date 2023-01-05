@@ -73,15 +73,14 @@ const ProductScreen = ({ history, match }) => {
         setFinalImage(imageSrc)
       }
 
-      // const stringImages = product ? product.image : ''
-      // const imagesArray = stringImages ? stringImages.split(',') : []
-      // const finalImageArray = imagesArray.filter(function (el) {
-      //   return el != ""
-      // })
-
   return (
-    <Container>
-        <Link className='btn btn-light my-3' to='/'>Go Back</Link>
+    // <Container>
+      <div className='product-details shadow'>
+      <Link to='/'>
+        <Button type="submit" className="form-btn shadow backBtn" variant="primary">
+          Go Back
+        </Button>
+        </Link>
         <div className='text-right'>
 
         {userInfo && userInfo.isAdmin && (
@@ -103,7 +102,7 @@ const ProductScreen = ({ history, match }) => {
                       {product.imageTwo ? <img className='thumbnail' src={product.imageTwo} onClick={() => imageHoverHandler(2, product.imageTwo)}/> : ''}
                       {product.imageThree ? <img className='thumbnail' src={product.imageThree} onClick={() => imageHoverHandler(3, product.imageThree)}/> : ''}
                       </div>
-                    </Col>
+              </Col>
                 <Col md={4}>
                     <div className='big-image'>
                       <Magnifier
@@ -130,7 +129,7 @@ const ProductScreen = ({ history, match }) => {
                                 <Row>
                                     <Col>Qty</Col>
                                     <Col>
-                                        <Form.Control as='select' value={qty} onChange={(e) => 
+                                        <Form.Control as='select' className='input' value={qty} onChange={(e) => 
                                             setQty(e.target.value)}>
 
                                             {[...Array(product.countInStock).keys()].map(x => (
@@ -156,7 +155,7 @@ const ProductScreen = ({ history, match }) => {
                     </ListGroup>
                 </Col>
                 <Col md={6} className='py-3'>
-                    <Button className='btn-block' type='button' disabled={product.countInStock === 0} onClick={addToCartHandler}>Add To Cart</Button>       
+                    <Button className='btn-block form-btn shadow' type='button' disabled={product.countInStock === 0} onClick={addToCartHandler}>Add To Cart</Button>       
                 </Col> 
             </Row>
 
@@ -191,6 +190,7 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Label>Rating</Form.Label>
                         <Form.Control
                           as='select'
+                          className='input'
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
@@ -207,6 +207,7 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Control
                           as='textarea'
                           row='3'
+                          className='input'
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
@@ -215,6 +216,7 @@ const ProductScreen = ({ history, match }) => {
                         disabled={loadingProductReview}
                         type='submit'
                         variant='primary'
+                        className='form-btn shadow'
                       >
                         Submit
                       </Button>
@@ -230,8 +232,9 @@ const ProductScreen = ({ history, match }) => {
           </Row>
             </>
               
-        )}               
-    </Container>
+        )}   
+      </div>            
+    // </Container>
   )
 }
 

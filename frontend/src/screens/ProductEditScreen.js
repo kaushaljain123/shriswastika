@@ -220,7 +220,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Link to='/admin/productlist' className='btn btn-light my-3'>
+      <Link to='/admin/productlist' className='btn btn-light form-btn shadow my-3'>
         Go Back
       </Link>
       <h1 className='text-center mb-5'>Edit Product</h1>

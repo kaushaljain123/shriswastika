@@ -29,7 +29,7 @@ const PartnerSlider = () => {
             </div>
 
             <div>
-                <Marquee speed={100}>
+                {/* <Marquee speed={100}> */}
                     {/* <div className='image-wrapper'>
                     <img src={image1} alt='' />
                 </div> */}
@@ -39,7 +39,7 @@ const PartnerSlider = () => {
                     {/* <div className='image-wrapper'>
                     <img src={image3} alt='' />
                 </div> */}
-                    <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                         <img src={image4} alt='' />
                     </div>
                     <div className='image-wrapper'>
@@ -53,7 +53,7 @@ const PartnerSlider = () => {
                     </div>
                     <div className='image-wrapper'>
                         <img src={image8} alt='' />
-                    </div>
+                    </div> */}
                     {/* <div className='image-wrapper'>
                     <img src={image9} alt='' />
                 </div> */}
@@ -63,16 +63,16 @@ const PartnerSlider = () => {
                     {/* <div className='image-wrapper'>
                     <img src={image11} alt='' />
                 </div> */}
-                    <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                         <img src={image12} alt='' />
                     </div>
                     <div className='image-wrapper'>
                         <img src={image13} alt='' />
-                    </div>
+                    </div> */}
                     {/* <div className='image-wrapper'>
                     <img src={image14} alt='' />
                 </div> */}
-                    <div className='image-wrapper'>
+                    {/* <div className='image-wrapper'>
                         <img src={image15} alt='' />
                     </div>
                     <div className='image-wrapper'>
@@ -80,17 +80,17 @@ const PartnerSlider = () => {
                     </div>
                     <div className='image-wrapper'>
                         <img src={image17} alt='' />
-                    </div>
+                    </div>*/}
                     <div className='image-wrapper'>
                         <img src={image18} alt='' />
-                    </div>
+                    </div> 
                     <div className='image-wrapper'>
                         <img src={image19} alt='' />
                     </div>
                     <div className='image-wrapper'>
                         <img src={image20} alt='' />
                     </div>
-                </Marquee>
+                {/* </Marquee> */}
             </div>
 
         </div>

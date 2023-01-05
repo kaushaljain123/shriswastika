@@ -28,47 +28,78 @@ const Product = ({ product, index }) => {
   const totalPercOff = ((totalDiff / product.mrp) * 100).toFixed(2);
 
   return (
-    <Card className="my-3 p-3 rounded shadow mainCard">
+    // <Card className="rounded shadow mainCard">
+    //   <ToastContainer />
+    //   <Link className="imageContainer" to={`/product/${product._id}`}>
+    //     <div className="d-flex justify-content-center productImage">
+    //       <Card.Img
+    //         className="product-img"
+    //         src={product.image ? product.image : product.image}
+    //         variant="top"
+    //       />
+    //     </div>
+    //   </Link>
+
+    //   <Card.Body className="cardBody">
+    //     <Link to={`/product/${product._id}`}>
+    //       <Card.Title as="div">
+    //         <strong>{product.name}</strong>
+    //       </Card.Title>
+    //     </Link>
+
+    //     <Card.Text as="div">
+    //       <Rating
+    //         value={product.rating}
+    //         text={`${product.numReviews} reviews`}
+    //       />
+    //     </Card.Text>
+
+    //     <Card.Text as="h3">₹ {product.price}</Card.Text>
+
+    //     <Card.Text as="p">
+    //       M.R.P.: <del>₹ {product.mrp}</del> ({totalPercOff} % off)
+    //     </Card.Text>
+
+    //     <Button
+    //       variant="outline-primary btn-block"
+    //       disabled={product.countInStock === 0}
+    //       onClick={() => addToCartHandler(product._id, 1)}
+    //     >
+    //       ADD TO CART
+    //     </Button>
+    //   </Card.Body>
+    // </Card>
+
+    <div className='product-card shadow'>
       <ToastContainer />
-      <Link className="imageContainer" to={`/product/${product._id}`}>
-        <div className="d-flex justify-content-center productImage">
-          <Card.Img
-            className="rounded mx-auto d-block images"
-            src={product.image ? product.image : product.image}
-            variant="top"
-          />
+      <div className="card-con">
+        <div className="product-img-div">
+          <Link to={`/product/${product._id}`}><img className="product-img" src={product.image ? product.image : product.image} /></Link>
         </div>
-      </Link>
 
-      <Card.Body className="cardBody">
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as="div">
-            <strong>{product.name}</strong>
-          </Card.Title>
-        </Link>
+        <div className="card-body">
+          <h2 className="product-title">{product.name}</h2>
 
-        <Card.Text as="div">
-          <Rating
-            value={product.rating}
-            text={`${product.numReviews} reviews`}
-          />
-        </Card.Text>
+        <div className="card-footer">
+            <div className="rating">
+                <Rating value={product.rating} text={`${product.numReviews} reviews`}/>
+            </div>
 
-        <Card.Text as="h3">₹ {product.price}</Card.Text>
+            <div className="card-price">
+              <h3>₹ {product.price}</h3>
+            </div>
 
-        <Card.Text as="p">
-          M.R.P.: <del>₹ {product.mrp}</del> ({totalPercOff} % off)
-        </Card.Text>
+            <div className="card-mrp">
+            <p>M.R.P.: <del>₹ {product.mrp}</del> ({totalPercOff} % off)</p>
+            </div>
 
-        <Button
-          variant="outline-primary btn-block"
-          disabled={product.countInStock === 0}
-          onClick={() => addToCartHandler(product._id, 1)}
-        >
-          ADD TO CART
-        </Button>
-      </Card.Body>
-    </Card>
+            <div className="card-button">
+              <button className="shadow" disabled={product.countInStock === 0} onClick={() => addToCartHandler(product._id, 1)}>ADD TO CART</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

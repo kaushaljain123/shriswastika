@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { updateBanner } from "../actions/productActions";
 import _ from "lodash";
+import DashboardLink from '../components/DashboardLink'
 
 const Banner = ({ history }) => {
   const [image, setImage] = useState("");
@@ -408,6 +409,7 @@ const Banner = ({ history }) => {
 
   return (
     <div className="container">
+      <DashboardLink />
       <Form onSubmit={submitHandler}>
         <Row>
           <Col>
@@ -654,7 +656,7 @@ const Banner = ({ history }) => {
           <Button
             type="submit"
             variant="primary"
-            className="btn btn-primary btn-block text-center"
+            className="btn btn-primary btn-block form-btn text-center"
           >
             Upload
           </Button>

@@ -30,6 +30,7 @@ const LoginScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
+      <div className="shri-form">
       <h1 className="text-center">Shriswastika</h1>
       {error && <Message varient="danger">{error}</Message>}
       {loading && <Loader />}
@@ -59,7 +60,7 @@ const LoginScreen = ({ location, history }) => {
           </Row>
         </Form.Group>
 
-        <Button type="submit" className="btn-block" variant="primary">
+        <Button type="submit" className="btn-block form-btn shadow" variant="primary">
           Login
         </Button>
       </Form>
@@ -67,15 +68,16 @@ const LoginScreen = ({ location, history }) => {
       <Row className="py-3">
           <Col>
           <div className="a-divider a-divider-break">
-            <h5>New to Shriswastika</h5>
+            <h5 className="shri-user">New to Shriswastika</h5>
           </div>
-            <Link className="btn btn-light btn-block createBtn" variant="secondary"
+            <Link className="btn btn-light btn-block form-btn shadow createBtn" variant="secondary"
               to={redirect ? `/register?redirect=${redirect}` : "/register"}
             >
               Register
             </Link>
           </Col>
         </Row>
+      </div>
     </FormContainer>
   );
 };

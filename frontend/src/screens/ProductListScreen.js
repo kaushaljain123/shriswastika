@@ -9,6 +9,7 @@ import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import Paginate from '../components/Paginate';
 import axios from 'axios'
 import _ from 'lodash'
+import DashboardLink from '../components/DashboardLink'
 
 const ProductListScreen = ({ history, match }) => {
 
@@ -99,7 +100,9 @@ const ProductListScreen = ({ history, match }) => {
     }
 
     return (
-        <>
+        <>    
+        <DashboardLink />    
+        <div className='card resuleClass'>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Import Products</Modal.Title>
@@ -138,12 +141,12 @@ const ProductListScreen = ({ history, match }) => {
                 <Col>
                     <h1>Products</h1>
                 </Col>
-                <Col className='text-right adminButtons'>
-                    <Button className='ml-3' onClick={createCategory}>Add Category <i className='fas fa-plus'></i></Button>
-                    <Button className='ml-3' onClick={createProductHandler}>Create Product <i className='fas fa-plus'></i></Button>
-                    <Button className='ml-3' href="/api/products/downloadCSVForAllCatlogs">Export Products <i className='fas fa-file-export'></i></Button>
-                    <Button className='ml-3' onClick={importProductHandler}>Import Products <i className='fas fa-file-import'></i></Button>
-                </Col>
+                <div className='adminButtons'>
+                    <button className='form-btn' onClick={createCategory}>Add Category</button>
+                    <button className='form-btn' onClick={createProductHandler}>Create Product</button>
+                    <button className='form-btn' href="/api/products/downloadCSVForAllCatlogs">Export Product</button>
+                    <button className='form-btn' onClick={importProductHandler}>Import Product</button>
+                </div>
             </Row>
 
             {loadingDelete && <Loader />}
@@ -194,7 +197,9 @@ const ProductListScreen = ({ history, match }) => {
                     <Paginate pages={pages} page={page} isAdmin={true} />
                 </>
             )}
+        </div>
         </>
+
     )
 }
 

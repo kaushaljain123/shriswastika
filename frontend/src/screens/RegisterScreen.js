@@ -38,6 +38,7 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
+        <div className='shri-form'>
         <h1 className="text-center">Shriswastika</h1>
         {message && <Message varient='danger'>{message}</Message>}
         {error && <Message varient='danger'>{error}</Message>}
@@ -61,7 +62,7 @@ const RegisterScreen = ({ location, history }) => {
                 <Form.Control type='password' placeholder='Enter Confirm Password' value={confirmPassword} onChange={(e) => SetConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>Create An Account</Button>
+            <Button type='submit' className='form-btn shadow' variant='primary'>Create An Account</Button>
 
             <Row className='py-3'>
                 <Col>
@@ -69,6 +70,7 @@ const RegisterScreen = ({ location, history }) => {
                 </Col>
             </Row>
         </Form>
+        </div>
     </FormContainer>
   )
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers, deleteUsers } from '../actions/userActions'
+import DashboardLink from '../components/DashboardLink'
 
 const UserListScreen = ({ history }) => {
     const dispatch = useDispatch()
@@ -33,6 +34,8 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
+            <DashboardLink />
+            <div className='card resuleClass'>
         {successDelete ? <Message varient='success'>User Delete SuccessFully</Message> : ''}
         <h1>Users</h1>
         {loading ? <Loader /> : error ? <Message varient='danger'>{error}</Message> : (
@@ -71,6 +74,7 @@ const UserListScreen = ({ history }) => {
                 </tbody>
             </Table>
         )}
+    </div>
     </>
   )
 }

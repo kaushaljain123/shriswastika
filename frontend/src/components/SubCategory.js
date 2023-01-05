@@ -12,7 +12,7 @@ const SubCategory = ({ item, history }) => {
 
   return (
         <Form onClick={changeData}>
-            <NavDropdown.Item>
+            <NavDropdown.Item className='dropdownMenu'>
                 {item.name}
             </NavDropdown.Item>
          </Form>

@@ -34,8 +34,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className=''>
-        <Container fluid>
+        <div className='main-container'>
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
@@ -68,8 +67,7 @@ const App = () => {
           <Route path='/send-email' component={SendEmailScreen} />
           <Route path='/change-password' component={ChangePassword} />
           <Route path='/orders' component={MyOrderScreen} />
-        </Container>
-      </main>
+        </div>
       <Footer />
     </Router>
   );

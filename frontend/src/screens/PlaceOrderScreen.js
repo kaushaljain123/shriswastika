@@ -62,7 +62,7 @@ const PlaceOrderScreen = ({ history }) => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
-              <p>
+              <p className='orderMo'>
                 <strong>Address:</strong> {cart.shippingAddress.address},
                 {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{' '}
                 {cart.shippingAddress.country}
@@ -70,10 +70,12 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <h2>Payment Mathod</h2>
-              <strong>Mathod: </strong>{' '}
+              <strong className='orderMo'>Mathod: </strong>{' '}
+              <span className='orderMo'>
               {cart.paymentMethod === 'CoD'
                 ? 'Pay on Delivery'
                 : cart.paymentMethod}
+              </span>
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -83,7 +85,7 @@ const PlaceOrderScreen = ({ history }) => {
               ) : (
                 <ListGroup variant="flush">
                   {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item key={index} style={{ fontSize: 14 }}>
                       <Row>
                         <Col>
                           <Link to={`/product/${item.product}`}>
@@ -108,6 +110,7 @@ const PlaceOrderScreen = ({ history }) => {
             <ListGroup.Item>
               <h2>Order Summery</h2>
             </ListGroup.Item>
+            <div className='orderSummery'>
             <ListGroup.Item>
               <Row>
                 <Col>Items</Col>
@@ -126,11 +129,12 @@ const PlaceOrderScreen = ({ history }) => {
                 <Col>Rs {cart.totalPrice}</Col>
               </Row>
             </ListGroup.Item>
+            </div>
             {error && <Message varient="danger">{error}</Message>}
             <ListGroup.Item>
               <Button
                 type="button"
-                className="btn-block"
+                className="btn-block form-btn"
                 disabled={cart.cartItems === 0}
                 onClick={PlaceOrderHandler}>
                 Place Order

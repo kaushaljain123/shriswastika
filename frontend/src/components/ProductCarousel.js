@@ -49,55 +49,55 @@ const ProductCarousel = () => {
   });
 
   return (
-    <Carousel pause="hover" fade>
+    <Carousel pause="hover" slide={false} className="product-slider">
       {image && (
         <Carousel.Item>
-          <Image src={image} className="heroImage" />
+          <Image src={image} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageTwo && (
         <Carousel.Item>
-          <Image src={imageTwo} className="heroImage" />
+          <Image src={imageTwo} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageThree && (
         <Carousel.Item>
-          <Image src={imageThree} className="heroImage" />
+          <Image src={imageThree} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageFour && (
         <Carousel.Item>
-          <Image src={imageFour} className="heroImage" />
+          <Image src={imageFour} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageFive && (
         <Carousel.Item>
-          <Image src={imageFive} className="heroImage" />
+          <Image src={imageFive} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageSix && (
         <Carousel.Item>
-          <Image src={imageSix} className="heroImage" />
+          <Image src={imageSix} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageSeven && (
         <Carousel.Item>
-          <Image src={imageSeven} className="heroImage" />
+          <Image src={imageSeven} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageEight && (
         <Carousel.Item>
-          <Image src={imageEight} className="heroImage" />
+          <Image src={imageEight} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageNine && (
         <Carousel.Item>
-          <Image src={imageNine} className="heroImage" />
+          <Image src={imageNine} className="heroImage shadow" />
         </Carousel.Item>
       )}
       {imageTen && (
         <Carousel.Item>
-          <Image src={imageTen} className="heroImage" />
+          <Image src={imageTen} className="heroImage shadow" />
         </Carousel.Item>
       )}
     </Carousel>

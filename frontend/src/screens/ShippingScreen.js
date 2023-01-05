@@ -40,96 +40,103 @@ const ShippingScreen = ({ history }) => {
   };
 
   return (
-    <FormContainer>
+    <div className="form-container">
       <CheckOutSteps step1 step2 />
-      <h1>Shipping</h1>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler} className='shipping-con card shadow'>
+      <h1 className="shippingText">Shipping</h1>
         <Form.Group controlId="Address">
-          <Form.Label>Enter Address</Form.Label>
+          <Form.Label className='input'>Enter Address</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Address"
             value={address}
+            className='input'
             onChange={(e) => SetAddress(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="City">
-          <Form.Label>Enter City</Form.Label>
+          <Form.Label className='input'>Enter City</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter City"
             value={city}
+            className='input'
             onChange={(e) => SetCity(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="State">
-          <Form.Label>Enter State</Form.Label>
+          <Form.Label className='input'>Enter State</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter State"
             value={state}
+            className='input'
             onChange={(e) => SetState(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Phone">
-          <Form.Label>Enter Mobile Number</Form.Label>
+          <Form.Label className='input'>Enter Mobile Number</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Mobile Number"
             value={phone}
+            className='input'
             onChange={(e) => SetPhone(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
-        <Form.Group controlId="Email">
-          <Form.Label>Enter Email</Form.Label>
+        <Form.Group className='input' controlId="Email">
+          <Form.Label className='input'>Enter Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Email"
             value={email}
+            className='input'
             onChange={(e) => SetEmail(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="PostalCode">
-          <Form.Label>Enter Pincode</Form.Label>
+          <Form.Label className='input'>Enter Pincode</Form.Label>
           <Form.Control
             type="number"
             placeholder="Enter Pincode"
             value={postalCode}
+            className='input'
             onChange={(e) => SetPostalCode(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Country">
-          <Form.Label>Enter Country</Form.Label>
+          <Form.Label className='input'>Enter Country</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Country"
             value={country}
+            className='input'
             onChange={(e) => SetCountry(e.target.value)}
             required
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="Country">
-          <Form.Label>Enter GST Number ( Optional )</Form.Label>
+          <Form.Label className='input'>Enter GST Number ( Optional )</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter GST Number"
             value={gstNumber}
+            className='input'
             onChange={(e) => SetGstNumber(e.target.value)}
-            required
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="profileUpdateButton">
+        <Button type="submit" variant="primary" className="conBtn form-btn btn-block shadow">
           Continue
         </Button>
       </Form>
-    </FormContainer>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "62a224cebab1ed52f6a9cc0d"
   },
-  "banner1": "/uploads/banner1-1663774072991.jpg",
+  "banner1": "/uploads/banner1-1670398187594.png",
   "createdAt": {
     "$date": {
       "$numberLong": "1654793422349"
@@ -10,11 +10,17 @@
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1663774074758"
+      "$numberLong": "1670398205140"
     }
   },
   "__v": 0,
-  "banner2": "/uploads/banner2-1663333627233.jpg",
-  "banner4": "/uploads/banner4-1662622022291.jpg",
-  "banner5": "/uploads/banner5-1662622333833.jpg"
+  "banner2": "/uploads/banner2-1670397435382.png",
+  "banner4": "/uploads/banner4-1670397502933.jpg",
+  "banner5": "/uploads/banner5-1670397541303.jpg",
+  "banner6": "/uploads/banner6-1664017767970.jpg",
+  "banner3": "/uploads/banner3-1664014173599.jpg",
+  "banner7": "/uploads/banner7-1664796374894.jpg",
+  "banner10": "/uploads/banner10-1670398141755.jpg",
+  "banner8": "/uploads/banner8-1670398115886.png",
+  "banner9": "/uploads/banner9-1670398138195.jpg"
 }]
